@@ -24,12 +24,64 @@ public class UserDao extends AbstractDao<User, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property PackageName = new Property(1, String.class, "packageName", false, "PACKAGENAME");
-        public final static Property Date = new Property(2, String.class, "date", false, "DATE");
+        public final static Property Date = new Property(2, long.class, "date", false, "DATE");
         public final static Property WifiConnect = new Property(3, boolean.class, "wifiConnect", false, "WIFICONNECT");
         public final static Property MobileConnect = new Property(4, boolean.class, "mobileConnect", false, "mobileconnect");
         public final static Property Latitude = new Property(5, double.class, "latitude", false, "LATITUDE");
         public final static Property Longtitude = new Property(6, double.class, "longtitude", false, "LONGTITUDE");
         public final static Property InWorkspace = new Property(7, boolean.class, "inWorkspace", false, "INWORKSPACE");
+        public final static Property IsMonday = new Property(8, boolean.class, "isMonday", false, "ISMONDAY");
+        public final static Property IsThesday = new Property(9, boolean.class, "isThesday", false, "ISTHESDAY");
+        public final static Property IsWednesday = new Property(10, boolean.class, "isWednesday", false, "ISWEDNESDAY");
+        public final static Property IsThursday = new Property(11, boolean.class, "isThursday", false, "ISTHURSDAY");
+        public final static Property IsFriday = new Property(12, boolean.class, "isFriday", false, "ISTFRIDAY");
+        public final static Property IsSaturday = new Property(13, boolean.class, "isSaturday", false, "ISSATURDAY");
+        public final static Property IsSunday = new Property(14, boolean.class, "isSunday", false, "ISSUNDAY");
+        public final static Property IsJanuary = new Property(15, boolean.class, "isJanuary", false, "ISJANUARY");
+        public final static Property IsFebruary = new Property(16, boolean.class, "isFebruary", false, "ISFEBRUARY");
+        public final static Property IsMarch = new Property(17, boolean.class, "isMarch", false, "ISMARCH");
+        public final static Property IsApril = new Property(18, boolean.class, "isApril", false, "ISAPRIL");
+        public final static Property IsMay = new Property(19, boolean.class, "isMay", false, "ISMAY");
+        public final static Property IsJune = new Property(20, boolean.class, "isJune", false, "ISJUNE");
+        public final static Property IsJuly = new Property(21, boolean.class, "isJuly", false, "ISJULY");
+        public final static Property IsAugust = new Property(22, boolean.class, "isAugust", false, "ISAUGUST");
+        public final static Property IsSeptember = new Property(23, boolean.class, "isSeptember", false, "ISSEPTEMBER");
+        public final static Property IsOctober = new Property(24, boolean.class, "isOctober", false, "ISOCTOBER");
+        public final static Property IsNovember = new Property(25, boolean.class, "isNovember", false, "ISNOVEMBER");
+        public final static Property IsDecember = new Property(26, boolean.class, "isDecember", false, "ISDECEMBER");
+        public final static Property IsZero = new Property(27, boolean.class, "isZero", false, "ISZERO");
+        public final static Property IsOne = new Property(28, boolean.class, "isOne", false, "ISONE");
+        public final static Property IsTwo = new Property(29, boolean.class, "isTwo", false, "ISTWO");
+        public final static Property IsThree = new Property(30, boolean.class, "isThree", false, "ISTHREE");
+        public final static Property IsFour = new Property(31, boolean.class, "isFour", false, "ISFOUR");
+        public final static Property IsFive = new Property(32, boolean.class, "isFive", false, "ISFive");
+        public final static Property IsSix = new Property(33, boolean.class, "isSix", false, "ISSIX");
+        public final static Property IsSeven = new Property(34, boolean.class, "isSeven", false, "ISSEVEN");
+        public final static Property IsEight = new Property(35, boolean.class, "isEight", false, "ISEIGHT");
+        public final static Property IsNine = new Property(36, boolean.class, "isNine", false, "ISNine");
+        public final static Property IsTen = new Property(37, boolean.class, "isTen", false, "ISTEN");
+        public final static Property IsEleven = new Property(38, boolean.class, "isEleven", false, "ISELEVEN");
+        public final static Property IsTwelve = new Property(39, boolean.class, "isTwelve", false, "ISTWELVE");
+        public final static Property IsThirteen = new Property(40, boolean.class, "isThirteen", false, "ISTHIRTEEN");
+        public final static Property IsForteen = new Property(41, boolean.class, "isForteen", false, "ISFORTEEN");
+        public final static Property IsFifteen = new Property(42, boolean.class, "isFifteen", false, "ISFIFTEEN");
+        public final static Property IsSixteen = new Property(43, boolean.class, "isSixteen", false, "ISSIXTEEN");
+        public final static Property IsSeveteen = new Property(44, boolean.class, "isSeveteen", false, "ISSEVETEEN");
+        public final static Property IsEighteen = new Property(45, boolean.class, "isEighteen", false, "ISEIGHTEEN");
+        public final static Property IsNineteen = new Property(46, boolean.class, "isNineteen", false, "ISnineteen");
+        public final static Property IsTwenty = new Property(47, boolean.class, "isTwenty", false, "ISTWENTY");
+        public final static Property IsTwentyone = new Property(48, boolean.class, "isTwentyone", false, "ISTWENTY_ONE");
+        public final static Property IsTwentytwo = new Property(49, boolean.class, "isTwentytwo", false, "ISTWENTY_TWO");
+        public final static Property IsTwentthree = new Property(50, boolean.class, "isTwentthree", false, "ISTWENTY_THREE");
+        public final static Property IsMonning = new Property(51, boolean.class, "isMonning", false, "ISMOMNING");
+        public final static Property IsNoon = new Property(52, boolean.class, "isNoon", false, "ISNOON");
+        public final static Property IsAfternoon = new Property(53, boolean.class, "isAfternoon", false, "ISAFTERNOON");
+        public final static Property IsEvening = new Property(54, boolean.class, "isEvening", false, "ISEVENING");
+        public final static Property IsNight = new Property(55, boolean.class, "isNight", false, "ISNIGHT");
+        public final static Property IsBeginOfMouth = new Property(56, boolean.class, "isBeginOfMouth", false, "ISBEGINOFMOUTH");
+        public final static Property IsEndOfMouth = new Property(57, boolean.class, "isEndOfMouth", false, "ISENDOFMOUTH");
+        public final static Property IsWorkday = new Property(58, boolean.class, "isWorkday", false, "ISWORKDAY");
+        public final static Property IsWeekend = new Property(59, boolean.class, "isWeekend", false, "ISWEEKEND");
     }
 
 
@@ -47,12 +99,64 @@ public class UserDao extends AbstractDao<User, Long> {
         db.execSQL("CREATE TABLE " + constraint + "\"USER\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
                 "\"PACKAGENAME\" TEXT," + // 1: packageName
-                "\"DATE\" TEXT," + // 2: date
+                "\"DATE\" INTEGER NOT NULL ," + // 2: date
                 "\"WIFICONNECT\" INTEGER NOT NULL ," + // 3: wifiConnect
                 "\"mobileconnect\" INTEGER NOT NULL ," + // 4: mobileConnect
                 "\"LATITUDE\" REAL NOT NULL ," + // 5: latitude
                 "\"LONGTITUDE\" REAL NOT NULL ," + // 6: longtitude
-                "\"INWORKSPACE\" INTEGER NOT NULL );"); // 7: inWorkspace
+                "\"INWORKSPACE\" INTEGER NOT NULL ," + // 7: inWorkspace
+                "\"ISMONDAY\" INTEGER NOT NULL ," + // 8: isMonday
+                "\"ISTHESDAY\" INTEGER NOT NULL ," + // 9: isThesday
+                "\"ISWEDNESDAY\" INTEGER NOT NULL ," + // 10: isWednesday
+                "\"ISTHURSDAY\" INTEGER NOT NULL ," + // 11: isThursday
+                "\"ISTFRIDAY\" INTEGER NOT NULL ," + // 12: isFriday
+                "\"ISSATURDAY\" INTEGER NOT NULL ," + // 13: isSaturday
+                "\"ISSUNDAY\" INTEGER NOT NULL ," + // 14: isSunday
+                "\"ISJANUARY\" INTEGER NOT NULL ," + // 15: isJanuary
+                "\"ISFEBRUARY\" INTEGER NOT NULL ," + // 16: isFebruary
+                "\"ISMARCH\" INTEGER NOT NULL ," + // 17: isMarch
+                "\"ISAPRIL\" INTEGER NOT NULL ," + // 18: isApril
+                "\"ISMAY\" INTEGER NOT NULL ," + // 19: isMay
+                "\"ISJUNE\" INTEGER NOT NULL ," + // 20: isJune
+                "\"ISJULY\" INTEGER NOT NULL ," + // 21: isJuly
+                "\"ISAUGUST\" INTEGER NOT NULL ," + // 22: isAugust
+                "\"ISSEPTEMBER\" INTEGER NOT NULL ," + // 23: isSeptember
+                "\"ISOCTOBER\" INTEGER NOT NULL ," + // 24: isOctober
+                "\"ISNOVEMBER\" INTEGER NOT NULL ," + // 25: isNovember
+                "\"ISDECEMBER\" INTEGER NOT NULL ," + // 26: isDecember
+                "\"ISZERO\" INTEGER NOT NULL ," + // 27: isZero
+                "\"ISONE\" INTEGER NOT NULL ," + // 28: isOne
+                "\"ISTWO\" INTEGER NOT NULL ," + // 29: isTwo
+                "\"ISTHREE\" INTEGER NOT NULL ," + // 30: isThree
+                "\"ISFOUR\" INTEGER NOT NULL ," + // 31: isFour
+                "\"ISFive\" INTEGER NOT NULL ," + // 32: isFive
+                "\"ISSIX\" INTEGER NOT NULL ," + // 33: isSix
+                "\"ISSEVEN\" INTEGER NOT NULL ," + // 34: isSeven
+                "\"ISEIGHT\" INTEGER NOT NULL ," + // 35: isEight
+                "\"ISNine\" INTEGER NOT NULL ," + // 36: isNine
+                "\"ISTEN\" INTEGER NOT NULL ," + // 37: isTen
+                "\"ISELEVEN\" INTEGER NOT NULL ," + // 38: isEleven
+                "\"ISTWELVE\" INTEGER NOT NULL ," + // 39: isTwelve
+                "\"ISTHIRTEEN\" INTEGER NOT NULL ," + // 40: isThirteen
+                "\"ISFORTEEN\" INTEGER NOT NULL ," + // 41: isForteen
+                "\"ISFIFTEEN\" INTEGER NOT NULL ," + // 42: isFifteen
+                "\"ISSIXTEEN\" INTEGER NOT NULL ," + // 43: isSixteen
+                "\"ISSEVETEEN\" INTEGER NOT NULL ," + // 44: isSeveteen
+                "\"ISEIGHTEEN\" INTEGER NOT NULL ," + // 45: isEighteen
+                "\"ISnineteen\" INTEGER NOT NULL ," + // 46: isNineteen
+                "\"ISTWENTY\" INTEGER NOT NULL ," + // 47: isTwenty
+                "\"ISTWENTY_ONE\" INTEGER NOT NULL ," + // 48: isTwentyone
+                "\"ISTWENTY_TWO\" INTEGER NOT NULL ," + // 49: isTwentytwo
+                "\"ISTWENTY_THREE\" INTEGER NOT NULL ," + // 50: isTwentthree
+                "\"ISMOMNING\" INTEGER NOT NULL ," + // 51: isMonning
+                "\"ISNOON\" INTEGER NOT NULL ," + // 52: isNoon
+                "\"ISAFTERNOON\" INTEGER NOT NULL ," + // 53: isAfternoon
+                "\"ISEVENING\" INTEGER NOT NULL ," + // 54: isEvening
+                "\"ISNIGHT\" INTEGER NOT NULL ," + // 55: isNight
+                "\"ISBEGINOFMOUTH\" INTEGER NOT NULL ," + // 56: isBeginOfMouth
+                "\"ISENDOFMOUTH\" INTEGER NOT NULL ," + // 57: isEndOfMouth
+                "\"ISWORKDAY\" INTEGER NOT NULL ," + // 58: isWorkday
+                "\"ISWEEKEND\" INTEGER NOT NULL );"); // 59: isWeekend
     }
 
     /** Drops the underlying database table. */
@@ -74,16 +178,64 @@ public class UserDao extends AbstractDao<User, Long> {
         if (packageName != null) {
             stmt.bindString(2, packageName);
         }
- 
-        String date = entity.getDate();
-        if (date != null) {
-            stmt.bindString(3, date);
-        }
+        stmt.bindLong(3, entity.getDate());
         stmt.bindLong(4, entity.getWifiConnect() ? 1L: 0L);
         stmt.bindLong(5, entity.getMobileConnect() ? 1L: 0L);
         stmt.bindDouble(6, entity.getLatitude());
         stmt.bindDouble(7, entity.getLongtitude());
         stmt.bindLong(8, entity.getInWorkspace() ? 1L: 0L);
+        stmt.bindLong(9, entity.getIsMonday() ? 1L: 0L);
+        stmt.bindLong(10, entity.getIsThesday() ? 1L: 0L);
+        stmt.bindLong(11, entity.getIsWednesday() ? 1L: 0L);
+        stmt.bindLong(12, entity.getIsThursday() ? 1L: 0L);
+        stmt.bindLong(13, entity.getIsFriday() ? 1L: 0L);
+        stmt.bindLong(14, entity.getIsSaturday() ? 1L: 0L);
+        stmt.bindLong(15, entity.getIsSunday() ? 1L: 0L);
+        stmt.bindLong(16, entity.getIsJanuary() ? 1L: 0L);
+        stmt.bindLong(17, entity.getIsFebruary() ? 1L: 0L);
+        stmt.bindLong(18, entity.getIsMarch() ? 1L: 0L);
+        stmt.bindLong(19, entity.getIsApril() ? 1L: 0L);
+        stmt.bindLong(20, entity.getIsMay() ? 1L: 0L);
+        stmt.bindLong(21, entity.getIsJune() ? 1L: 0L);
+        stmt.bindLong(22, entity.getIsJuly() ? 1L: 0L);
+        stmt.bindLong(23, entity.getIsAugust() ? 1L: 0L);
+        stmt.bindLong(24, entity.getIsSeptember() ? 1L: 0L);
+        stmt.bindLong(25, entity.getIsOctober() ? 1L: 0L);
+        stmt.bindLong(26, entity.getIsNovember() ? 1L: 0L);
+        stmt.bindLong(27, entity.getIsDecember() ? 1L: 0L);
+        stmt.bindLong(28, entity.getIsZero() ? 1L: 0L);
+        stmt.bindLong(29, entity.getIsOne() ? 1L: 0L);
+        stmt.bindLong(30, entity.getIsTwo() ? 1L: 0L);
+        stmt.bindLong(31, entity.getIsThree() ? 1L: 0L);
+        stmt.bindLong(32, entity.getIsFour() ? 1L: 0L);
+        stmt.bindLong(33, entity.getIsFive() ? 1L: 0L);
+        stmt.bindLong(34, entity.getIsSix() ? 1L: 0L);
+        stmt.bindLong(35, entity.getIsSeven() ? 1L: 0L);
+        stmt.bindLong(36, entity.getIsEight() ? 1L: 0L);
+        stmt.bindLong(37, entity.getIsNine() ? 1L: 0L);
+        stmt.bindLong(38, entity.getIsTen() ? 1L: 0L);
+        stmt.bindLong(39, entity.getIsEleven() ? 1L: 0L);
+        stmt.bindLong(40, entity.getIsTwelve() ? 1L: 0L);
+        stmt.bindLong(41, entity.getIsThirteen() ? 1L: 0L);
+        stmt.bindLong(42, entity.getIsForteen() ? 1L: 0L);
+        stmt.bindLong(43, entity.getIsFifteen() ? 1L: 0L);
+        stmt.bindLong(44, entity.getIsSixteen() ? 1L: 0L);
+        stmt.bindLong(45, entity.getIsSeveteen() ? 1L: 0L);
+        stmt.bindLong(46, entity.getIsEighteen() ? 1L: 0L);
+        stmt.bindLong(47, entity.getIsNineteen() ? 1L: 0L);
+        stmt.bindLong(48, entity.getIsTwenty() ? 1L: 0L);
+        stmt.bindLong(49, entity.getIsTwentyone() ? 1L: 0L);
+        stmt.bindLong(50, entity.getIsTwentytwo() ? 1L: 0L);
+        stmt.bindLong(51, entity.getIsTwentthree() ? 1L: 0L);
+        stmt.bindLong(52, entity.getIsMonning() ? 1L: 0L);
+        stmt.bindLong(53, entity.getIsNoon() ? 1L: 0L);
+        stmt.bindLong(54, entity.getIsAfternoon() ? 1L: 0L);
+        stmt.bindLong(55, entity.getIsEvening() ? 1L: 0L);
+        stmt.bindLong(56, entity.getIsNight() ? 1L: 0L);
+        stmt.bindLong(57, entity.getIsBeginOfMouth() ? 1L: 0L);
+        stmt.bindLong(58, entity.getIsEndOfMouth() ? 1L: 0L);
+        stmt.bindLong(59, entity.getIsWorkday() ? 1L: 0L);
+        stmt.bindLong(60, entity.getIsWeekend() ? 1L: 0L);
     }
 
     @Override
@@ -99,16 +251,64 @@ public class UserDao extends AbstractDao<User, Long> {
         if (packageName != null) {
             stmt.bindString(2, packageName);
         }
- 
-        String date = entity.getDate();
-        if (date != null) {
-            stmt.bindString(3, date);
-        }
+        stmt.bindLong(3, entity.getDate());
         stmt.bindLong(4, entity.getWifiConnect() ? 1L: 0L);
         stmt.bindLong(5, entity.getMobileConnect() ? 1L: 0L);
         stmt.bindDouble(6, entity.getLatitude());
         stmt.bindDouble(7, entity.getLongtitude());
         stmt.bindLong(8, entity.getInWorkspace() ? 1L: 0L);
+        stmt.bindLong(9, entity.getIsMonday() ? 1L: 0L);
+        stmt.bindLong(10, entity.getIsThesday() ? 1L: 0L);
+        stmt.bindLong(11, entity.getIsWednesday() ? 1L: 0L);
+        stmt.bindLong(12, entity.getIsThursday() ? 1L: 0L);
+        stmt.bindLong(13, entity.getIsFriday() ? 1L: 0L);
+        stmt.bindLong(14, entity.getIsSaturday() ? 1L: 0L);
+        stmt.bindLong(15, entity.getIsSunday() ? 1L: 0L);
+        stmt.bindLong(16, entity.getIsJanuary() ? 1L: 0L);
+        stmt.bindLong(17, entity.getIsFebruary() ? 1L: 0L);
+        stmt.bindLong(18, entity.getIsMarch() ? 1L: 0L);
+        stmt.bindLong(19, entity.getIsApril() ? 1L: 0L);
+        stmt.bindLong(20, entity.getIsMay() ? 1L: 0L);
+        stmt.bindLong(21, entity.getIsJune() ? 1L: 0L);
+        stmt.bindLong(22, entity.getIsJuly() ? 1L: 0L);
+        stmt.bindLong(23, entity.getIsAugust() ? 1L: 0L);
+        stmt.bindLong(24, entity.getIsSeptember() ? 1L: 0L);
+        stmt.bindLong(25, entity.getIsOctober() ? 1L: 0L);
+        stmt.bindLong(26, entity.getIsNovember() ? 1L: 0L);
+        stmt.bindLong(27, entity.getIsDecember() ? 1L: 0L);
+        stmt.bindLong(28, entity.getIsZero() ? 1L: 0L);
+        stmt.bindLong(29, entity.getIsOne() ? 1L: 0L);
+        stmt.bindLong(30, entity.getIsTwo() ? 1L: 0L);
+        stmt.bindLong(31, entity.getIsThree() ? 1L: 0L);
+        stmt.bindLong(32, entity.getIsFour() ? 1L: 0L);
+        stmt.bindLong(33, entity.getIsFive() ? 1L: 0L);
+        stmt.bindLong(34, entity.getIsSix() ? 1L: 0L);
+        stmt.bindLong(35, entity.getIsSeven() ? 1L: 0L);
+        stmt.bindLong(36, entity.getIsEight() ? 1L: 0L);
+        stmt.bindLong(37, entity.getIsNine() ? 1L: 0L);
+        stmt.bindLong(38, entity.getIsTen() ? 1L: 0L);
+        stmt.bindLong(39, entity.getIsEleven() ? 1L: 0L);
+        stmt.bindLong(40, entity.getIsTwelve() ? 1L: 0L);
+        stmt.bindLong(41, entity.getIsThirteen() ? 1L: 0L);
+        stmt.bindLong(42, entity.getIsForteen() ? 1L: 0L);
+        stmt.bindLong(43, entity.getIsFifteen() ? 1L: 0L);
+        stmt.bindLong(44, entity.getIsSixteen() ? 1L: 0L);
+        stmt.bindLong(45, entity.getIsSeveteen() ? 1L: 0L);
+        stmt.bindLong(46, entity.getIsEighteen() ? 1L: 0L);
+        stmt.bindLong(47, entity.getIsNineteen() ? 1L: 0L);
+        stmt.bindLong(48, entity.getIsTwenty() ? 1L: 0L);
+        stmt.bindLong(49, entity.getIsTwentyone() ? 1L: 0L);
+        stmt.bindLong(50, entity.getIsTwentytwo() ? 1L: 0L);
+        stmt.bindLong(51, entity.getIsTwentthree() ? 1L: 0L);
+        stmt.bindLong(52, entity.getIsMonning() ? 1L: 0L);
+        stmt.bindLong(53, entity.getIsNoon() ? 1L: 0L);
+        stmt.bindLong(54, entity.getIsAfternoon() ? 1L: 0L);
+        stmt.bindLong(55, entity.getIsEvening() ? 1L: 0L);
+        stmt.bindLong(56, entity.getIsNight() ? 1L: 0L);
+        stmt.bindLong(57, entity.getIsBeginOfMouth() ? 1L: 0L);
+        stmt.bindLong(58, entity.getIsEndOfMouth() ? 1L: 0L);
+        stmt.bindLong(59, entity.getIsWorkday() ? 1L: 0L);
+        stmt.bindLong(60, entity.getIsWeekend() ? 1L: 0L);
     }
 
     @Override
@@ -121,12 +321,64 @@ public class UserDao extends AbstractDao<User, Long> {
         User entity = new User( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // packageName
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // date
+            cursor.getLong(offset + 2), // date
             cursor.getShort(offset + 3) != 0, // wifiConnect
             cursor.getShort(offset + 4) != 0, // mobileConnect
             cursor.getDouble(offset + 5), // latitude
             cursor.getDouble(offset + 6), // longtitude
-            cursor.getShort(offset + 7) != 0 // inWorkspace
+            cursor.getShort(offset + 7) != 0, // inWorkspace
+            cursor.getShort(offset + 8) != 0, // isMonday
+            cursor.getShort(offset + 9) != 0, // isThesday
+            cursor.getShort(offset + 10) != 0, // isWednesday
+            cursor.getShort(offset + 11) != 0, // isThursday
+            cursor.getShort(offset + 12) != 0, // isFriday
+            cursor.getShort(offset + 13) != 0, // isSaturday
+            cursor.getShort(offset + 14) != 0, // isSunday
+            cursor.getShort(offset + 15) != 0, // isJanuary
+            cursor.getShort(offset + 16) != 0, // isFebruary
+            cursor.getShort(offset + 17) != 0, // isMarch
+            cursor.getShort(offset + 18) != 0, // isApril
+            cursor.getShort(offset + 19) != 0, // isMay
+            cursor.getShort(offset + 20) != 0, // isJune
+            cursor.getShort(offset + 21) != 0, // isJuly
+            cursor.getShort(offset + 22) != 0, // isAugust
+            cursor.getShort(offset + 23) != 0, // isSeptember
+            cursor.getShort(offset + 24) != 0, // isOctober
+            cursor.getShort(offset + 25) != 0, // isNovember
+            cursor.getShort(offset + 26) != 0, // isDecember
+            cursor.getShort(offset + 27) != 0, // isZero
+            cursor.getShort(offset + 28) != 0, // isOne
+            cursor.getShort(offset + 29) != 0, // isTwo
+            cursor.getShort(offset + 30) != 0, // isThree
+            cursor.getShort(offset + 31) != 0, // isFour
+            cursor.getShort(offset + 32) != 0, // isFive
+            cursor.getShort(offset + 33) != 0, // isSix
+            cursor.getShort(offset + 34) != 0, // isSeven
+            cursor.getShort(offset + 35) != 0, // isEight
+            cursor.getShort(offset + 36) != 0, // isNine
+            cursor.getShort(offset + 37) != 0, // isTen
+            cursor.getShort(offset + 38) != 0, // isEleven
+            cursor.getShort(offset + 39) != 0, // isTwelve
+            cursor.getShort(offset + 40) != 0, // isThirteen
+            cursor.getShort(offset + 41) != 0, // isForteen
+            cursor.getShort(offset + 42) != 0, // isFifteen
+            cursor.getShort(offset + 43) != 0, // isSixteen
+            cursor.getShort(offset + 44) != 0, // isSeveteen
+            cursor.getShort(offset + 45) != 0, // isEighteen
+            cursor.getShort(offset + 46) != 0, // isNineteen
+            cursor.getShort(offset + 47) != 0, // isTwenty
+            cursor.getShort(offset + 48) != 0, // isTwentyone
+            cursor.getShort(offset + 49) != 0, // isTwentytwo
+            cursor.getShort(offset + 50) != 0, // isTwentthree
+            cursor.getShort(offset + 51) != 0, // isMonning
+            cursor.getShort(offset + 52) != 0, // isNoon
+            cursor.getShort(offset + 53) != 0, // isAfternoon
+            cursor.getShort(offset + 54) != 0, // isEvening
+            cursor.getShort(offset + 55) != 0, // isNight
+            cursor.getShort(offset + 56) != 0, // isBeginOfMouth
+            cursor.getShort(offset + 57) != 0, // isEndOfMouth
+            cursor.getShort(offset + 58) != 0, // isWorkday
+            cursor.getShort(offset + 59) != 0 // isWeekend
         );
         return entity;
     }
@@ -135,12 +387,64 @@ public class UserDao extends AbstractDao<User, Long> {
     public void readEntity(Cursor cursor, User entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setPackageName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setDate(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setDate(cursor.getLong(offset + 2));
         entity.setWifiConnect(cursor.getShort(offset + 3) != 0);
         entity.setMobileConnect(cursor.getShort(offset + 4) != 0);
         entity.setLatitude(cursor.getDouble(offset + 5));
         entity.setLongtitude(cursor.getDouble(offset + 6));
         entity.setInWorkspace(cursor.getShort(offset + 7) != 0);
+        entity.setIsMonday(cursor.getShort(offset + 8) != 0);
+        entity.setIsThesday(cursor.getShort(offset + 9) != 0);
+        entity.setIsWednesday(cursor.getShort(offset + 10) != 0);
+        entity.setIsThursday(cursor.getShort(offset + 11) != 0);
+        entity.setIsFriday(cursor.getShort(offset + 12) != 0);
+        entity.setIsSaturday(cursor.getShort(offset + 13) != 0);
+        entity.setIsSunday(cursor.getShort(offset + 14) != 0);
+        entity.setIsJanuary(cursor.getShort(offset + 15) != 0);
+        entity.setIsFebruary(cursor.getShort(offset + 16) != 0);
+        entity.setIsMarch(cursor.getShort(offset + 17) != 0);
+        entity.setIsApril(cursor.getShort(offset + 18) != 0);
+        entity.setIsMay(cursor.getShort(offset + 19) != 0);
+        entity.setIsJune(cursor.getShort(offset + 20) != 0);
+        entity.setIsJuly(cursor.getShort(offset + 21) != 0);
+        entity.setIsAugust(cursor.getShort(offset + 22) != 0);
+        entity.setIsSeptember(cursor.getShort(offset + 23) != 0);
+        entity.setIsOctober(cursor.getShort(offset + 24) != 0);
+        entity.setIsNovember(cursor.getShort(offset + 25) != 0);
+        entity.setIsDecember(cursor.getShort(offset + 26) != 0);
+        entity.setIsZero(cursor.getShort(offset + 27) != 0);
+        entity.setIsOne(cursor.getShort(offset + 28) != 0);
+        entity.setIsTwo(cursor.getShort(offset + 29) != 0);
+        entity.setIsThree(cursor.getShort(offset + 30) != 0);
+        entity.setIsFour(cursor.getShort(offset + 31) != 0);
+        entity.setIsFive(cursor.getShort(offset + 32) != 0);
+        entity.setIsSix(cursor.getShort(offset + 33) != 0);
+        entity.setIsSeven(cursor.getShort(offset + 34) != 0);
+        entity.setIsEight(cursor.getShort(offset + 35) != 0);
+        entity.setIsNine(cursor.getShort(offset + 36) != 0);
+        entity.setIsTen(cursor.getShort(offset + 37) != 0);
+        entity.setIsEleven(cursor.getShort(offset + 38) != 0);
+        entity.setIsTwelve(cursor.getShort(offset + 39) != 0);
+        entity.setIsThirteen(cursor.getShort(offset + 40) != 0);
+        entity.setIsForteen(cursor.getShort(offset + 41) != 0);
+        entity.setIsFifteen(cursor.getShort(offset + 42) != 0);
+        entity.setIsSixteen(cursor.getShort(offset + 43) != 0);
+        entity.setIsSeveteen(cursor.getShort(offset + 44) != 0);
+        entity.setIsEighteen(cursor.getShort(offset + 45) != 0);
+        entity.setIsNineteen(cursor.getShort(offset + 46) != 0);
+        entity.setIsTwenty(cursor.getShort(offset + 47) != 0);
+        entity.setIsTwentyone(cursor.getShort(offset + 48) != 0);
+        entity.setIsTwentytwo(cursor.getShort(offset + 49) != 0);
+        entity.setIsTwentthree(cursor.getShort(offset + 50) != 0);
+        entity.setIsMonning(cursor.getShort(offset + 51) != 0);
+        entity.setIsNoon(cursor.getShort(offset + 52) != 0);
+        entity.setIsAfternoon(cursor.getShort(offset + 53) != 0);
+        entity.setIsEvening(cursor.getShort(offset + 54) != 0);
+        entity.setIsNight(cursor.getShort(offset + 55) != 0);
+        entity.setIsBeginOfMouth(cursor.getShort(offset + 56) != 0);
+        entity.setIsEndOfMouth(cursor.getShort(offset + 57) != 0);
+        entity.setIsWorkday(cursor.getShort(offset + 58) != 0);
+        entity.setIsWeekend(cursor.getShort(offset + 59) != 0);
      }
     
     @Override

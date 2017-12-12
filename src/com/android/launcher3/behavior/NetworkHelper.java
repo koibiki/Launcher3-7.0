@@ -1,4 +1,4 @@
-package com.android.launcher3.database;
+package com.android.launcher3.behavior;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

@@ -57,7 +57,6 @@ import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -84,7 +83,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
-import android.view.ViewStub;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
@@ -104,9 +102,7 @@ import com.android.launcher3.compat.LauncherActivityInfoCompat;
 import com.android.launcher3.compat.LauncherAppsCompat;
 import com.android.launcher3.compat.UserHandleCompat;
 import com.android.launcher3.compat.UserManagerCompat;
-import com.android.launcher3.database.GreenDaoInstance;
-import com.android.launcher3.database.User;
-import com.android.launcher3.database.UserBehaviorHelper;
+import com.android.launcher3.behavior.UserBehaviorHelper;
 import com.android.launcher3.model.WidgetsModel;
 import com.android.launcher3.util.ComponentKey;
 import com.android.launcher3.util.LongArrayMap;
@@ -215,11 +211,17 @@ public class Launcher extends Activity
 
     public static final String USER_HAS_MIGRATED = "launcher.user_migrated_from_old_data";
 
-    /** The different states that Launcher can be in. */
-    enum State { NONE, WORKSPACE, APPS, APPS_SPRING_LOADED, WIDGETS, WIDGETS_SPRING_LOADED }
+    /**
+     * The different states that Launcher can be in.
+     */
+    enum State {
+        NONE, WORKSPACE, APPS, APPS_SPRING_LOADED, WIDGETS, WIDGETS_SPRING_LOADED
+    }
 
-    @Thunk State mState = State.WORKSPACE;
-    @Thunk LauncherStateTransitionAnimation mStateTransitionAnimation;
+    @Thunk
+    State mState = State.WORKSPACE;
+    @Thunk
+    LauncherStateTransitionAnimation mStateTransitionAnimation;
 
     private boolean mIsSafeModeEnabled;
 
@@ -231,17 +233,20 @@ public class Launcher extends Activity
     // How long to wait before the new-shortcut animation automatically pans the workspace
     private static int NEW_APPS_PAGE_MOVE_DELAY = 500;
     private static int NEW_APPS_ANIMATION_INACTIVE_TIMEOUT_SECONDS = 5;
-    @Thunk static int NEW_APPS_ANIMATION_DELAY = 500;
+    @Thunk
+    static int NEW_APPS_ANIMATION_DELAY = 500;
 
     private final BroadcastReceiver mCloseSystemDialogsReceiver
             = new CloseSystemDialogsIntentReceiver();
 
     private LayoutInflater mInflater;
 
-    @Thunk Workspace mWorkspace;
+    @Thunk
+    Workspace mWorkspace;
     private View mLauncherView;
     private View mPageIndicators;
-    @Thunk DragLayer mDragLayer;
+    @Thunk
+    DragLayer mDragLayer;
     private DragController mDragController;
 
     public View mWeightWatcher;
@@ -249,13 +254,15 @@ public class Launcher extends Activity
     private AppWidgetManagerCompat mAppWidgetManager;
     private LauncherAppWidgetHost mAppWidgetHost;
 
-    @Thunk PendingAddItemInfo mPendingAddInfo = new PendingAddItemInfo();
+    @Thunk
+    PendingAddItemInfo mPendingAddInfo = new PendingAddItemInfo();
     private LauncherAppWidgetProviderInfo mPendingAddWidgetInfo;
     private int mPendingAddWidgetId = -1;
 
     private int[] mTmpAddItemCellCoordinates = new int[2];
 
-    @Thunk Hotseat mHotseat;
+    @Thunk
+    Hotseat mHotseat;
     private ViewGroup mOverviewPanel;
 
     private View mAllAppsButton;
@@ -264,11 +271,14 @@ public class Launcher extends Activity
     private SearchDropTargetBar mSearchDropTargetBar;
 
     // Main container view for the all apps screen.
-    @Thunk AllAppsContainerView mAppsView;
+    @Thunk
+    AllAppsContainerView mAppsView;
 
     // Main container view and the model for the widget tray screen.
-    @Thunk WidgetsContainerView mWidgetsView;
-    @Thunk WidgetsModel mWidgetsModel;
+    @Thunk
+    WidgetsContainerView mWidgetsView;
+    @Thunk
+    WidgetsModel mWidgetsModel;
 
     private boolean mAutoAdvanceRunning = false;
     private AppWidgetHostView mQsb;
@@ -281,7 +291,8 @@ public class Launcher extends Activity
 
     private SpannableStringBuilder mDefaultKeySsb = null;
 
-    @Thunk boolean mWorkspaceLoading = true;
+    @Thunk
+    boolean mWorkspaceLoading = true;
 
     private boolean mPaused = true;
     private boolean mRestoring;
@@ -295,7 +306,8 @@ public class Launcher extends Activity
 
     private LauncherModel mModel;
     private IconCache mIconCache;
-    @Thunk boolean mUserPresent = true;
+    @Thunk
+    boolean mUserPresent = true;
     private boolean mVisible = false;
     private boolean mHasFocus = false;
     private boolean mAttached = false;
@@ -312,14 +324,16 @@ public class Launcher extends Activity
     private final int mAdvanceStagger = 250;
     private long mAutoAdvanceSentTime;
     private long mAutoAdvanceTimeLeft = -1;
-    @Thunk HashMap<View, AppWidgetProviderInfo> mWidgetsToAdvance =
+    @Thunk
+    HashMap<View, AppWidgetProviderInfo> mWidgetsToAdvance =
             new HashMap<View, AppWidgetProviderInfo>();
 
     // Determines how long to wait after a rotation before restoring the screen orientation to
     // match the sensor state.
     private final int mRestoreScreenOrientationDelay = 500;
 
-    @Thunk Drawable mWorkspaceBackgroundDrawable;
+    @Thunk
+    Drawable mWorkspaceBackgroundDrawable;
 
     private final ArrayList<Integer> mSynchronouslyBoundPages = new ArrayList<Integer>();
     private static final boolean DISABLE_SYNCHRONOUS_BINDING_CURRENT_PAGE = false;
@@ -337,7 +351,8 @@ public class Launcher extends Activity
 
     // Holds the page that we need to animate to, and the icon views that we need to animate up
     // when we scroll to that page on resume.
-    @Thunk ImageView mFolderIconImageView;
+    @Thunk
+    ImageView mFolderIconImageView;
     private Bitmap mFolderIconBitmap;
     private Canvas mFolderIconCanvas;
     private Rect mRectForFolderAnimation = new Rect();
@@ -360,7 +375,8 @@ public class Launcher extends Activity
         }
     }
 
-    @Thunk Runnable mBuildLayersRunnable = new Runnable() {
+    @Thunk
+    Runnable mBuildLayersRunnable = new Runnable() {
         public void run() {
             if (mWorkspace != null) {
                 mWorkspace.buildPageHardwareLayers();
@@ -370,7 +386,8 @@ public class Launcher extends Activity
 
     private static PendingAddArguments sPendingAddItem;
 
-    @Thunk static class PendingAddArguments {
+    @Thunk
+    static class PendingAddArguments {
         int requestCode;
         Intent intent;
         long container;
@@ -384,7 +401,8 @@ public class Launcher extends Activity
     FocusIndicatorView mFocusHandler;
     private boolean mRotationEnabled = false;
 
-    @Thunk void setOrientation() {
+    @Thunk
+    void setOrientation() {
         if (mRotationEnabled) {
             unlockScreenOrientation(true);
         } else {
@@ -604,7 +622,9 @@ public class Launcher extends Activity
         mWidgetsView.setSearchBarBounds(newBounds);
     }
 
-    /** To be overridden by subclasses to hint to Launcher that we have custom content */
+    /**
+     * To be overridden by subclasses to hint to Launcher that we have custom content
+     */
     protected boolean hasCustomContentToLeft() {
         if (mLauncherCallbacks != null) {
             return mLauncherCallbacks.hasCustomContentToLeft();
@@ -848,7 +868,9 @@ public class Launcher extends Activity
         }
     }
 
-    /** @Override for MNC */
+    /**
+     * @Override for MNC
+     */
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
                                            int[] grantResults) {
         if (requestCode == REQUEST_PERMISSION_CALL_PHONE && sPendingAddItem != null
@@ -906,7 +928,8 @@ public class Launcher extends Activity
         }
     }
 
-    @Thunk void completeTwoStageWidgetDrop(final int resultCode, final int appWidgetId) {
+    @Thunk
+    void completeTwoStageWidgetDrop(final int resultCode, final int appWidgetId) {
         CellLayout cellLayout = mWorkspace.getScreenWithId(mPendingAddInfo.screenId);
         Runnable onCompleteRunnable = null;
         int animationType = 0;
@@ -1134,6 +1157,7 @@ public class Launcher extends Activity
 
         /**
          * Called when the launcher is ready to use the overlay
+         *
          * @param callbacks A set of callbacks provided by Launcher in relation to the overlay
          */
         public void setOverlayCallbacks(LauncherOverlayCallbacks callbacks);
@@ -1482,8 +1506,7 @@ public class Launcher extends Activity
      * Creates a view representing a shortcut inflated from the specified resource.
      *
      * @param parent The group the shortcut belongs to.
-     * @param info The data structure describing the shortcut.
-     *
+     * @param info   The data structure describing the shortcut.
      * @return A View inflated from layoutResId.
      */
     public View createShortcut(ViewGroup parent, ShortcutInfo info) {
@@ -1528,7 +1551,7 @@ public class Launcher extends Activity
 
             // If appropriate, either create a folder or add to an existing folder
             if (mWorkspace.createUserFolderIfNecessary(view, container, layout, cellXY, 0,
-                    true, null,null)) {
+                    true, null, null)) {
                 return;
             }
             DragObject dragObject = new DragObject();
@@ -1563,8 +1586,9 @@ public class Launcher extends Activity
      *
      * @param appWidgetId The app widget id
      */
-    @Thunk void completeAddAppWidget(int appWidgetId, long container, long screenId,
-                                     AppWidgetHostView hostView, LauncherAppWidgetProviderInfo appWidgetInfo) {
+    @Thunk
+    void completeAddAppWidget(int appWidgetId, long container, long screenId,
+                              AppWidgetHostView hostView, LauncherAppWidgetProviderInfo appWidgetInfo) {
 
         ItemInfo info = mPendingAddInfo;
         if (appWidgetInfo == null) {
@@ -1704,6 +1728,7 @@ public class Launcher extends Activity
                 // apps is nice and speedy.
                 observer.addOnDrawListener(new ViewTreeObserver.OnDrawListener() {
                     private boolean mStarted = false;
+
                     public void onDraw() {
                         if (mStarted) return;
                         mStarted = true;
@@ -1731,14 +1756,16 @@ public class Launcher extends Activity
         }
     }
 
-    @Thunk void sendAdvanceMessage(long delay) {
+    @Thunk
+    void sendAdvanceMessage(long delay) {
         mHandler.removeMessages(ADVANCE_MSG);
         Message msg = mHandler.obtainMessage(ADVANCE_MSG);
         mHandler.sendMessageDelayed(msg, delay);
         mAutoAdvanceSentTime = System.currentTimeMillis();
     }
 
-    @Thunk void updateAutoAdvanceState() {
+    @Thunk
+    void updateAutoAdvanceState() {
         boolean autoAdvanceRunning = mVisible && mUserPresent && !mWidgetsToAdvance.isEmpty();
         if (autoAdvanceRunning != mAutoAdvanceRunning) {
             mAutoAdvanceRunning = autoAdvanceRunning;
@@ -1756,13 +1783,14 @@ public class Launcher extends Activity
         }
     }
 
-    @Thunk final Handler mHandler = new Handler(new Handler.Callback() {
+    @Thunk
+    final Handler mHandler = new Handler(new Handler.Callback() {
 
         @Override
         public boolean handleMessage(Message msg) {
             if (msg.what == ADVANCE_MSG) {
                 int i = 0;
-                for (View key: mWidgetsToAdvance.keySet()) {
+                for (View key : mWidgetsToAdvance.keySet()) {
                     final View v = key.findViewById(mWidgetsToAdvance.get(key).autoAdvanceViewId);
                     final int delay = mAdvanceStagger * i;
                     if (v instanceof Advanceable) {
@@ -1946,7 +1974,7 @@ public class Launcher extends Activity
     @Override
     public void onRestoreInstanceState(Bundle state) {
         super.onRestoreInstanceState(state);
-        for (int page: mSynchronouslyBoundPages) {
+        for (int page : mSynchronouslyBoundPages) {
             mWorkspace.restoreInstanceStateForChild(page);
         }
     }
@@ -2051,8 +2079,8 @@ public class Launcher extends Activity
     }
 
     @Override
-    public void startIntentSenderForResult (IntentSender intent, int requestCode,
-                                            Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) {
+    public void startIntentSenderForResult(IntentSender intent, int requestCode,
+                                           Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) {
         onStartForResult(requestCode);
         try {
             super.startIntentSenderForResult(intent, requestCode,
@@ -2282,8 +2310,8 @@ public class Launcher extends Activity
      * Process a shortcut drop.
      *
      * @param componentName The name of the component
-     * @param screenId The ID of the screen where it should be added
-     * @param cell The cell it should be added to, optional
+     * @param screenId      The ID of the screen where it should be added
+     * @param cell          The cell it should be added to, optional
      */
     private void processShortcutFromDrop(ComponentName componentName, long container, long screenId,
                                          int[] cell) {
@@ -2306,9 +2334,9 @@ public class Launcher extends Activity
     /**
      * Process a widget drop.
      *
-     * @param info The PendingAppWidgetInfo of the widget being added.
+     * @param info     The PendingAppWidgetInfo of the widget being added.
      * @param screenId The ID of the screen where it should be added
-     * @param cell The cell it should be added to, optional
+     * @param cell     The cell it should be added to, optional
      */
     private void addAppWidgetFromDrop(PendingAddWidgetInfo info, long container, long screenId,
                                       int[] cell, int[] span) {
@@ -2390,8 +2418,8 @@ public class Launcher extends Activity
     /**
      * Unbinds the view for the specified item, and removes the item and all its children.
      *
-     * @param v the view being removed.
-     * @param itemInfo the {@link ItemInfo} for this view.
+     * @param v            the view being removed.
+     * @param itemInfo     the {@link ItemInfo} for this view.
      * @param deleteFromDb whether or not to delete this item from the db.
      */
     public boolean removeItem(View v, ItemInfo itemInfo, boolean deleteFromDb) {
@@ -2444,7 +2472,7 @@ public class Launcher extends Activity
             // Deleting an app widget ID is a void call but writes to disk before returning
             // to the caller...
             new AsyncTask<Void, Void, Void>() {
-                public Void doInBackground(Void ... args) {
+                public Void doInBackground(Void... args) {
                     appWidgetHost.deleteAppWidgetId(widgetInfo.appWidgetId);
                     return null;
                 }
@@ -2489,7 +2517,7 @@ public class Launcher extends Activity
 
         if (isAppsViewVisible()) {
             showWorkspace(true);
-        } else if (isWidgetsViewVisible())  {
+        } else if (isWidgetsViewVisible()) {
             showOverviewMode(true);
         } else if (mWorkspace.isInOverviewMode()) {
             showWorkspace(true);
@@ -2705,14 +2733,15 @@ public class Launcher extends Activity
         }
     }
 
-    @Thunk void startAppShortcutOrInfoActivity(View v) {
+    @Thunk
+    void startAppShortcutOrInfoActivity(View v) {
         Object tag = v.getTag();
         final ShortcutInfo shortcut;
         final Intent intent;
         if (tag instanceof ShortcutInfo) {
             shortcut = (ShortcutInfo) tag;
             intent = shortcut.intent;
-            saveUserClickData(intent, true);
+            UserBehaviorHelper.saveUserClickData(getApplicationContext(), intent, true);
             int[] pos = new int[2];
             v.getLocationOnScreen(pos);
             intent.setSourceBounds(new Rect(pos[0], pos[1],
@@ -2721,7 +2750,7 @@ public class Launcher extends Activity
         } else if (tag instanceof AppInfo) {
             shortcut = null;
             intent = ((AppInfo) tag).intent;
-            saveUserClickData(intent, false);
+            UserBehaviorHelper.saveUserClickData(getApplicationContext(), intent, false);
         } else {
             throw new IllegalArgumentException("Input must be a Shortcut or AppInfo");
         }
@@ -2735,22 +2764,6 @@ public class Launcher extends Activity
         }
     }
 
-    private void saveUserClickData(Intent intent, boolean isShortcut) {
-        ComponentName component = intent.getComponent();
-        if (component != null) {
-            User user = new User();
-            user.setDate(UserBehaviorHelper.getFormatDate());
-            user.setWifiConnect(UserBehaviorHelper.isWifi(getApplicationContext()));
-            user.setMobileConnect(UserBehaviorHelper.isMobile(getApplicationContext()));
-            user.setPackageName(component.getPackageName());
-            user.setInWorkspace(isShortcut);
-            Location location = UserBehaviorHelper.getLocation(getApplicationContext());
-            user.setLatitude(location == null ? -1 : location.getLatitude());
-            user.setLongtitude(location == null ? -1 : location.getLongitude());
-            GreenDaoInstance.getInstance().insert(user);
-        }
-    }
-
     /**
      * Event handler for a folder icon click.
      *
@@ -2758,7 +2771,7 @@ public class Launcher extends Activity
      */
     protected void onClickFolderIcon(View v) {
         if (LOGD) Log.d(TAG, "onClickFolder");
-        if (!(v instanceof FolderIcon)){
+        if (!(v instanceof FolderIcon)) {
             throw new IllegalArgumentException("Input must be a FolderIcon");
         }
 
@@ -2893,9 +2906,9 @@ public class Launcher extends Activity
     /**
      * Called when the user starts interacting with the launcher.
      * The possible interactions are:
-     *  - open all apps
-     *  - reorder an app shortcut, or a widget
-     *  - open the overview mode.
+     * - open all apps
+     * - reorder an app shortcut, or a widget
+     * - open the overview mode.
      * This is a good time to stop doing things that only make sense
      * when the user is on the homescreen and not doing housekeeping.
      */
@@ -2905,7 +2918,9 @@ public class Launcher extends Activity
         }
     }
 
-    /** Updates the interaction state. */
+    /**
+     * Updates the interaction state.
+     */
     public void updateInteraction(Workspace.State fromState, Workspace.State toState) {
         // Only update the interacting state if we are transitioning to/from a view with an
         // overlay
@@ -3043,7 +3058,7 @@ public class Launcher extends Activity
             Log.e(TAG, "Launcher does not have the permission to launch " + intent +
                     ". Make sure to create a MAIN intent-filter for the corresponding activity " +
                     "or use the exported attribute for this activity. "
-                    + "tag="+ tag + " intent=" + intent, e);
+                    + "tag=" + tag + " intent=" + intent, e);
         }
         return false;
     }
@@ -3509,7 +3524,7 @@ public class Launcher extends Activity
     // TODO: calling method should use the return value so that when {@code false} is returned
     // the workspace transition doesn't fall into invalid state.
     private boolean showAppsOrWidgets(State toState, boolean animated, boolean focusSearchBar) {
-        if (mState != State.WORKSPACE &&  mState != State.APPS_SPRING_LOADED &&
+        if (mState != State.WORKSPACE && mState != State.APPS_SPRING_LOADED &&
                 mState != State.WIDGETS_SPRING_LOADED) {
             return false;
         }
@@ -3735,7 +3750,8 @@ public class Launcher extends Activity
     /**
      * Receives notifications when system dialogs are to be closed.
      */
-    @Thunk class CloseSystemDialogsIntentReceiver extends BroadcastReceiver {
+    @Thunk
+    class CloseSystemDialogsIntentReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             closeSystemDialogs();
@@ -3745,17 +3761,18 @@ public class Launcher extends Activity
     /**
      * If the activity is currently paused, signal that we need to run the passed Runnable
      * in onResume.
-     *
+     * <p>
      * This needs to be called from incoming places where resources might have been loaded
      * while the activity is paused. That is because the Configuration (e.g., rotation)  might be
      * wrong when we're not running, and if the activity comes back to what the configuration was
      * when we were paused, activity is not restarted.
-     *
+     * <p>
      * Implementation of the method from LauncherModel.Callbacks.
      *
      * @return {@code true} if we are currently paused. The caller might be able to skip some work
      */
-    @Thunk boolean waitUntilResume(Runnable run, boolean deletePreviousRunnables) {
+    @Thunk
+    boolean waitUntilResume(Runnable run, boolean deletePreviousRunnables) {
         if (mPaused) {
             if (LOGD) Log.d(TAG, "Deferring update until onResume");
             if (deletePreviousRunnables) {
@@ -3780,12 +3797,12 @@ public class Launcher extends Activity
     /**
      * If the activity is currently paused, signal that we need to re-run the loader
      * in onResume.
-     *
+     * <p>
      * This needs to be called from incoming places where resources might have been loaded
      * while we are paused.  That is becaues the Configuration might be wrong
      * when we're not running, and if it comes back to what it was when we
      * were paused, we are not restarted.
-     *
+     * <p>
      * Implementation of the method from LauncherModel.Callbacks.
      *
      * @return true if we are currently paused.  The caller might be able to
@@ -3814,7 +3831,7 @@ public class Launcher extends Activity
 
     /**
      * Refreshes the shortcuts shown on the workspace.
-     *
+     * <p>
      * Implementation of the method from LauncherModel.Callbacks.
      */
     public void startBinding() {
@@ -3899,7 +3916,7 @@ public class Launcher extends Activity
 
     /**
      * Bind the items start-end from the list.
-     *
+     * <p>
      * Implementation of the method from LauncherModel.Callbacks.
      */
     @Override
@@ -4033,7 +4050,7 @@ public class Launcher extends Activity
 
     /**
      * Add the views for a widget to the workspace.
-     *
+     * <p>
      * Implementation of the method from LauncherModel.Callbacks.
      */
     public void bindAppWidget(final LauncherAppWidgetInfo item) {
@@ -4156,8 +4173,8 @@ public class Launcher extends Activity
         mWorkspace.requestLayout();
 
         if (DEBUG_WIDGETS) {
-            Log.d(TAG, "bound widget id="+item.appWidgetId+" in "
-                    + (SystemClock.uptimeMillis()-start) + "ms");
+            Log.d(TAG, "bound widget id=" + item.appWidgetId + " in "
+                    + (SystemClock.uptimeMillis() - start) + "ms");
         }
     }
 
@@ -4165,7 +4182,7 @@ public class Launcher extends Activity
      * Restores a pending widget.
      *
      * @param appWidgetId The app widget id
-     * @param cellInfo The position on screen where to create the widget.
+     * @param cellInfo    The position on screen where to create the widget.
      */
     private void completeRestoreAppWidget(final int appWidgetId) {
         LauncherAppWidgetHostView view = mWorkspace.getWidgetForAppWidgetId(appWidgetId);
@@ -4187,7 +4204,7 @@ public class Launcher extends Activity
 
     /**
      * Callback saying that there aren't any more items to bind.
-     *
+     * <p>
      * Implementation of the method from LauncherModel.Callbacks.
      */
     public void finishBindingItems() {
@@ -4275,7 +4292,9 @@ public class Launcher extends Activity
         return mDeviceProfile.isVerticalBarLayout();
     }
 
-    /** Returns the search bar bounds in pixels. */
+    /**
+     * Returns the search bar bounds in pixels.
+     */
     protected Rect getSearchBarBounds() {
         return mDeviceProfile.getSearchBarBounds(Utilities.isRtl(getResources()));
     }
@@ -4302,7 +4321,8 @@ public class Launcher extends Activity
      * A runnable that we can dequeue and re-enqueue when all applications are bound (to prevent
      * multiple calls to bind the same list.)
      */
-    @Thunk ArrayList<AppInfo> mTmpAppsList;
+    @Thunk
+    ArrayList<AppInfo> mTmpAppsList;
     private Runnable mBindAllApplicationsRunnable = new Runnable() {
         public void run() {
             bindAllApplications(mTmpAppsList);
@@ -4312,7 +4332,7 @@ public class Launcher extends Activity
 
     /**
      * Add the icons for all apps.
-     *
+     * <p>
      * Implementation of the method from LauncherModel.Callbacks.
      */
     public void bindAllApplications(final ArrayList<AppInfo> apps) {
@@ -4331,7 +4351,7 @@ public class Launcher extends Activity
 
     /**
      * A package was updated.
-     *
+     * <p>
      * Implementation of the method from LauncherModel.Callbacks.
      */
     public void bindAppsUpdated(final ArrayList<AppInfo> apps) {
@@ -4364,7 +4384,7 @@ public class Launcher extends Activity
 
     /**
      * Some shortcuts were updated in the background.
-     *
+     * <p>
      * Implementation of the method from LauncherModel.Callbacks.
      */
     @Override
@@ -4396,7 +4416,7 @@ public class Launcher extends Activity
 
     /**
      * Update the state of a package, typically related to install state.
-     *
+     * <p>
      * Implementation of the method from LauncherModel.Callbacks.
      */
     @Override
@@ -4685,7 +4705,8 @@ public class Launcher extends Activity
         editor.apply();
     }
 
-    @Thunk void showFirstRunClings() {
+    @Thunk
+    void showFirstRunClings() {
         // The two first run cling paths are mutually exclusive, if the launcher is preinstalled
         // on the device, then we always show the first run cling experience (or if there is no
         // launcher2). Otherwise, we prompt the user upon started for migration
@@ -4868,7 +4889,7 @@ public class Launcher extends Activity
     public void dumpLogsToLocalData() {
         if (DEBUG_DUMP_LOG) {
             new AsyncTask<Void, Void, Void>() {
-                public Void doInBackground(Void ... args) {
+                public Void doInBackground(Void... args) {
                     boolean success = false;
                     sDateStamp.setTime(sRunStart);
                     String FILENAME = sDateStamp.getMonth() + "-"

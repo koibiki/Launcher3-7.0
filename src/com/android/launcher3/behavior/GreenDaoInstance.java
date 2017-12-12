@@ -1,4 +1,4 @@
-package com.android.launcher3.database;
+package com.android.launcher3.behavior;
 
 import android.content.Context;
 import android.os.Handler;
@@ -6,6 +6,12 @@ import android.os.HandlerThread;
 import android.util.Log;
 
 import com.android.launcher3.LauncherApplication;
+import com.android.launcher3.database.DaoMaster;
+import com.android.launcher3.database.DaoSession;
+import com.android.launcher3.database.User;
+import com.android.launcher3.database.UserDao;
+
+import java.security.PublicKey;
 
 /**
  * Created by orien on 2017/12/12.
@@ -38,7 +44,7 @@ public class GreenDaoInstance {
         return INSTANCE;
     }
 
-    private static UserDao getUserDao() {
+    public UserDao getUserDao() {
         return mDaoSession.getUserDao();
     }
 
