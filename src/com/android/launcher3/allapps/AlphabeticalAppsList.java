@@ -41,7 +41,7 @@ public class AlphabeticalAppsList {
 
     public static final String TAG = "AlphabeticalAppsList";
     private static final boolean DEBUG = false;
-    private static final boolean DEBUG_PREDICTIONS = false;
+    private static final boolean DEBUG_PREDICTIONS = true;
 
     private static final int FAST_SCROLL_FRACTION_DISTRIBUTE_BY_ROWS_FRACTION = 0;
     private static final int FAST_SCROLL_FRACTION_DISTRIBUTE_BY_NUM_SECTIONS = 1;
