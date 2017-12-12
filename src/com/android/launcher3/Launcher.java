@@ -57,6 +57,7 @@ import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -103,6 +104,9 @@ import com.android.launcher3.compat.LauncherActivityInfoCompat;
 import com.android.launcher3.compat.LauncherAppsCompat;
 import com.android.launcher3.compat.UserHandleCompat;
 import com.android.launcher3.compat.UserManagerCompat;
+import com.android.launcher3.database.GreenDaoInstance;
+import com.android.launcher3.database.User;
+import com.android.launcher3.database.UserBehaviorHelper;
 import com.android.launcher3.model.WidgetsModel;
 import com.android.launcher3.util.ComponentKey;
 import com.android.launcher3.util.LongArrayMap;
@@ -132,7 +136,7 @@ import java.util.List;
  */
 public class Launcher extends Activity
         implements View.OnClickListener, OnLongClickListener, LauncherModel.Callbacks,
-                   View.OnTouchListener, PageSwitchListener, LauncherProviderChangeListener {
+        View.OnTouchListener, PageSwitchListener, LauncherProviderChangeListener {
     static final String TAG = "Launcher";
     static final boolean LOGD = false;
 
@@ -309,7 +313,7 @@ public class Launcher extends Activity
     private long mAutoAdvanceSentTime;
     private long mAutoAdvanceTimeLeft = -1;
     @Thunk HashMap<View, AppWidgetProviderInfo> mWidgetsToAdvance =
-        new HashMap<View, AppWidgetProviderInfo>();
+            new HashMap<View, AppWidgetProviderInfo>();
 
     // Determines how long to wait after a rotation before restoring the screen orientation to
     // match the sensor state.
@@ -545,7 +549,7 @@ public class Launcher extends Activity
             private boolean mWorkspaceImportanceStored = false;
             private boolean mHotseatImportanceStored = false;
             private int mWorkspaceImportanceForAccessibility =
-                View.IMPORTANT_FOR_ACCESSIBILITY_AUTO;
+                    View.IMPORTANT_FOR_ACCESSIBILITY_AUTO;
             private int mHotseatImportanceForAccessibility = View.IMPORTANT_FOR_ACCESSIBILITY_AUTO;
 
             @Override
@@ -846,7 +850,7 @@ public class Launcher extends Activity
 
     /** @Override for MNC */
     public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            int[] grantResults) {
+                                           int[] grantResults) {
         if (requestCode == REQUEST_PERMISSION_CALL_PHONE && sPendingAddItem != null
                 && sPendingAddItem.requestCode == REQUEST_PERMISSION_CALL_PHONE) {
             View v = null;
@@ -1016,7 +1020,7 @@ public class Launcher extends Activity
             mBindOnResumeCallbacks.clear();
             if (DEBUG_RESUME_TIME) {
                 Log.d(TAG, "Time spent processing callbacks in onResume: " +
-                    (System.currentTimeMillis() - startTimeCallbacks));
+                        (System.currentTimeMillis() - startTimeCallbacks));
             }
         }
         if (mOnResumeCallbacks.size() > 0) {
@@ -1171,7 +1175,7 @@ public class Launcher extends Activity
     }
 
     public void addToCustomContentPage(View customContent,
-            CustomContentCallbacks callbacks, String description) {
+                                       CustomContentCallbacks callbacks, String description) {
         mWorkspace.addToCustomContentPage(customContent, callbacks, description);
     }
 
@@ -1498,7 +1502,7 @@ public class Launcher extends Activity
      * @param data The intent describing the shortcut.
      */
     private void completeAddShortcut(Intent data, long container, long screenId, int cellX,
-            int cellY) {
+                                     int cellY) {
         int[] cellXY = mTmpAddItemCellCoordinates;
         int[] touchXY = mPendingAddInfo.dropPos;
         CellLayout layout = getCellLayout(container, screenId);
@@ -1560,7 +1564,7 @@ public class Launcher extends Activity
      * @param appWidgetId The app widget id
      */
     @Thunk void completeAddAppWidget(int appWidgetId, long container, long screenId,
-            AppWidgetHostView hostView, LauncherAppWidgetProviderInfo appWidgetInfo) {
+                                     AppWidgetHostView hostView, LauncherAppWidgetProviderInfo appWidgetInfo) {
 
         ItemInfo info = mPendingAddInfo;
         if (appWidgetInfo == null) {
@@ -1598,7 +1602,7 @@ public class Launcher extends Activity
     }
 
     private void addAppWidgetToWorkspace(LauncherAppWidgetInfo item,
-            LauncherAppWidgetProviderInfo appWidgetInfo, boolean insert) {
+                                         LauncherAppWidgetProviderInfo appWidgetInfo, boolean insert) {
         item.hostView.setTag(item);
         item.onBindAppWidget(this);
 
@@ -1763,10 +1767,10 @@ public class Launcher extends Activity
                     final int delay = mAdvanceStagger * i;
                     if (v instanceof Advanceable) {
                         mHandler.postDelayed(new Runnable() {
-                           public void run() {
-                               ((Advanceable) v).advance();
-                           }
-                       }, delay);
+                            public void run() {
+                                ((Advanceable) v).advance();
+                            }
+                        }, delay);
                     }
                     i++;
                 }
@@ -2048,11 +2052,11 @@ public class Launcher extends Activity
 
     @Override
     public void startIntentSenderForResult (IntentSender intent, int requestCode,
-            Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) {
+                                            Intent fillInIntent, int flagsMask, int flagsValues, int extraFlags, Bundle options) {
         onStartForResult(requestCode);
         try {
             super.startIntentSenderForResult(intent, requestCode,
-                fillInIntent, flagsMask, flagsValues, extraFlags, options);
+                    fillInIntent, flagsMask, flagsValues, extraFlags, options);
         } catch (IntentSender.SendIntentException e) {
             throw new ActivityNotFoundException();
         }
@@ -2070,7 +2074,7 @@ public class Launcher extends Activity
      */
     @Override
     public void startSearch(String initialQuery, boolean selectInitialQuery,
-            Bundle appSearchData, boolean globalSearch) {
+                            Bundle appSearchData, boolean globalSearch) {
 
         if (initialQuery == null) {
             // Use any text typed in the launcher as the initial query
@@ -2103,7 +2107,7 @@ public class Launcher extends Activity
      * to buffer keypresses.
      */
     public boolean startSearch(String initialQuery,
-            boolean selectInitialQuery, Bundle appSearchData, Rect sourceBounds) {
+                               boolean selectInitialQuery, Bundle appSearchData, Rect sourceBounds) {
         if (mLauncherCallbacks != null && mLauncherCallbacks.providesSearch()) {
             return mLauncherCallbacks.startSearch(initialQuery, selectInitialQuery, appSearchData,
                     sourceBounds);
@@ -2118,9 +2122,9 @@ public class Launcher extends Activity
      * Starts the global search activity. This code is a copied from SearchManager
      */
     private void startGlobalSearch(String initialQuery,
-            boolean selectInitialQuery, Bundle appSearchData, Rect sourceBounds) {
+                                   boolean selectInitialQuery, Bundle appSearchData, Rect sourceBounds) {
         final SearchManager searchManager =
-            (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         ComponentName globalSearchActivity = searchManager.getGlobalSearchActivity();
         if (globalSearchActivity == null) {
             Log.w(TAG, "No global search activity found.");
@@ -2215,7 +2219,7 @@ public class Launcher extends Activity
     }
 
     void addAppWidgetFromDropImpl(final int appWidgetId, final ItemInfo info, final
-            AppWidgetHostView boundWidget, final LauncherAppWidgetProviderInfo appWidgetInfo) {
+    AppWidgetHostView boundWidget, final LauncherAppWidgetProviderInfo appWidgetInfo) {
         if (LOGD) {
             Log.d(TAG, "Adding widget from drop");
         }
@@ -2223,8 +2227,8 @@ public class Launcher extends Activity
     }
 
     void addAppWidgetImpl(final int appWidgetId, final ItemInfo info,
-            final AppWidgetHostView boundWidget, final LauncherAppWidgetProviderInfo appWidgetInfo,
-            int delay) {
+                          final AppWidgetHostView boundWidget, final LauncherAppWidgetProviderInfo appWidgetInfo,
+                          int delay) {
         if (appWidgetInfo.configure != null) {
             mPendingAddWidgetInfo = appWidgetInfo;
             mPendingAddWidgetId = appWidgetId;
@@ -2256,7 +2260,7 @@ public class Launcher extends Activity
     }
 
     public void addPendingItem(PendingAddItemInfo info, long container, long screenId,
-            int[] cell, int spanX, int spanY) {
+                               int[] cell, int spanX, int spanY) {
         switch (info.itemType) {
             case LauncherSettings.Favorites.ITEM_TYPE_CUSTOM_APPWIDGET:
             case LauncherSettings.Favorites.ITEM_TYPE_APPWIDGET:
@@ -2271,7 +2275,7 @@ public class Launcher extends Activity
                 break;
             default:
                 throw new IllegalStateException("Unknown item type: " + info.itemType);
-            }
+        }
     }
 
     /**
@@ -2282,7 +2286,7 @@ public class Launcher extends Activity
      * @param cell The cell it should be added to, optional
      */
     private void processShortcutFromDrop(ComponentName componentName, long container, long screenId,
-            int[] cell) {
+                                         int[] cell) {
         resetAddInfo();
         mPendingAddInfo.container = container;
         mPendingAddInfo.screenId = screenId;
@@ -2307,7 +2311,7 @@ public class Launcher extends Activity
      * @param cell The cell it should be added to, optional
      */
     private void addAppWidgetFromDrop(PendingAddWidgetInfo info, long container, long screenId,
-            int[] cell, int[] span) {
+                                      int[] cell, int[] span) {
         resetAddInfo();
         mPendingAddInfo.container = info.container = container;
         mPendingAddInfo.screenId = info.screenId = screenId;
@@ -2354,7 +2358,7 @@ public class Launcher extends Activity
                 intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
                 intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, info.componentName);
                 mAppWidgetManager.getUser(mPendingAddWidgetInfo)
-                    .addToIntent(intent, AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE);
+                        .addToIntent(intent, AppWidgetManager.EXTRA_APPWIDGET_PROVIDER_PROFILE);
                 // TODO: we need to make sure that this accounts for the options bundle.
                 // intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_OPTIONS, options);
                 startActivityForResult(intent, REQUEST_BIND_APPWIDGET);
@@ -2363,7 +2367,7 @@ public class Launcher extends Activity
     }
 
     FolderIcon addFolder(CellLayout layout, long container, final long screenId, int cellX,
-            int cellY) {
+                         int cellY) {
         final FolderInfo folderInfo = new FolderInfo();
         folderInfo.title = getText(R.string.folder_name);
 
@@ -2374,7 +2378,7 @@ public class Launcher extends Activity
 
         // Create the view
         FolderIcon newFolder =
-            FolderIcon.fromXml(R.layout.folder_icon, this, layout, folderInfo, mIconCache);
+                FolderIcon.fromXml(R.layout.folder_icon, this, layout, folderInfo, mIconCache);
         mWorkspace.addInScreen(newFolder, container, screenId, cellX, cellY, 1, 1,
                 isWorkspaceLocked());
         // Force measure the new folder icon
@@ -2595,11 +2599,11 @@ public class Launcher extends Activity
             // The install has not been queued
             final String packageName = info.providerName.getPackageName();
             showBrokenAppInstallDialog(packageName,
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        startActivitySafely(v, LauncherModel.getMarketIntent(packageName), info);
-                    }
-                });
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            startActivitySafely(v, LauncherModel.getMarketIntent(packageName), info);
+                        }
+                    });
         } else {
             // Download has started.
             final String packageName = info.providerName.getPackageName();
@@ -2634,19 +2638,19 @@ public class Launcher extends Activity
     }
 
     private void showBrokenAppInstallDialog(final String packageName,
-            DialogInterface.OnClickListener onSearchClickListener) {
+                                            DialogInterface.OnClickListener onSearchClickListener) {
         new AlertDialog.Builder(this)
-            .setTitle(R.string.abandoned_promises_title)
-            .setMessage(R.string.abandoned_promise_explanation)
-            .setPositiveButton(R.string.abandoned_search, onSearchClickListener)
-            .setNeutralButton(R.string.abandoned_clean_this,
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        final UserHandleCompat user = UserHandleCompat.myUserHandle();
-                        mWorkspace.removeAbandonedPromise(packageName, user);
-                    }
-                })
-            .create().show();
+                .setTitle(R.string.abandoned_promises_title)
+                .setMessage(R.string.abandoned_promise_explanation)
+                .setPositiveButton(R.string.abandoned_search, onSearchClickListener)
+                .setNeutralButton(R.string.abandoned_clean_this,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                final UserHandleCompat user = UserHandleCompat.myUserHandle();
+                                mWorkspace.removeAbandonedPromise(packageName, user);
+                            }
+                        })
+                .create().show();
         return;
     }
 
@@ -2667,7 +2671,7 @@ public class Launcher extends Activity
 
         if (shortcut.isDisabled != 0) {
             if ((shortcut.isDisabled & ShortcutInfo.FLAG_DISABLED_SUSPENDED) != 0
-                || (shortcut.isDisabled & ShortcutInfo.FLAG_DISABLED_QUIET_USER) != 0) {
+                    || (shortcut.isDisabled & ShortcutInfo.FLAG_DISABLED_QUIET_USER) != 0) {
                 // Launch activity anyway, framework will tell the user why the app is suspended.
             } else {
                 int error = R.string.activity_not_available;
@@ -2708,6 +2712,7 @@ public class Launcher extends Activity
         if (tag instanceof ShortcutInfo) {
             shortcut = (ShortcutInfo) tag;
             intent = shortcut.intent;
+            saveUserClickData(intent, true);
             int[] pos = new int[2];
             v.getLocationOnScreen(pos);
             intent.setSourceBounds(new Rect(pos[0], pos[1],
@@ -2716,6 +2721,7 @@ public class Launcher extends Activity
         } else if (tag instanceof AppInfo) {
             shortcut = null;
             intent = ((AppInfo) tag).intent;
+            saveUserClickData(intent, false);
         } else {
             throw new IllegalArgumentException("Input must be a Shortcut or AppInfo");
         }
@@ -2726,6 +2732,22 @@ public class Launcher extends Activity
         if (success && v instanceof BubbleTextView) {
             mWaitingForResume = (BubbleTextView) v;
             mWaitingForResume.setStayPressed(true);
+        }
+    }
+
+    private void saveUserClickData(Intent intent, boolean isShortcut) {
+        ComponentName component = intent.getComponent();
+        if (component != null) {
+            User user = new User();
+            user.setDate(UserBehaviorHelper.getFormatDate());
+            user.setWifiConnect(UserBehaviorHelper.isWifi(getApplicationContext()));
+            user.setMobileConnect(UserBehaviorHelper.isMobile(getApplicationContext()));
+            user.setPackageName(component.getPackageName());
+            user.setInWorkspace(isShortcut);
+            Location location = UserBehaviorHelper.getLocation(getApplicationContext());
+            user.setLatitude(location == null ? -1 : location.getLatitude());
+            user.setLongtitude(location == null ? -1 : location.getLongitude());
+            GreenDaoInstance.getInstance().insert(user);
         }
     }
 
@@ -2911,7 +2933,7 @@ public class Launcher extends Activity
 
     // returns true if the activity was started
     boolean startApplicationUninstallActivity(ComponentName componentName, int flags,
-            UserHandleCompat user) {
+                                              UserHandleCompat user) {
         if ((flags & AppInfo.DOWNLOADED_FLAG) == 0) {
             // System applications cannot be installed. For now, show a toast explaining that.
             // We may give them the option of disabling apps this way.
@@ -2970,7 +2992,7 @@ public class Launcher extends Activity
                 } else if (!Utilities.ATLEAST_LOLLIPOP) {
                     // Below L, we use a scale up animation
                     opts = ActivityOptions.makeScaleUpAnimation(v, 0, 0,
-                                    v.getMeasuredWidth(), v.getMeasuredHeight());
+                            v.getMeasuredWidth(), v.getMeasuredHeight());
                 } else if (Utilities.ATLEAST_LOLLIPOP_MR1) {
                     // On L devices, we use the device default slide-up transition.
                     // On L MR1 devices, we a custom version of the slide-up transition which
@@ -3008,7 +3030,7 @@ public class Launcher extends Activity
                 if (intent.getComponent() == null
                         && Intent.ACTION_CALL.equals(intent.getAction())
                         && checkSelfPermission(Manifest.permission.CALL_PHONE) !=
-                            PackageManager.PERMISSION_GRANTED) {
+                        PackageManager.PERMISSION_GRANTED) {
                     // TODO: Rename sPendingAddItem to a generic name.
                     sPendingAddItem = preparePendingAddArgs(REQUEST_PERMISSION_CALL_PHONE, intent,
                             0, (ItemInfo) tag);
@@ -3451,7 +3473,7 @@ public class Launcher extends Activity
      * Shows the apps view.
      */
     void showAppsView(boolean animated, boolean resetListToTop, boolean updatePredictedApps,
-            boolean focusSearchBar) {
+                      boolean focusSearchBar) {
         if (resetListToTop) {
             mAppsView.scrollToTop();
         }
@@ -3521,7 +3543,7 @@ public class Launcher extends Activity
      * new state.
      */
     public Animator startWorkspaceStateChangeAnimation(Workspace.State toState, int toPage,
-            boolean animated, HashMap<View, Integer> layerViews) {
+                                                       boolean animated, HashMap<View, Integer> layerViews) {
         Workspace.State fromState = mWorkspace.getState();
         Animator anim = mWorkspace.setStateWithAnimation(toState, toPage, animated, layerViews);
         updateInteraction(fromState, toState);
@@ -3543,7 +3565,7 @@ public class Launcher extends Activity
     }
 
     public void exitSpringLoadedDragModeDelayed(final boolean successfulDrop, int delay,
-            final Runnable onCompleteRunnable) {
+                                                final Runnable onCompleteRunnable) {
         if (mState != State.APPS_SPRING_LOADED && mState != State.WIDGETS_SPRING_LOADED) return;
 
         mHandler.postDelayed(new Runnable() {
@@ -3665,9 +3687,9 @@ public class Launcher extends Activity
                 }
 
                 mSharedPrefs.edit()
-                    .putInt(QSB_WIDGET_ID, widgetId)
-                    .putString(QSB_WIDGET_PROVIDER, searchProvider.provider.flattenToString())
-                    .apply();
+                        .putInt(QSB_WIDGET_ID, widgetId)
+                        .putString(QSB_WIDGET_PROVIDER, searchProvider.provider.flattenToString())
+                        .apply();
             }
 
             mAppWidgetHost.setQsbWidgetId(widgetId);
@@ -4347,7 +4369,7 @@ public class Launcher extends Activity
      */
     @Override
     public void bindShortcutsChanged(final ArrayList<ShortcutInfo> updated,
-            final ArrayList<ShortcutInfo> removed, final UserHandleCompat user) {
+                                     final ArrayList<ShortcutInfo> removed, final UserHandleCompat user) {
         Runnable r = new Runnable() {
             public void run() {
                 bindShortcutsChanged(updated, removed, user);
@@ -4439,10 +4461,10 @@ public class Launcher extends Activity
     }
 
     private Runnable mBindWidgetModelRunnable = new Runnable() {
-            public void run() {
-                bindWidgetsModel(mWidgetsModel);
-            }
-        };
+        public void run() {
+            bindWidgetsModel(mWidgetsModel);
+        }
+    };
 
     @Override
     public void bindWidgetsModel(WidgetsModel model) {
@@ -4468,17 +4490,17 @@ public class Launcher extends Activity
         final Display d = getWindowManager().getDefaultDisplay();
         int naturalOri = Configuration.ORIENTATION_LANDSCAPE;
         switch (d.getRotation()) {
-        case Surface.ROTATION_0:
-        case Surface.ROTATION_180:
-            // We are currently in the same basic orientation as the natural orientation
-            naturalOri = configOri;
-            break;
-        case Surface.ROTATION_90:
-        case Surface.ROTATION_270:
-            // We are currently in the other basic orientation to the natural orientation
-            naturalOri = (configOri == Configuration.ORIENTATION_LANDSCAPE) ?
-                    Configuration.ORIENTATION_PORTRAIT : Configuration.ORIENTATION_LANDSCAPE;
-            break;
+            case Surface.ROTATION_0:
+            case Surface.ROTATION_180:
+                // We are currently in the same basic orientation as the natural orientation
+                naturalOri = configOri;
+                break;
+            case Surface.ROTATION_90:
+            case Surface.ROTATION_270:
+                // We are currently in the other basic orientation to the natural orientation
+                naturalOri = (configOri == Configuration.ORIENTATION_LANDSCAPE) ?
+                        Configuration.ORIENTATION_PORTRAIT : Configuration.ORIENTATION_LANDSCAPE;
+                break;
         }
 
         int[] oriMap = {
@@ -4726,7 +4748,7 @@ public class Launcher extends Activity
 
     // TODO: This method should be a part of LauncherSearchCallback
     public ItemInfo createShortcutDragInfo(Intent shortcutIntent, CharSequence caption,
-            Bitmap icon) {
+                                           Bitmap icon) {
         return new ShortcutInfo(shortcutIntent, caption, caption, icon,
                 UserHandleCompat.myUserHandle());
     }
@@ -4830,7 +4852,7 @@ public class Launcher extends Activity
             sDateStamp.setTime(System.currentTimeMillis());
             synchronized (sDumpLogs) {
                 sDumpLogs.add(sDateFormat.format(sDateStamp) + ": " + tag + ", " + log
-                    + (e == null ? "" : (", Exception: " + e)));
+                        + (e == null ? "" : (", Exception: " + e)));
             }
         }
     }
