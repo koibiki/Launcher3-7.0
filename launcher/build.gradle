@@ -18,6 +18,12 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
+        externalNativeBuild {
+            cmake {
+                arguments '-DANDROID_TOOLCHAIN=clang', '-DANDROID_STL=c++_shared'
+                cppFlags "-std=c++11 -frtti -fexceptions"
+            }
+        }
     }
     buildTypes {
         debug {
@@ -31,6 +37,11 @@ android {
             debuggable false
             jniDebuggable false
             renderscriptDebuggable false
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
         }
     }
     sourceSets {

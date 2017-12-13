@@ -25,5 +25,6 @@ public class LauncherApplication extends Application {
         sInstance = this;
         GreenDaoInstance instance = GreenDaoInstance.getInstance();
         List<User> users = instance.getUserDao().loadAll();
+        TestJni.testJni();
     }
 }
