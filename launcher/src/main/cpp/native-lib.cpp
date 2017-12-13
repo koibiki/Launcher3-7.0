@@ -10,20 +10,22 @@ Java_com_android_launcher3_TestJni_stringFromJNI(JNIEnv *env, jclass type) {
     return env->NewStringUTF(hello.c_str());
 }extern "C"
 JNIEXPORT void JNICALL
-Java_com_android_launcher3_TestJni_trainModel(JNIEnv *env, jclass type, jstring path_) {
+Java_com_android_launcher3_TestJni_trainModel(JNIEnv *env, jclass type, jstring path_,
+        jstring config_, jstring output_model_) {
     const char *path = env->GetStringUTFChars(path_, 0);
+    const char *config = env->GetStringUTFChars(config_, 0);
+    const char *output_model = env->GetStringUTFChars(output_model_, 0);
     char train[] = "train";
-    char* configs[2];
+    char* configs[3];
     configs[0] = train;
-    configs[1] = const_cast<char *> (path);
-
+    configs[1] = const_cast<char *> (config);
+    configs[2] = const_cast<char *> (output_model);
     LOGW(" start %s", configs[0]);
     LOGW(" transfer in %s", configs[1]);
-
-    LightGBM::Application app(2, configs);
+    LightGBM::Application app(3, configs);
     app.Run();
-
-    LOGW("FINISH TRAIN");
+    LOGW("finish train");
     env->ReleaseStringUTFChars(path_, path);
-
+    env->ReleaseStringUTFChars(config_, config);
+    env->ReleaseStringUTFChars(output_model_, output_model);
 }

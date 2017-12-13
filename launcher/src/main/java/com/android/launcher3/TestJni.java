@@ -1,6 +1,7 @@
 package com.android.launcher3;
 
 import android.os.Environment;
+import android.os.SystemClock;
 import android.util.Log;
 
 import java.io.File;
@@ -18,18 +19,21 @@ public class TestJni {
     }
 
     public static void testJni() {
+        long begin = SystemClock.currentThreadTimeMillis();
         String stringFromJNI = stringFromJNI();
-        Log.w(TAG, "TESTJNI :" + stringFromJNI);
-
-        String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Launcher/model/train.conf";
+        Log.w(TAG, "TESTJNI :" + stringFromJNI + "   " + Thread.currentThread().getName());
+        String root = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Launcher/model";
+        String path = root + "/train1.conf";
         File file = new File(path);
         Log.w(TAG, "train File :" + file.exists());
         String trainConfig = "config=" + path;
-        trainModel(trainConfig);
+        String outputModelPath = "output_model=" + root + "/output_model.txt";
+        trainModel(path, trainConfig, outputModelPath);
+        Log.w(TAG, "spent time  " + (SystemClock.currentThreadTimeMillis() - begin) / 1000);
     }
 
     public static native String stringFromJNI();
 
-    public static native void trainModel(String path);
+    public static native void trainModel(String path, String config, String outputModelPath);
 }
 
