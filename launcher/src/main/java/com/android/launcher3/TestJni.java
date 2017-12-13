@@ -13,7 +13,7 @@ import java.io.File;
 public class TestJni {
 
     private static final String TAG = TestJni.class.getName();
-
+    private static final String root = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Launcher/model";
     static {
         System.loadLibrary("native-lib");
     }
@@ -22,7 +22,6 @@ public class TestJni {
         long begin = SystemClock.currentThreadTimeMillis();
         String stringFromJNI = stringFromJNI();
         Log.w(TAG, "TESTJNI :" + stringFromJNI + "   " + Thread.currentThread().getName());
-        String root = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Launcher/model";
         String path = root + "/train1.conf";
         File file = new File(path);
         Log.w(TAG, "train File :" + file.exists());
@@ -32,8 +31,18 @@ public class TestJni {
         Log.w(TAG, "spent time  " + (SystemClock.currentThreadTimeMillis() - begin) / 1000);
     }
 
+    public static void predictJni() {
+        long begin = SystemClock.currentThreadTimeMillis();
+        String path = root + "/predict.conf";
+        String config = "config=" + path;
+        predict(config);
+        Log.w(TAG, "spent time  " + (SystemClock.currentThreadTimeMillis() - begin) / 1000);
+    }
+
     public static native String stringFromJNI();
 
     public static native void trainModel(String path, String config, String outputModelPath);
+
+    public static native void predict(String config);
 }
 

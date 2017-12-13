@@ -20,6 +20,6 @@ public class LightGbmService extends IntentService {
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         Log.w(TAG, "NEW thread:" + Thread.currentThread().getName());
-        TestJni.testJni();
+        TestJni.predictJni();
     }
 }
