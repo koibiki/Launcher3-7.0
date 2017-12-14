@@ -1,8 +1,10 @@
 package com.android.launcher3;
 
+import android.content.Context;
 import android.os.Environment;
 import android.os.SystemClock;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -18,7 +20,7 @@ public class TestJni {
         System.loadLibrary("native-lib");
     }
 
-    public static void testJni() {
+    public static void trainModelJni(Context context) {
         long begin = SystemClock.currentThreadTimeMillis();
         String stringFromJNI = stringFromJNI();
         Log.w(TAG, "TESTJNI :" + stringFromJNI + "   " + Thread.currentThread().getName());
@@ -27,22 +29,26 @@ public class TestJni {
         Log.w(TAG, "train File :" + file.exists());
         String trainConfig = "config=" + path;
         String outputModelPath = "output_model=" + root + "/output_model.txt";
-        trainModel(path, trainConfig, outputModelPath);
-        Log.w(TAG, "spent time  " + (SystemClock.currentThreadTimeMillis() - begin) / 1000);
+        trainModelJni(path, trainConfig, outputModelPath);
+        String spentTime ="spent time  " + (SystemClock.currentThreadTimeMillis() - begin) / 1000;
+        Log.w(TAG, spentTime);
+        LauncherApplication.getInstance().getMainHandler().post(() -> Toast.makeText(context, spentTime, Toast.LENGTH_SHORT).show());
     }
 
-    public static void predictJni() {
+    public static void predictJni(Context context) {
         long begin = SystemClock.currentThreadTimeMillis();
-        String path = root + "/predict.conf";
+        String path = root + "/predictJni.conf";
         String config = "config=" + path;
-        predict(config);
-        Log.w(TAG, "spent time  " + (SystemClock.currentThreadTimeMillis() - begin) / 1000);
+        predictJni(config);
+        String spentTime ="spent time  " + (SystemClock.currentThreadTimeMillis() - begin) / 1000;
+        Log.w(TAG, spentTime);
+        LauncherApplication.getInstance().getMainHandler().post(() -> Toast.makeText(context, spentTime, Toast.LENGTH_SHORT).show());
     }
 
     public static native String stringFromJNI();
 
-    public static native void trainModel(String path, String config, String outputModelPath);
+    public static native void trainModelJni(String path, String config, String outputModelPath);
 
-    public static native void predict(String config);
+    public static native void predictJni(String config);
 }
 

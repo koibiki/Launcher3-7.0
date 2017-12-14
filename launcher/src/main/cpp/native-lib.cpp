@@ -11,7 +11,7 @@ Java_com_android_launcher3_TestJni_stringFromJNI(JNIEnv *env, jclass type) {
     return env->NewStringUTF(hello.c_str());
 }extern "C"
 JNIEXPORT void JNICALL
-Java_com_android_launcher3_TestJni_trainModel(JNIEnv *env, jclass type, jstring path_,
+Java_com_android_launcher3_TestJni_trainModelJni(JNIEnv *env, jclass type, jstring path_,
                                               jstring config_, jstring output_model_) {
     const char *path = env->GetStringUTFChars(path_, 0);
     const char *config = env->GetStringUTFChars(config_, 0);
@@ -31,9 +31,9 @@ Java_com_android_launcher3_TestJni_trainModel(JNIEnv *env, jclass type, jstring 
     env->ReleaseStringUTFChars(output_model_, output_model);
 }extern "C"
 JNIEXPORT void JNICALL
-Java_com_android_launcher3_TestJni_predict(JNIEnv *env, jclass type, jstring config_) {
+Java_com_android_launcher3_TestJni_predictJni(JNIEnv *env, jclass type, jstring config_) {
     const char *config = env->GetStringUTFChars(config_, 0);
-    char predict[] = "predict";
+    char predict[] = "predictJni";
     char *configs[2];
     configs[0] = predict;
     configs[1] = const_cast<char *> (config);
@@ -41,6 +41,6 @@ Java_com_android_launcher3_TestJni_predict(JNIEnv *env, jclass type, jstring con
     LOGW(" transfer in %s", configs[1]);
     LightGBM::Application app(2, configs);
     app.Run();
-    LOGW("finish predict");
+    LOGW("finish predictJni");
     env->ReleaseStringUTFChars(config_, config);
 }

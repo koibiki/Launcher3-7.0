@@ -2,6 +2,7 @@ package com.android.launcher3;
 
 import android.app.Application;
 import android.content.Intent;
+import android.os.Handler;
 import android.util.Log;
 
 import com.android.launcher3.behavior.GreenDaoInstance;
@@ -16,9 +17,11 @@ import java.util.List;
 public class LauncherApplication extends Application {
 
     private String TAG = LauncherApplication.class.getName();
-    private static Application sInstance;
+    private static LauncherApplication sInstance;
 
-    public static Application getInstance() {
+    private Handler mHandler = new Handler();
+
+    public static LauncherApplication getInstance() {
         return sInstance;
     }
 
@@ -30,4 +33,9 @@ public class LauncherApplication extends Application {
         List<User> users = instance.getUserDao().loadAll();
         startService(new Intent(this, LightGbmService.class));
     }
+
+    public Handler getMainHandler() {
+        return mHandler;
+    }
+
 }
