@@ -54,8 +54,8 @@
     <TextView
         android:id="@+id/settings_button"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="0"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:drawablePadding="4dp"
         android:drawableTop="@drawable/setting_button"
         android:fontFamily="sans-serif-condensed"

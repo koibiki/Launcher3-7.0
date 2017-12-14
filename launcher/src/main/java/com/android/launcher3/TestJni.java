@@ -20,7 +20,7 @@ public class TestJni {
         System.loadLibrary("native-lib");
     }
 
-    public static void trainModelJni(Context context) {
+    public static void trainModel(Context context) {
         long begin = SystemClock.currentThreadTimeMillis();
         String stringFromJNI = stringFromJNI();
         Log.w(TAG, "TESTJNI :" + stringFromJNI + "   " + Thread.currentThread().getName());
@@ -35,7 +35,7 @@ public class TestJni {
         LauncherApplication.getInstance().getMainHandler().post(() -> Toast.makeText(context, spentTime, Toast.LENGTH_SHORT).show());
     }
 
-    public static void predictJni(Context context) {
+    public static void predict(Context context) {
         long begin = SystemClock.currentThreadTimeMillis();
         String path = root + "/predictJni.conf";
         String config = "config=" + path;
