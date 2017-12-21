@@ -54,9 +54,9 @@
         android:fullBackupOnly="true"
         android:fullBackupContent="@xml/backupscheme"
         android:hardwareAccelerated="true"
-        android:icon="@mipmap/ic_launcher_home"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/derived_app_name"
-        android:largeHeap="@bool/config_largeHeap"
+        android:largeHeap="true"
         android:restoreAnyVersion="true"
         android:supportsRtl="true" >
 

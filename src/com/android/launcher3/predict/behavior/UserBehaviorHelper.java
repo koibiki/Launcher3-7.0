@@ -31,7 +31,7 @@ public class UserBehaviorHelper {
             Location location = UserBehaviorHelper.getLocation(context);
             user.setLatitude(location == null ? -1 : location.getLatitude());
             user.setLongtitude(location == null ? -1 : location.getLongitude());
-            GreenDaoInstance.getInstance().insert(user);
+            GreenDaoInstance.getInstance().insertUserBehavior(user);
         }
     }
 

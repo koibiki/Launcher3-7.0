@@ -400,7 +400,7 @@ public class AllAppsTransitionController implements TouchController, VerticalPul
 
         // assumption is that this variable is always null
         mDiscoBounceAnimation = (AnimatorSet) AnimatorInflater.loadAnimator(mLauncher,
-                R.anim.discovery_bounce);
+                R.animator.discovery_bounce);
         mDiscoBounceAnimation.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animator) {

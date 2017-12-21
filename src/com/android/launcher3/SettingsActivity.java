@@ -17,7 +17,9 @@
 package com.android.launcher3;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.database.ContentObserver;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,6 +27,15 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.provider.Settings;
 import android.provider.Settings.System;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.android.launcher3.predict.apptype.AppTypesAdapter;
 
 /**
  * Settings activity for Launcher. Currently implements the following setting: Allow rotation
@@ -36,9 +47,32 @@ public class SettingsActivity extends Activity {
 
         // Display the fragment as the main content.
         getFragmentManager().beginTransaction()
-                .replace(android.R.id.content, new LauncherSettingsFragment())
+                .replace(android.R.id.content, new AppTypeFragment())
                 .commit();
     }
+
+    public static class AppTypeFragment extends Fragment {
+
+        private RecyclerView mRecyclerView;
+        private Context mContext;
+
+        @Nullable
+        @Override
+        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+            mContext = inflater.getContext();
+            mRecyclerView = new RecyclerView(mContext);
+            return mRecyclerView;
+        }
+
+        @Override
+        public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+            super.onActivityCreated(savedInstanceState);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
+            mRecyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
+            mRecyclerView.setAdapter(new AppTypesAdapter(mContext));
+        }
+    }
+
 
     /**
      * This fragment shows the launcher preferences.

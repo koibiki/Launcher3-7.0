@@ -1,13 +1,22 @@
 package com.android.launcher3.predict;
 
+import android.graphics.Bitmap;
+
 /**
- * Created by orien on 2017/12/14.
+ * Created by orien on 2017/12/21.
  */
 
-public class Constants {
+public class AppTypeInfo {
 
-    public static int TYPE_BROWSER = 0;
-    public static int TYPE_EFFICIENCY = 1;
+    public String appName;
+
+    public Bitmap iconBitmap;
+
+    public String packageName;
+
+    public boolean isBrowser;
+
+    public boolean isEfficiency;
     public static int TYPE_GAME = 2;
     public static int TYPE_IM = 3;
     public static int TYPE_MEDIA = 4;
@@ -18,8 +27,5 @@ public class Constants {
     public static int TYPE_STOCK = 9;
     public static int TYPE_STUDY = 10;
     public static int TYPE_TRAVEL = 11;
-
-    public static String TYPE_POSITION = "type_position";
-    public static String[] TYPES = {"BROWSER", "EFFICIENCY", "GAME", "MEDIA", "PAY", "READ", "SHOP", "SPORT", "STOCK", "STUDY", "TRAVEL"};
 
 }

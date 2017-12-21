@@ -14,12 +14,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.protobuf'
 apply plugin: 'org.greenrobot.greendao'
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion '26.0.2'
 
     defaultConfig {
         minSdkVersion 23
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         ndk {
@@ -32,9 +32,26 @@ android {
             }
         }
     }
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword '123456'
+            storeFile file('./test.jks')
+            storePassword '123456'
+        }
+    }
     buildTypes {
         debug {
+            signingConfig signingConfigs.config
             minifyEnabled false
+        }
+        release {
+            minifyEnabled true
+            signingConfig signingConfigs.config
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
         }
     }
     externalNativeBuild {
@@ -64,7 +81,7 @@ android {
     }
     greendao {
         schemaVersion 1
-        targetGenDir 'src/main/java/'
+        targetGenDir 'src/'
     }
     compileOptions {
         targetCompatibility 1.8

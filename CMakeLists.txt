@@ -4,6 +4,7 @@
 # Sets the minimum version of CMake required to build the native library.
 
 cmake_minimum_required(VERSION 3.4.1)
+SET( CMAKE_WARN_DEPRECATED 0)
 SET(SOURCE_CPP_DIR cpp)
 SET(SOURCE_GBM_DIR ${SOURCE_CPP_DIR}/lightgbm)
 ADD_DEFINITIONS(-DUSE_SOCKET)
