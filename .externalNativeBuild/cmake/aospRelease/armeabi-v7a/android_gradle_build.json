@@ -1,0 +1,221 @@
+
+{
+	"buildFiles" : 
+	[
+		"/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/CMakeLists.txt"
+	],
+	"cleanCommands" : 
+	[
+		"/home/chengli/AndroidSdk/android-sdk-linux/cmake/3.6.4111459/bin/cmake --build /home/chengli/AndroidStudioProjects/Launcher\\ d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a --target clean"
+	],
+	"cppFileExtensions" : [ "cpp" ],
+	"libraries" : 
+	{
+		"lightgbm-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "lightgbm",
+			"buildCommand" : "/home/chengli/AndroidSdk/android-sdk-linux/cmake/3.6.4111459/bin/cmake --build /home/chengli/AndroidStudioProjects/Launcher\\ d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a --target lightgbm",
+			"buildType" : "release",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/c_api.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/lightgbm_R.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/application/application.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/boosting/boosting.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/boosting/gbdt.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/boosting/gbdt_model_text.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/boosting/gbdt_prediction.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/boosting/prediction_early_stop.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/io/bin.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/io/config.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/io/dataset.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/io/dataset_loader.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/io/metadata.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/io/parser.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/io/tree.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/metric/dcg_calculator.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/metric/metric.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/objective/objective_function.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/network/linker_topo.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/network/linkers_mpi.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/network/linkers_socket.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/network/network.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/treelearner/data_parallel_tree_learner.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/treelearner/feature_parallel_tree_learner.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/treelearner/gpu_tree_learner.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/treelearner/serial_tree_learner.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/treelearner/tree_learner.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				},
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dlightgbm_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/lightgbm/treelearner/voting_parallel_tree_learner.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				}
+			],
+			"output" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/build/intermediates/cmake/aosp/release/obj/armeabi-v7a/liblightgbm.so",
+			"toolchain" : "11320538347783526042"
+		},
+		"native-lib-Release-armeabi-v7a" : 
+		{
+			"abi" : "armeabi-v7a",
+			"artifactName" : "native-lib",
+			"buildCommand" : "/home/chengli/AndroidSdk/android-sdk-linux/cmake/3.6.4111459/bin/cmake --build /home/chengli/AndroidStudioProjects/Launcher\\ d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a --target native-lib",
+			"buildType" : "release",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=armv7-none-linux-androideabi --gcc-toolchain=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64 --sysroot=/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot  -DUSE_SOCKET -Dnative_lib_EXPORTS -I../../../../cpp/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/android/support/include -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sources/cxx-stl/llvm-libc++abi/include  -isystem /home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/sysroot/usr/include/arm-linux-androideabi -D__ANDROID_API__=23 -g -DANDROID -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -march=armv7-a -mfloat-abi=softfp -mfpu=vfpv3-d16 -fno-integrated-as -mthumb -Wa,--noexecstack -Wformat -Werror=format-security -std=c++11  -frtti -fexceptions -std=c++11 -pthread -O3 -Wextra -Wall -Wno-ignored-attributes -Wno-unknown-pragmas -Os -DNDEBUG  -fPIC    -c ",
+					"src" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/cpp/native-lib.cpp",
+					"workingDirectory" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospRelease/armeabi-v7a"
+				}
+			],
+			"output" : "/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/build/intermediates/cmake/aosp/release/obj/armeabi-v7a/libnative-lib.so",
+			"toolchain" : "11320538347783526042"
+		}
+	},
+	"toolchains" : 
+	{
+		"11320538347783526042" : 
+		{
+			"cCompilerExecutable" : "/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang",
+			"cppCompilerExecutable" : "/home/chengli/AndroidSdk/android-sdk-linux/ndk-bundle/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++"
+		}
+	}
+}

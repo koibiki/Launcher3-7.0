@@ -1,12 +1,104 @@
 buildscript {
     repositories {
         mavenCentral()
-        jcenter()
         google()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.2'
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+    }
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.protobuf'
+apply plugin: 'org.greenrobot.greendao'
+android {
+    compileSdkVersion 25
+    buildToolsVersion '26.0.2'
+
+    defaultConfig {
+        minSdkVersion 23
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        ndk {
+            abiFilters "armeabi-v7a"
+        }
+        externalNativeBuild {
+            cmake {
+                arguments '-DANDROID_TOOLCHAIN=clang', '-DANDROID_STL=c++_shared'
+                cppFlags " -frtti -fexceptions"
+            }
+        }
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+    flavorDimensions "product"
+    productFlavors {
+        aosp {
+            dimension "product"
+            applicationId 'com.google.android.apps.nexuslauncher'
+        }
+    }
+    sourceSets {
+        main {
+            res.srcDirs = ['res']
+            java.srcDirs = ['src', 'src_config']
+            jni.srcDirs = ['cpp']
+            manifest.srcFile 'AndroidManifest-common.xml'
+            proto.srcDirs 'protos/'
+        }
+
+        aosp {
+            manifest.srcFile "AndroidManifest.xml"
+        }
+    }
+    greendao {
+        schemaVersion 1
+        targetGenDir 'src/main/java/'
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+repositories {
+    mavenCentral()
+    google()
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:25.4.0'
+    compile 'com.android.support:recyclerview-v7:25.4.0'
+    compile 'com.android.support:palette-v7:25.4.0'
+    compile 'org.greenrobot:greendao:3.2.2'
+    compile 'com.google.protobuf.nano:protobuf-javanano:3.0.0-alpha-2'
+}
+
+protobuf {
+    // Configure the protoc executable
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.0.0-alpha-3'
+
+        generateProtoTasks {
+            all().each { task ->
+                task.builtins {
+                    remove java
+                    javanano {
+                        option 'ignore_services=false'
+                    }
+                }
+            }
+        }
     }
 }
