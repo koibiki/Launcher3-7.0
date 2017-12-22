@@ -1,4 +1,0 @@
-D:/AndroidProject/Launcher3-7.0/.externalNativeBuild/cmake/aospRelease/armeabi-v7a/CMakeFiles/lightgbm.dir
-D:/AndroidProject/Launcher3-7.0/.externalNativeBuild/cmake/aospRelease/armeabi-v7a/CMakeFiles/native-lib.dir
-D:/AndroidProject/Launcher3-7.0/.externalNativeBuild/cmake/aospRelease/armeabi-v7a/CMakeFiles/edit_cache.dir
-D:/AndroidProject/Launcher3-7.0/.externalNativeBuild/cmake/aospRelease/armeabi-v7a/CMakeFiles/rebuild_cache.dir
