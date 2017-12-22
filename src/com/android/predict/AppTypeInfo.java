@@ -3,7 +3,6 @@ package com.android.predict;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 
-import com.github.stuxuhai.jpinyin.PinyinException;
 import com.github.stuxuhai.jpinyin.PinyinFormat;
 import com.github.stuxuhai.jpinyin.PinyinHelper;
 
@@ -123,7 +122,7 @@ public class AppTypeInfo implements Comparable<AppTypeInfo> {
         String pinyin = "";
         try {
             pinyin = PinyinHelper.convertToPinyinString(appName, "", PinyinFormat.WITHOUT_TONE);
-        } catch (PinyinException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return pinyin.toLowerCase();

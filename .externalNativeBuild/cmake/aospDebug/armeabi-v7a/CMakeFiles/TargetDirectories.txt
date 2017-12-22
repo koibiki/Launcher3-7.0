@@ -1,4 +1,4 @@
-/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospDebug/armeabi-v7a/CMakeFiles/rebuild_cache.dir
-/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospDebug/armeabi-v7a/CMakeFiles/edit_cache.dir
-/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospDebug/armeabi-v7a/CMakeFiles/native-lib.dir
-/home/chengli/AndroidStudioProjects/Launcher d/launcher7.1/launcherN/.externalNativeBuild/cmake/aospDebug/armeabi-v7a/CMakeFiles/lightgbm.dir
+D:/AndroidProject/Launcher3-7.0/.externalNativeBuild/cmake/aospDebug/armeabi-v7a/CMakeFiles/lightgbm.dir
+D:/AndroidProject/Launcher3-7.0/.externalNativeBuild/cmake/aospDebug/armeabi-v7a/CMakeFiles/native-lib.dir
+D:/AndroidProject/Launcher3-7.0/.externalNativeBuild/cmake/aospDebug/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/AndroidProject/Launcher3-7.0/.externalNativeBuild/cmake/aospDebug/armeabi-v7a/CMakeFiles/rebuild_cache.dir
