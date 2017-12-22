@@ -111,7 +111,7 @@ import com.android.launcher3.logging.FileLog;
 import com.android.launcher3.logging.UserEventDispatcher;
 import com.android.launcher3.model.WidgetsModel;
 import com.android.launcher3.pageindicators.PageIndicator;
-import com.android.launcher3.predict.behavior.UserBehaviorHelper;
+import com.android.predict.behavior.UserBehaviorHelper;
 import com.android.launcher3.shortcuts.DeepShortcutManager;
 import com.android.launcher3.shortcuts.DeepShortcutsContainer;
 import com.android.launcher3.shortcuts.ShortcutKey;

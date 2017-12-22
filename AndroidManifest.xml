@@ -51,7 +51,7 @@
     <uses-permission android:name="com.android.launcher3.permission.WRITE_SETTINGS" />
 
     <application
-        android:name=".LauncherApplication"
+        android:name="com.android.predict.LauncherApplication"
         android:backupAgent="com.android.launcher3.LauncherBackupAgent"
         android:fullBackupContent="@xml/backupscheme"
         android:fullBackupOnly="true"
@@ -100,9 +100,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".predict.AppTypeActivity" android:label="@string/settings_button_text"/>
+        <activity android:name="com.android.predict.AppTypeActivity" android:label="@string/settings_button_text"/>
 
-        <service android:name=".predict.LightGbmService" />
+        <service android:name="com.android.predict.LightGbmService" />
         <!--
         The settings provider contains Home's data, like the workspace favorites. The permissions
         should be changed to what is defined above. The authorities should also be changed to

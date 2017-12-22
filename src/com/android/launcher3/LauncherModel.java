@@ -200,6 +200,10 @@ public class LauncherModel extends BroadcastReceiver
     private final LauncherAppsCompat mLauncherApps;
     private final UserManagerCompat mUserManager;
 
+    public AllAppsList getBgAllAppsList() {
+        return mBgAllAppsList;
+    }
+
     public interface Callbacks {
         public boolean setLoadOnResume();
         public int getCurrentWorkspaceScreen();

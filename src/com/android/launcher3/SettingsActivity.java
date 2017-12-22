@@ -35,7 +35,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.launcher3.predict.apptype.AppTypesAdapter;
+import com.android.predict.apptype.AppTypesAdapter;
 
 /**
  * Settings activity for Launcher. Currently implements the following setting: Allow rotation
