@@ -1,9 +1,12 @@
 package com.android.predict.domain.interactor.usecase;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.SystemClock;
 import android.util.Log;
 
 import com.android.predict.AppTypeInfo;
+import com.android.predict.behavior.UserBehaviorHelper;
 import com.android.predict.dao.AppDaoHelper;
 import com.android.predict.dao.AppType;
 import com.android.predict.database.Database;
@@ -23,34 +26,32 @@ import io.reactivex.subscribers.DisposableSubscriber;
  * Created by orien on 2017/12/22.
  */
 
-public class SaveAppTypeData extends UseCase<List<AppTypeInfo>, Object> {
+public class SaveUserBehavior extends UseCase<Intent, Object> {
+
     private final String TAG = this.getClass().getName();
     private final Database mDatabase;
+    private final Context mContext;
 
     @Inject
-    protected SaveAppTypeData(Executor threadExecutor, PostExecutionThread postExecutionThread, Database database) {
+    protected SaveUserBehavior(Context context, Executor threadExecutor, PostExecutionThread postExecutionThread, Database database) {
         super(threadExecutor, postExecutionThread);
         mDatabase = database;
+        mContext = context;
     }
 
     @Override
-    protected Flowable<Object> buildUseCaseFlowable(List<AppTypeInfo> appTypeInfos) {
+    protected Flowable<Object> buildUseCaseFlowable(Intent intent) {
         return new Flowable<Object>() {
             @Override
             protected void subscribeActual(Subscriber<? super Object> subscriber) {
-                saveAppTypeData(appTypeInfos);
+                saveUserBehavior(intent);
                 subscriber.onComplete();
             }
         };
     }
 
-    private void saveAppTypeData(List<AppTypeInfo> appTypeInfos) {
-        long l = SystemClock.currentThreadTimeMillis();
-        for (AppTypeInfo appTypeInfo : appTypeInfos) {
-            AppType appType = AppDaoHelper.transferApptype(appTypeInfo);
-            mDatabase.updateAppType(appType);
-        }
-        Log.w(TAG, "saveAppTypeData spent:" + (SystemClock.currentThreadTimeMillis() - l) + "     " + Thread.currentThread().getName());
+    private void saveUserBehavior(Intent intent) {
+        UserBehaviorHelper.saveUserClickData(mContext, intent, mDatabase);
     }
 
     @Override
@@ -68,7 +69,7 @@ public class SaveAppTypeData extends UseCase<List<AppTypeInfo>, Object> {
 
             @Override
             public void onComplete() {
-                Log.w(TAG, "finish save saveAppTypeData");
+                Log.w(TAG, "finish save user behavior");
             }
         };
     }

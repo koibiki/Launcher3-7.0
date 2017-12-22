@@ -26,7 +26,7 @@ import javax.inject.Singleton;
 @Singleton
 public class GreenDaoInstance implements Database {
 
-    private final String TAG = "GreenDaoInstance";
+    private final String TAG = this.getClass().getName();
 
     private DaoSession mDaoSession;
     private Map<String, AppType> mTypeMap;

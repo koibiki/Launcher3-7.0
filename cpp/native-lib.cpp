@@ -12,7 +12,7 @@ Java_com_android_predict_TestJni_stringFromJNI(JNIEnv *env, jclass type) {
 }extern "C"
 JNIEXPORT void JNICALL
 Java_com_android_predict_TestJni_trainModelJni(JNIEnv *env, jclass type, jstring path_,
-                                              jstring config_, jstring output_model_) {
+                                               jstring config_, jstring output_model_) {
     const char *path = env->GetStringUTFChars(path_, 0);
     const char *config = env->GetStringUTFChars(config_, 0);
     const char *output_model = env->GetStringUTFChars(output_model_, 0);

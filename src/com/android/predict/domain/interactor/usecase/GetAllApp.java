@@ -33,10 +33,9 @@ import io.reactivex.subscribers.DisposableSubscriber;
 
 public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
 
+    private final String TAG = this.getClass().getName();
     private AppTypeContact.View mView;
-
     private Intent mIntent;
-
     private Database mDatabase;
 
     @Inject
@@ -57,9 +56,9 @@ public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
                 long l = SystemClock.currentThreadTimeMillis();
                 int typePosition = mIntent.getIntExtra(Constants.TYPE_POSITION, 0);
                 ArrayList<AppInfo> allAppsList = LauncherAppState.getInstance().getModel().getBgAllAppsList().data;
-                Log.w("test", "allAppsList spent:" + (SystemClock.currentThreadTimeMillis() - l) + "    " + Thread.currentThread().getName());
+                Log.w(TAG, "allAppsList spent:" + (SystemClock.currentThreadTimeMillis() - l) + "    " + Thread.currentThread().getName());
                 Map<String, AppType> typeMap = mDatabase.getAllAppTypeMap();
-                Log.w("test", "getAllAppTypeMap spent:" + (SystemClock.currentThreadTimeMillis() - l));
+                Log.w(TAG, "getAllAppTypeMap spent:" + (SystemClock.currentThreadTimeMillis() - l));
                 ArrayList<AppTypeInfo> appTypeInfos = new ArrayList<>();
                 for (AppInfo appInfo : allAppsList) {
                     String packageName = appInfo.componentName.getPackageName();
@@ -75,12 +74,12 @@ public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
                     appTypeInfo.setIconBitmap(appInfo.iconBitmap);
                     appTypeInfos.add(appTypeInfo);
                 }
-                Log.w("test", "transferAppTypeInfo spent:" + (SystemClock.currentThreadTimeMillis() - l));
+                Log.w(TAG, "transferAppTypeInfo spent:" + (SystemClock.currentThreadTimeMillis() - l));
                 Collections.sort(appTypeInfos);
-                Log.w("test", "sort all app spent:" + (SystemClock.currentThreadTimeMillis() - l));
+                Log.w(TAG, "sort all app spent:" + (SystemClock.currentThreadTimeMillis() - l));
                 subscriber.onNext(appTypeInfos);
                 subscriber.onComplete();
-                Log.w("test", "get all app spent:" + (SystemClock.currentThreadTimeMillis() - l));
+                Log.w(TAG, "get all app spent:" + (SystemClock.currentThreadTimeMillis() - l));
             }
 
         };

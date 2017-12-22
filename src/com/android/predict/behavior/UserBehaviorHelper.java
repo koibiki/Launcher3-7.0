@@ -11,6 +11,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 
 import com.android.predict.dao.User;
+import com.android.predict.database.Database;
 
 import java.util.Date;
 
@@ -20,7 +21,7 @@ import java.util.Date;
 
 public class UserBehaviorHelper {
 
-    public static void saveUserClickData(Context context, Intent intent) {
+    public static void saveUserClickData(Context context, Intent intent, Database database) {
         ComponentName component = intent.getComponent();
         if (component != null) {
             User user = new User();
@@ -31,7 +32,7 @@ public class UserBehaviorHelper {
             Location location = UserBehaviorHelper.getLocation(context);
             user.setLatitude(location == null ? -1 : location.getLatitude());
             user.setLongtitude(location == null ? -1 : location.getLongitude());
-            //GreenDaoInstance.getInstance(context).insertUserBehavior(user);
+            database.insertUserBehavior(user);
         }
     }
 
