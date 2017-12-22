@@ -18,8 +18,10 @@ public class Constants {
     public final static int TYPE_STOCK = 9;
     public final static int TYPE_STUDY = 10;
     public final static int TYPE_TRAVEL = 11;
+    public final static int TYPE_O2O = 12;
 
-    public static String TYPE_POSITION = "type_position";
-    public static String[] TYPES = {"BROWSER", "EFFICIENCY", "GAME", "MEDIA", "PAY", "READ", "SHOP", "SPORT", "STOCK", "STUDY", "TRAVEL"};
+    public final static String TYPE_POSITION = "type_position";
+
+    public final static String[] TYPES = {"BROWSER", "EFFICIENCY", "GAME", "MEDIA", "PAY", "READ", "SHOP", "SPORT", "STOCK", "STUDY", "TRAVEL", "O2O"};
 
 }

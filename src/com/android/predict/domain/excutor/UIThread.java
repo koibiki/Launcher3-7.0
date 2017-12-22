@@ -1,7 +1,5 @@
 package com.android.predict.domain.excutor;
 
-import android.content.Context;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -12,7 +10,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 public class UIThread implements PostExecutionThread {
 
     @Inject
-    public UIThread(Context context) {
+    public UIThread() {
     }
 
     @Override

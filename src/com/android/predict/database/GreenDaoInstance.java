@@ -3,6 +3,8 @@ package com.android.predict.database;
 import android.content.Context;
 import android.util.Log;
 
+import com.android.predict.AppTypeInfo;
+import com.android.predict.dao.AppDaoHelper;
 import com.android.predict.dao.AppType;
 import com.android.predict.dao.AppTypeDao;
 import com.android.predict.dao.DaoMaster;
@@ -10,7 +12,9 @@ import com.android.predict.dao.DaoSession;
 import com.android.predict.dao.User;
 import com.android.predict.dao.UserDao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -24,7 +28,8 @@ public class GreenDaoInstance implements Database {
 
     private final String TAG = "GreenDaoInstance";
 
-    private static DaoSession mDaoSession;
+    private DaoSession mDaoSession;
+    private Map<String, AppType> mTypeMap;
 
     @Inject
     public GreenDaoInstance(Context context) {
@@ -56,21 +61,29 @@ public class GreenDaoInstance implements Database {
     }
 
     @Override
-    public void updateAppTypes(List<AppType> appTypes) {
-        for (AppType appType : appTypes) {
-            getAppTypeDao().update(appType);
-        }
-    }
-
-    @Override
-    public void updateAppType(AppType appType) {
-        getAppTypeDao().update(appType);
-    }
-
-    @Override
     public List<AppType> getAllAppType() {
         return getAppTypeDao().loadAll();
     }
 
+    @Override
+    public synchronized Map<String, AppType> getAllAppTypeMap() {
+        if (mTypeMap == null) {
+            List<AppType> appTypes = getAllAppType();
+            mTypeMap = new HashMap<>();
+            for (AppType appType : appTypes) {
+                mTypeMap.put(appType.getPackageName(), appType);
+            }
+        }
+        return mTypeMap;
+    }
+
+    @Override
+    public synchronized void updateAppType(AppType appType) {
+        if (mTypeMap == null) {
+            mTypeMap = new HashMap<>();
+        }
+        mTypeMap.put(appType.getPackageName(), appType);
+        getAppTypeDao().insertOrReplace(appType);
+    }
 
 }

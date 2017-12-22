@@ -1,38 +1,43 @@
 package com.android.predict.presentation.presenter;
 
-import android.util.Log;
-
+import com.android.predict.AppTypeInfo;
 import com.android.predict.dao.AppType;
-import com.android.predict.domain.excutor.PostExecutionThread;
-import com.android.predict.database.Database;
+import com.android.predict.domain.interactor.usecase.GetAllApp;
+import com.android.predict.domain.interactor.usecase.SaveAppTypeData;
+import com.android.predict.domain.interactor.usecase.UseCase;
 
 import java.util.List;
-import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
+
+import io.reactivex.observers.DisposableObserver;
 
 /**
  * Created by chengli on 17-12-22.
  */
 
-public class AppTypePresenter {
+public class AppTypePresenter implements AppTypeContact.Presenter {
 
-    private Executor threadExecutor;
-    private PostExecutionThread postExecutionThread;
-    private Database database;
+    private UseCase<Object, List<AppTypeInfo>> getAllApp;
+
+    private UseCase<List<AppTypeInfo>, Object> saveAppTypeData;
 
     @Inject
-    public AppTypePresenter(Executor threadExecutor, PostExecutionThread postExecutionThread, Database database) {
-        this.threadExecutor = threadExecutor;
-        this.postExecutionThread = postExecutionThread;
-        this.database = database;
+    public AppTypePresenter(GetAllApp getAllApp, SaveAppTypeData saveAppTypeData) {
+        this.getAllApp = getAllApp;
+        this.saveAppTypeData = saveAppTypeData;
     }
 
-    public List<AppType> getAllAppType() {
-        return database.getAllAppType();
+    public void getAllAppType() {
+        getAllApp.execute(null);
     }
 
-    public void show() {
-        Log.w("test", "init apptypePresenter");
+    public void cancel() {
+        getAllApp.unsubscribe();
+    }
+
+    @Override
+    public void saveAppTypeData(List<AppTypeInfo> appTypeInfos) {
+        saveAppTypeData.execute(appTypeInfos);
     }
 }

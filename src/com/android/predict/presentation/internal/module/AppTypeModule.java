@@ -1,8 +1,7 @@
 package com.android.predict.presentation.internal.module;
 
-import android.app.Activity;
+import android.content.Intent;
 
-import com.android.predict.presentation.internal.PerActivity;
 import com.android.predict.presentation.presenter.AppTypeContact;
 
 import dagger.Module;
@@ -11,16 +10,22 @@ import dagger.Provides;
 @Module
 public class AppTypeModule {
     private final AppTypeContact.View mView;
-    private final Activity activity;
+    private final Intent mIntent;
 
-    public AppTypeModule(Activity activity,AppTypeContact.View view) {
-        this.activity = activity;
+    public AppTypeModule(AppTypeContact.View view, Intent intent) {
         mView = view;
+        mIntent = intent;
     }
 
     @Provides
-    AppTypeContact.View provideMainView() {
+    AppTypeContact.View provideView() {
         return mView;
     }
+
+    @Provides
+    Intent provideIntent() {
+        return mIntent;
+    }
+
 }
 

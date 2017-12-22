@@ -37,6 +37,7 @@ public class AppTypeDao extends AbstractDao<AppType, Long> {
         public final static Property IsStock = new Property(12, boolean.class, "isStock", false, "ISSTOCK");
         public final static Property IsStudy = new Property(13, boolean.class, "isStudy", false, "ISSTUDY");
         public final static Property IsTravel = new Property(14, boolean.class, "isTravel", false, "ISTRAVEL");
+        public final static Property IsO2o = new Property(15, boolean.class, "isO2o", false, "ISO2O");
     }
 
 
@@ -66,7 +67,8 @@ public class AppTypeDao extends AbstractDao<AppType, Long> {
                 "\"ISSPORT\" INTEGER NOT NULL ," + // 11: isSport
                 "\"ISSTOCK\" INTEGER NOT NULL ," + // 12: isStock
                 "\"ISSTUDY\" INTEGER NOT NULL ," + // 13: isStudy
-                "\"ISTRAVEL\" INTEGER NOT NULL );"); // 14: isTravel
+                "\"ISTRAVEL\" INTEGER NOT NULL ," + // 14: isTravel
+                "\"ISO2O\" INTEGER NOT NULL );"); // 15: isO2o
     }
 
     /** Drops the underlying database table. */
@@ -101,6 +103,7 @@ public class AppTypeDao extends AbstractDao<AppType, Long> {
         stmt.bindLong(13, entity.getIsStock() ? 1L: 0L);
         stmt.bindLong(14, entity.getIsStudy() ? 1L: 0L);
         stmt.bindLong(15, entity.getIsTravel() ? 1L: 0L);
+        stmt.bindLong(16, entity.getIsO2o() ? 1L: 0L);
     }
 
     @Override
@@ -129,6 +132,7 @@ public class AppTypeDao extends AbstractDao<AppType, Long> {
         stmt.bindLong(13, entity.getIsStock() ? 1L: 0L);
         stmt.bindLong(14, entity.getIsStudy() ? 1L: 0L);
         stmt.bindLong(15, entity.getIsTravel() ? 1L: 0L);
+        stmt.bindLong(16, entity.getIsO2o() ? 1L: 0L);
     }
 
     @Override
@@ -153,7 +157,8 @@ public class AppTypeDao extends AbstractDao<AppType, Long> {
             cursor.getShort(offset + 11) != 0, // isSport
             cursor.getShort(offset + 12) != 0, // isStock
             cursor.getShort(offset + 13) != 0, // isStudy
-            cursor.getShort(offset + 14) != 0 // isTravel
+            cursor.getShort(offset + 14) != 0, // isTravel
+            cursor.getShort(offset + 15) != 0 // isO2o
         );
         return entity;
     }
@@ -175,6 +180,7 @@ public class AppTypeDao extends AbstractDao<AppType, Long> {
         entity.setIsStock(cursor.getShort(offset + 12) != 0);
         entity.setIsStudy(cursor.getShort(offset + 13) != 0);
         entity.setIsTravel(cursor.getShort(offset + 14) != 0);
+        entity.setIsO2o(cursor.getShort(offset + 15) != 0);
      }
     
     @Override

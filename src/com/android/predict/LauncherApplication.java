@@ -3,10 +3,12 @@ package com.android.predict;
 import android.app.Application;
 import android.content.Intent;
 import android.os.Handler;
+import android.os.Looper;
 
 import com.android.predict.presentation.internal.component.ApplicationComponent;
 import com.android.predict.presentation.internal.component.DaggerApplicationComponent;
 import com.android.predict.presentation.internal.module.ApplicationModule;
+import com.squareup.leakcanary.LeakCanary;
 
 /**
  * Created by orien on 2017/12/12.
@@ -14,32 +16,24 @@ import com.android.predict.presentation.internal.module.ApplicationModule;
 
 public class LauncherApplication extends Application {
 
-    private String TAG = LauncherApplication.class.getName();
-
     private ApplicationComponent applicationComponent;
-
-    private static LauncherApplication sInstance;
-
-    private Handler mHandler = new Handler();
-
-    public static LauncherApplication getInstance() {
-        return sInstance;
-    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        sInstance = this;
+        initLeakcanary();
         initializeInjector();
         startService(new Intent(this, LightGbmService.class));
     }
 
-    public Handler getMainHandler() {
-        return mHandler;
+    private void initLeakcanary() {
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            return;
+        }
+        LeakCanary.install(this);
     }
 
     private void initializeInjector() {
-
         this.applicationComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .build();
@@ -47,6 +41,12 @@ public class LauncherApplication extends Application {
 
     public ApplicationComponent getApplicationComponent() {
         return this.applicationComponent;
+    }
+
+    public Handler mHandler = new Handler(Looper.getMainLooper());
+
+    public Handler getMainHandler() {
+        return mHandler;
     }
 
 }

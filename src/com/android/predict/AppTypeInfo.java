@@ -12,39 +12,182 @@ import com.github.stuxuhai.jpinyin.PinyinHelper;
 
 public class AppTypeInfo implements Comparable<AppTypeInfo> {
 
-    public static String[] TYPES = {"BROWSER", "EFFICIENCY", "GAME", "MEDIA", "PAY", "READ", "SHOP", "SPORT", "STOCK", "STUDY", "TRAVEL"};
+    private String appName;
 
-    public String appName;
+    private String pinyin;
 
-    public Bitmap iconBitmap;
+    private Bitmap iconBitmap;
 
-    public String packageName;
+    private String packageName;
 
-    public boolean isBrowser;
+    private boolean isBrowser;
 
-    public boolean isEfficiency;
+    private boolean isEfficiency;
 
-    public boolean isGame;
+    private boolean isGame;
 
-    public boolean isIm;
+    private boolean isIm;
 
-    public boolean isMedia;
+    private boolean isMedia;
 
-    public boolean isPay;
+    private boolean isPay;
 
-    public boolean isRead;
+    private boolean isRead;
 
-    public boolean isShop;
+    private boolean isShop;
 
-    public boolean isSport;
+    private boolean isSport;
 
-    public boolean isStock;
+    private boolean isStock;
 
-    public boolean isStudy;
+    private boolean isStudy;
 
-    public boolean isTravel;
+    private boolean isTravel;
 
-    public int currentPosition;
+    private int currentPosition;
+
+    private boolean isO2o;
+
+    public String getAppName() {
+        return appName;
+    }
+
+    public void setAppName(String appName) {
+        this.appName = appName;
+        setPinyin(getPinyin());
+    }
+
+    private void setPinyin(String pinyin) {
+        this.pinyin = pinyin;
+    }
+
+    public Bitmap getIconBitmap() {
+        return iconBitmap;
+    }
+
+    public void setIconBitmap(Bitmap iconBitmap) {
+        this.iconBitmap = iconBitmap;
+    }
+
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
+
+    public boolean isBrowser() {
+        return isBrowser;
+    }
+
+    public void setBrowser(boolean browser) {
+        isBrowser = browser;
+    }
+
+    public boolean isEfficiency() {
+        return isEfficiency;
+    }
+
+    public void setEfficiency(boolean efficiency) {
+        isEfficiency = efficiency;
+    }
+
+    public boolean isGame() {
+        return isGame;
+    }
+
+    public void setGame(boolean game) {
+        isGame = game;
+    }
+
+    public boolean isIm() {
+        return isIm;
+    }
+
+    public void setIm(boolean im) {
+        isIm = im;
+    }
+
+    public boolean isMedia() {
+        return isMedia;
+    }
+
+    public void setMedia(boolean media) {
+        isMedia = media;
+    }
+
+    public boolean isPay() {
+        return isPay;
+    }
+
+    public void setPay(boolean pay) {
+        isPay = pay;
+    }
+
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setRead(boolean read) {
+        isRead = read;
+    }
+
+    public boolean isShop() {
+        return isShop;
+    }
+
+    public void setShop(boolean shop) {
+        isShop = shop;
+    }
+
+    public boolean isSport() {
+        return isSport;
+    }
+
+    public void setSport(boolean sport) {
+        isSport = sport;
+    }
+
+    public boolean isStock() {
+        return isStock;
+    }
+
+    public void setStock(boolean stock) {
+        isStock = stock;
+    }
+
+    public boolean isStudy() {
+        return isStudy;
+    }
+
+    public void setStudy(boolean study) {
+        isStudy = study;
+    }
+
+    public boolean isTravel() {
+        return isTravel;
+    }
+
+    public void setTravel(boolean travel) {
+        isTravel = travel;
+    }
+
+    public int getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public void setCurrentPosition(int currentPosition) {
+        this.currentPosition = currentPosition;
+    }
+
+    public boolean isO2o() {
+        return isO2o;
+    }
+
+    public void setO2o(boolean o2o) {
+        isO2o = o2o;
+    }
 
     void setTypeStatus(boolean status) {
         switch (currentPosition) {
@@ -84,6 +227,9 @@ public class AppTypeInfo implements Comparable<AppTypeInfo> {
             case Constants.TYPE_TRAVEL:
                 isTravel = status;
                 break;
+            case Constants.TYPE_O2O:
+                isO2o = status;
+                break;
         }
     }
 
@@ -113,12 +259,14 @@ public class AppTypeInfo implements Comparable<AppTypeInfo> {
                 return isStudy;
             case Constants.TYPE_TRAVEL:
                 return isTravel;
+            case Constants.TYPE_O2O:
+                return isO2o;
             default:
                 return false;
         }
     }
 
-    String getPinyin() {
+    private String getPinyin() {
         String pinyin = "";
         try {
             pinyin = PinyinHelper.convertToPinyinString(appName, "", PinyinFormat.WITHOUT_TONE);
@@ -132,7 +280,7 @@ public class AppTypeInfo implements Comparable<AppTypeInfo> {
     public int compareTo(@NonNull AppTypeInfo info) {
         int compareResult = info.getTypeStatus().compareTo(getTypeStatus());
         if (compareResult == 0) {
-            return getPinyin().compareTo(info.getPinyin());
+            return pinyin.compareTo(info.pinyin);
         } else {
             return compareResult;
         }
