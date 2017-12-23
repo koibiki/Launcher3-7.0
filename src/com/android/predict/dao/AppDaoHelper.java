@@ -1,12 +1,39 @@
 package com.android.predict.dao;
 
 import com.android.predict.AppTypeInfo;
+import com.android.predict.database.Database;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
 
 /**
  * Created by chengli on 17-12-22.
  */
 
 public class AppDaoHelper {
+
+    private Map<String, AppTypeInfo> mAppTypeInfos;
+    private Database mDatabase;
+
+    @Inject
+    public AppDaoHelper(Database database) {
+        mDatabase = database;
+    }
+
+    public synchronized Map<String, AppTypeInfo> getAppTypeInfos() {
+        if (mAppTypeInfos == null) {
+            mAppTypeInfos = new HashMap<>();
+            List<AppType> appTypes = mDatabase.getAllAppType();
+            for (AppType appType : appTypes) {
+                mAppTypeInfos.put(appType.getPackageName(), transferAppTypeInfo(appType));
+            }
+        }
+        return mAppTypeInfos;
+    }
+
 
     public static AppTypeInfo transferAppTypeInfo(AppType appType) {
         AppTypeInfo appTypeInfo = new AppTypeInfo();

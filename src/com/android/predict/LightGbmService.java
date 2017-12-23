@@ -7,7 +7,6 @@ import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
-import com.android.predict.domain.excutor.UIThread;
 import com.android.predict.presentation.internal.component.ApplicationComponent;
 import com.android.predict.presentation.internal.component.DaggerLightGbmComponent;
 

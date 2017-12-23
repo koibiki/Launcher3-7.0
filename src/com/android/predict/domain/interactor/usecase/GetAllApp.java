@@ -36,15 +36,15 @@ public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
     private final String TAG = this.getClass().getName();
     private AppTypeContact.View mView;
     private Intent mIntent;
-    private Database mDatabase;
+    private AppDaoHelper mAppDaoHelper;
 
     @Inject
     public GetAllApp(Executor threadExecutor, PostExecutionThread postExecutionThread,
-                     AppTypeContact.View view, Intent intent, Database database) {
+                     AppTypeContact.View view, Intent intent, AppDaoHelper appDaoHelper) {
         super(threadExecutor, postExecutionThread);
         mView = view;
         mIntent = intent;
-        mDatabase = database;
+        mAppDaoHelper = appDaoHelper;
     }
 
     @Override
@@ -57,23 +57,21 @@ public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
                 int typePosition = mIntent.getIntExtra(Constants.TYPE_POSITION, 0);
                 ArrayList<AppInfo> allAppsList = LauncherAppState.getInstance().getModel().getBgAllAppsList().data;
                 Log.w(TAG, "allAppsList spent:" + (SystemClock.currentThreadTimeMillis() - l) + "    " + Thread.currentThread().getName());
-                Map<String, AppType> typeMap = mDatabase.getAllAppTypeMap();
+                Map<String, AppTypeInfo> typeInfoMap = mAppDaoHelper.getAppTypeInfos();
                 Log.w(TAG, "getAllAppTypeMap spent:" + (SystemClock.currentThreadTimeMillis() - l));
-                ArrayList<AppTypeInfo> appTypeInfos = new ArrayList<>();
                 for (AppInfo appInfo : allAppsList) {
                     String packageName = appInfo.componentName.getPackageName();
-                    AppType appType = typeMap.get(packageName);
-                    if (appType == null) {
-                        appType = new AppType();
-                        appType.setPackageName(packageName);
-                        typeMap.put(packageName, appType);
+                    AppTypeInfo appTypeInfo = typeInfoMap.get(packageName);
+                    if (appTypeInfo == null) {
+                        appTypeInfo = new AppTypeInfo();
+                        appTypeInfo.setPackageName(packageName);
+                        typeInfoMap.put(packageName, appTypeInfo);
                     }
-                    AppTypeInfo appTypeInfo = AppDaoHelper.transferAppTypeInfo(appType);
                     appTypeInfo.setCurrentPosition(typePosition);
                     appTypeInfo.setAppName(appInfo.title.toString());
                     appTypeInfo.setIconBitmap(appInfo.iconBitmap);
-                    appTypeInfos.add(appTypeInfo);
                 }
+                ArrayList<AppTypeInfo> appTypeInfos = new ArrayList<>(typeInfoMap.values());
                 Log.w(TAG, "transferAppTypeInfo spent:" + (SystemClock.currentThreadTimeMillis() - l));
                 Collections.sort(appTypeInfos);
                 Log.w(TAG, "sort all app spent:" + (SystemClock.currentThreadTimeMillis() - l));

@@ -16,6 +16,13 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
+/**
+ *  所有singleton的對象必須通過 provider 提供
+ *  provide的對象最好是通過 interface 提供
+ *  其他對象只需在需要出 inject 即可
+ *  注意 inject 元素的依賴
+ *  其他普通 component 需要添加 scope
+ */
 @Module
 public class ApplicationModule {
     private final LauncherApplication application;
