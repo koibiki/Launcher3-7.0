@@ -34,9 +34,13 @@ public class AppDaoHelper {
         return mAppTypeInfos;
     }
 
+    public synchronized void deleteAppType(AppTypeInfo appTypeInfo) {
+        mDatabase.deleteAppType(transferApptype(appTypeInfo));
+    }
 
-    public static AppTypeInfo transferAppTypeInfo(AppType appType) {
+    private static AppTypeInfo transferAppTypeInfo(AppType appType) {
         AppTypeInfo appTypeInfo = new AppTypeInfo();
+        appTypeInfo.setId(appType.getId());
         appTypeInfo.setPackageName(appType.getPackageName());
         appTypeInfo.setBrowser(appType.getIsBrowser());
         appTypeInfo.setEfficiency(appType.getIsEfficiency());
@@ -56,6 +60,7 @@ public class AppDaoHelper {
 
     public static AppType transferApptype(AppTypeInfo appTypeInfo) {
         AppType appType = new AppType();
+        appType.setId(appTypeInfo.getId());
         appType.setPackageName(appTypeInfo.getPackageName());
         appType.setIsBrowser(appTypeInfo.isBrowser());
         appType.setIsEfficiency(appTypeInfo.isEfficiency());

@@ -1,6 +1,5 @@
 package com.android.predict.database;
 
-import com.android.predict.AppTypeInfo;
 import com.android.predict.dao.AppType;
 import com.android.predict.dao.User;
 
@@ -18,6 +17,8 @@ public interface Database {
     void insertAppType(AppType appType);
 
     void updateAppType(AppType appType);
+
+    void deleteAppType(AppType appType);
 
     List<AppType> getAllAppType();
 

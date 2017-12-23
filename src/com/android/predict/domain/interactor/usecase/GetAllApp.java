@@ -18,8 +18,10 @@ import org.reactivestreams.Subscriber;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
@@ -59,6 +61,9 @@ public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
                 Log.w(TAG, "allAppsList spent:" + (SystemClock.currentThreadTimeMillis() - l) + "    " + Thread.currentThread().getName());
                 Map<String, AppTypeInfo> typeInfoMap = mAppDaoHelper.getAppTypeInfos();
                 Log.w(TAG, "getAllAppTypeMap spent:" + (SystemClock.currentThreadTimeMillis() - l));
+
+                ArrayList<String> packageList = new ArrayList<>();
+
                 for (AppInfo appInfo : allAppsList) {
                     String packageName = appInfo.componentName.getPackageName();
                     AppTypeInfo appTypeInfo = typeInfoMap.get(packageName);
@@ -70,6 +75,16 @@ public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
                     appTypeInfo.setCurrentPosition(typePosition);
                     appTypeInfo.setAppName(appInfo.title.toString());
                     appTypeInfo.setIconBitmap(appInfo.iconBitmap);
+                    packageList.add(packageName);
+                }
+                Set<String> strings = typeInfoMap.keySet();
+                Iterator<String> iterator = strings.iterator();
+                while (iterator.hasNext()) {
+                    String next = iterator.next();
+                    if (!packageList.contains(next)) {
+                        mAppDaoHelper.deleteAppType(typeInfoMap.get(next));
+                        iterator.remove();
+                    }
                 }
                 ArrayList<AppTypeInfo> appTypeInfos = new ArrayList<>(typeInfoMap.values());
                 Log.w(TAG, "transferAppTypeInfo spent:" + (SystemClock.currentThreadTimeMillis() - l));

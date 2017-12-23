@@ -62,10 +62,6 @@
         android:restoreAnyVersion="true"
         android:supportsRtl="true">
 
-        <!--
-        Main launcher activity. When extending only change the name, and keep all the
-        attributes and intent filters the same
-        -->
         <activity
             android:name="com.android.launcher3.Launcher"
             android:clearTaskOnLaunch="true"
@@ -87,9 +83,17 @@
             </intent-filter>
         </activity>
 
-        <!--
-        The settings activity. When extending keep the intent filter present
-        -->
+        <activity
+            android:name="com.android.predict.LockActivity"
+            android:theme="@android:style/Theme.Translucent"
+            android:label="@string/one_key_lock_screen"
+            android:icon="@drawable/ic_lock">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name="com.android.launcher3.SettingsActivity"
             android:autoRemoveFromRecents="true"
@@ -100,7 +104,20 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.android.predict.AppTypeActivity" android:label="@string/settings_button_text"/>
+        <activity
+            android:name="com.android.predict.AppTypeActivity" />
+
+        <receiver
+            android:name="com.android.predict.presentation.LockReceiver"
+            android:permission="android.permission.BIND_DEVICE_ADMIN">
+            <meta-data
+                android:name="android.app.device_admin"
+                android:resource="@xml/device_admin" />
+
+            <intent-filter>
+                <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
+            </intent-filter>
+        </receiver>
 
         <service android:name="com.android.predict.LightGbmService" />
         <!--

@@ -24,7 +24,7 @@ public class LightGbmService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
         DaggerLightGbmComponent.builder().applicationComponent(getApplicationComponent()).build().inject(this);
         long l = SystemClock.currentThreadTimeMillis();
-        TestJni.trainModel();
+        //TestJni.trainModel();
 
         Handler mainHandler = ((LauncherApplication) getApplication()).getMainHandler();
 

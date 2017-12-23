@@ -12,6 +12,8 @@ import com.github.stuxuhai.jpinyin.PinyinHelper;
 
 public class AppTypeInfo implements Comparable<AppTypeInfo> {
 
+    private Long id;
+
     private String appName;
 
     private String pinyin;
@@ -47,6 +49,14 @@ public class AppTypeInfo implements Comparable<AppTypeInfo> {
     private int currentPosition;
 
     private boolean isO2o;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getAppName() {
         return appName;

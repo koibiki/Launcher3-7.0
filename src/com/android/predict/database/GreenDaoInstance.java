@@ -86,4 +86,9 @@ public class GreenDaoInstance implements Database {
         getAppTypeDao().insertOrReplace(appType);
     }
 
+    @Override
+    public void deleteAppType(AppType appType) {
+        getAppTypeDao().delete(appType);
+    }
+
 }
