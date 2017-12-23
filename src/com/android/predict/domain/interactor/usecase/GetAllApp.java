@@ -1,5 +1,6 @@
 package com.android.predict.domain.interactor.usecase;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 import android.util.Log;
@@ -36,14 +37,16 @@ import io.reactivex.subscribers.DisposableSubscriber;
 public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
 
     private final String TAG = this.getClass().getName();
+    private Context mContext;
     private AppTypeContact.View mView;
     private Intent mIntent;
     private AppDaoHelper mAppDaoHelper;
 
     @Inject
-    public GetAllApp(Executor threadExecutor, PostExecutionThread postExecutionThread,
+    public GetAllApp(Context context, Executor threadExecutor, PostExecutionThread postExecutionThread,
                      AppTypeContact.View view, Intent intent, AppDaoHelper appDaoHelper) {
         super(threadExecutor, postExecutionThread);
+        mContext = context;
         mView = view;
         mIntent = intent;
         mAppDaoHelper = appDaoHelper;
@@ -66,6 +69,9 @@ public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
 
                 for (AppInfo appInfo : allAppsList) {
                     String packageName = appInfo.componentName.getPackageName();
+                    if (packageName.equals(mContext.getPackageName())) {
+                        continue;
+                    }
                     AppTypeInfo appTypeInfo = typeInfoMap.get(packageName);
                     if (appTypeInfo == null) {
                         appTypeInfo = new AppTypeInfo();
@@ -77,6 +83,7 @@ public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
                     appTypeInfo.setIconBitmap(appInfo.iconBitmap);
                     packageList.add(packageName);
                 }
+
                 Set<String> strings = typeInfoMap.keySet();
                 Iterator<String> iterator = strings.iterator();
                 while (iterator.hasNext()) {
@@ -86,6 +93,7 @@ public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
                         iterator.remove();
                     }
                 }
+
                 ArrayList<AppTypeInfo> appTypeInfos = new ArrayList<>(typeInfoMap.values());
                 Log.w(TAG, "transferAppTypeInfo spent:" + (SystemClock.currentThreadTimeMillis() - l));
                 Collections.sort(appTypeInfos);

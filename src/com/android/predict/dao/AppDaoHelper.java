@@ -1,5 +1,7 @@
 package com.android.predict.dao;
 
+import android.content.Context;
+
 import com.android.predict.AppTypeInfo;
 import com.android.predict.database.Database;
 
@@ -15,11 +17,13 @@ import javax.inject.Inject;
 
 public class AppDaoHelper {
 
-    private Map<String, AppTypeInfo> mAppTypeInfos;
+    private Context mContext;
     private Database mDatabase;
+    private Map<String, AppTypeInfo> mAppTypeInfos;
 
     @Inject
-    public AppDaoHelper(Database database) {
+    public AppDaoHelper(Context context, Database database) {
+        mContext = context;
         mDatabase = database;
     }
 
@@ -28,7 +32,9 @@ public class AppDaoHelper {
             mAppTypeInfos = new HashMap<>();
             List<AppType> appTypes = mDatabase.getAllAppType();
             for (AppType appType : appTypes) {
-                mAppTypeInfos.put(appType.getPackageName(), transferAppTypeInfo(appType));
+                if (!mContext.getPackageName().equals(appType.getPackageName())) {
+                    mAppTypeInfos.put(appType.getPackageName(), transferAppTypeInfo(appType));
+                }
             }
         }
         return mAppTypeInfos;
