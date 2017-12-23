@@ -84,7 +84,7 @@
         </activity>
 
         <activity
-            android:name="com.android.predict.LockActivity"
+            android:name="com.android.predict.presentation.activity.LockActivity"
             android:theme="@android:style/Theme.Translucent"
             android:label="@string/one_key_lock_screen"
             android:icon="@drawable/ic_lock">
@@ -105,10 +105,10 @@
         </activity>
 
         <activity
-            android:name="com.android.predict.AppTypeActivity" />
+            android:name="com.android.predict.presentation.activity.AppTypeActivity" />
 
         <receiver
-            android:name="com.android.predict.presentation.LockReceiver"
+            android:name="com.android.predict.presentation.recevier.LockReceiver"
             android:permission="android.permission.BIND_DEVICE_ADMIN">
             <meta-data
                 android:name="android.app.device_admin"
@@ -119,7 +119,7 @@
             </intent-filter>
         </receiver>
 
-        <service android:name="com.android.predict.LightGbmService" />
+        <service android:name="com.android.predict.presentation.service.LightGbmService" />
         <!--
         The settings provider contains Home's data, like the workspace favorites. The permissions
         should be changed to what is defined above. The authorities should also be changed to

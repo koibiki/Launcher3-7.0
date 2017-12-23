@@ -7,11 +7,9 @@ import android.util.Log;
 
 import com.android.launcher3.AppInfo;
 import com.android.launcher3.LauncherAppState;
-import com.android.predict.AppTypeInfo;
+import com.android.predict.model.AppTypeInfo;
 import com.android.predict.Constants;
-import com.android.predict.dao.AppDaoHelper;
-import com.android.predict.dao.AppType;
-import com.android.predict.database.Database;
+import com.android.predict.database.AppDaoHelper;
 import com.android.predict.domain.excutor.PostExecutionThread;
 import com.android.predict.presentation.presenter.AppTypeContact;
 
@@ -110,6 +108,7 @@ public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
     protected DisposableSubscriber<? super List<AppTypeInfo>> buildSubscriber() {
 
         return new DisposableSubscriber<List<AppTypeInfo>>() {
+
             @Override
             public void onNext(List<AppTypeInfo> appTypeInfos) {
                 mView.loadSuccess(appTypeInfos);
@@ -117,7 +116,7 @@ public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
 
             @Override
             public void onError(Throwable e) {
-
+                e.printStackTrace();
             }
 
             @Override

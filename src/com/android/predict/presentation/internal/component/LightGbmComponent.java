@@ -1,6 +1,6 @@
 package com.android.predict.presentation.internal.component;
 
-import com.android.predict.LightGbmService;
+import com.android.predict.presentation.service.LightGbmService;
 import com.android.predict.presentation.internal.PerService;
 import com.android.predict.presentation.internal.module.LightGbmModule;
 

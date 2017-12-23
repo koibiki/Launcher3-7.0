@@ -1,4 +1,4 @@
-package com.android.predict;
+package com.android.predict.presentation.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.launcher3.R;
-import com.android.predict.presentation.DaggerActivity;
+import com.android.predict.model.AppTypeInfo;
+import com.android.predict.Constants;
 import com.android.predict.presentation.internal.component.DaggerAppTypeComponent;
 import com.android.predict.presentation.internal.module.AppTypeModule;
 import com.android.predict.presentation.presenter.AppTypeContact;

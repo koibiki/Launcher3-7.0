@@ -3,8 +3,6 @@ package com.android.predict.database;
 import android.content.Context;
 import android.util.Log;
 
-import com.android.predict.AppTypeInfo;
-import com.android.predict.dao.AppDaoHelper;
 import com.android.predict.dao.AppType;
 import com.android.predict.dao.AppTypeDao;
 import com.android.predict.dao.DaoMaster;

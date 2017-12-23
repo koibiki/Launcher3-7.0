@@ -1,4 +1,4 @@
-package com.android.predict;
+package com.android.predict.presentation.activity;
 
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
@@ -6,28 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
-import com.android.launcher3.R;
-import com.android.predict.presentation.DaggerActivity;
-import com.android.predict.presentation.LockReceiver;
-import com.android.predict.presentation.internal.component.DaggerAppTypeComponent;
-import com.android.predict.presentation.internal.module.AppTypeModule;
-import com.android.predict.presentation.presenter.AppTypeContact;
-import com.android.predict.presentation.presenter.AppTypePresenter;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.inject.Inject;
+import com.android.predict.presentation.activity.DaggerActivity;
+import com.android.predict.presentation.recevier.LockReceiver;
 
 /**
  * Created by orien on 2017/12/21.

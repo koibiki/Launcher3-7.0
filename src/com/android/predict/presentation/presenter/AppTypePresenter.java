@@ -1,7 +1,6 @@
 package com.android.predict.presentation.presenter;
 
-import com.android.predict.AppTypeInfo;
-import com.android.predict.dao.AppType;
+import com.android.predict.model.AppTypeInfo;
 import com.android.predict.domain.interactor.usecase.GetAllApp;
 import com.android.predict.domain.interactor.usecase.SaveAppTypeData;
 import com.android.predict.domain.interactor.usecase.UseCase;
@@ -9,8 +8,6 @@ import com.android.predict.domain.interactor.usecase.UseCase;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import io.reactivex.observers.DisposableObserver;
 
 /**
  * Created by chengli on 17-12-22.

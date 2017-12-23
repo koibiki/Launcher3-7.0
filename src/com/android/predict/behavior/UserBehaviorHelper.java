@@ -12,6 +12,7 @@ import android.os.Bundle;
 
 import com.android.predict.dao.User;
 import com.android.predict.database.Database;
+import com.android.predict.utils.DateUtils;
 
 import java.util.Date;
 

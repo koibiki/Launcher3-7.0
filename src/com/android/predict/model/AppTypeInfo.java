@@ -1,8 +1,9 @@
-package com.android.predict;
+package com.android.predict.model;
 
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 
+import com.android.predict.Constants;
 import com.github.stuxuhai.jpinyin.PinyinFormat;
 import com.github.stuxuhai.jpinyin.PinyinHelper;
 
@@ -199,7 +200,7 @@ public class AppTypeInfo implements Comparable<AppTypeInfo> {
         isO2o = o2o;
     }
 
-    void setTypeStatus(boolean status) {
+    public void setTypeStatus(boolean status) {
         switch (currentPosition) {
             case Constants.TYPE_BROWSER:
                 isBrowser = status;
@@ -243,7 +244,7 @@ public class AppTypeInfo implements Comparable<AppTypeInfo> {
         }
     }
 
-    Boolean getTypeStatus() {
+    public Boolean getTypeStatus() {
         switch (currentPosition) {
             case Constants.TYPE_BROWSER:
                 return isBrowser;

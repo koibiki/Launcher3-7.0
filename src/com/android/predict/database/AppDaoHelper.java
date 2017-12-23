@@ -1,8 +1,9 @@
-package com.android.predict.dao;
+package com.android.predict.database;
 
 import android.content.Context;
 
-import com.android.predict.AppTypeInfo;
+import com.android.predict.dao.AppType;
+import com.android.predict.model.AppTypeInfo;
 import com.android.predict.database.Database;
 
 import java.util.HashMap;

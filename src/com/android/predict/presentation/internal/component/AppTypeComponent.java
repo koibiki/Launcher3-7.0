@@ -2,7 +2,7 @@ package com.android.predict.presentation.internal.component;
 
 import android.content.Intent;
 
-import com.android.predict.AppTypeActivity;
+import com.android.predict.presentation.activity.AppTypeActivity;
 import com.android.predict.presentation.internal.PerActivity;
 import com.android.predict.presentation.internal.module.AppTypeModule;
 import com.android.predict.presentation.presenter.AppTypeContact;

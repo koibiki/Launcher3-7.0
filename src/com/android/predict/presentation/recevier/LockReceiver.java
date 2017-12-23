@@ -1,4 +1,4 @@
-package com.android.predict.presentation;
+package com.android.predict.presentation.recevier;
 
 import android.app.admin.DeviceAdminReceiver;
 import android.content.Context;

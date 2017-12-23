@@ -1,4 +1,4 @@
-package com.android.predict.presentation;
+package com.android.predict.presentation.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

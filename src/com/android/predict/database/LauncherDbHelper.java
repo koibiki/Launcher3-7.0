@@ -1,6 +1,8 @@
-package com.android.predict.dao;
+package com.android.predict.database;
 
 import android.content.Context;
+
+import com.android.predict.dao.DaoMaster;
 
 import org.greenrobot.greendao.database.Database;
 

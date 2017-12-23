@@ -1,6 +1,6 @@
 package com.android.predict.presentation.presenter;
 
-import com.android.predict.AppTypeInfo;
+import com.android.predict.model.AppTypeInfo;
 
 import java.util.List;
 

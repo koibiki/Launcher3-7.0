@@ -3,8 +3,8 @@ package com.android.predict.domain.interactor.usecase;
 import android.os.SystemClock;
 import android.util.Log;
 
-import com.android.predict.AppTypeInfo;
-import com.android.predict.dao.AppDaoHelper;
+import com.android.predict.model.AppTypeInfo;
+import com.android.predict.database.AppDaoHelper;
 import com.android.predict.dao.AppType;
 import com.android.predict.database.Database;
 import com.android.predict.domain.excutor.PostExecutionThread;

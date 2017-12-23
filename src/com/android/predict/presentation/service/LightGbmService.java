@@ -1,4 +1,4 @@
-package com.android.predict;
+package com.android.predict.presentation.service;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -7,6 +7,7 @@ import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
+import com.android.predict.LauncherApplication;
 import com.android.predict.presentation.internal.component.ApplicationComponent;
 import com.android.predict.presentation.internal.component.DaggerLightGbmComponent;
 

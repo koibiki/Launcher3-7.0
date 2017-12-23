@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.android.launcher3.R;
-import com.android.predict.AppTypeActivity;
+import com.android.predict.presentation.activity.AppTypeActivity;
 import com.android.predict.Constants;
 
 /**

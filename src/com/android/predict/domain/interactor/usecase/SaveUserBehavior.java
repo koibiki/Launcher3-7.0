@@ -2,19 +2,14 @@ package com.android.predict.domain.interactor.usecase;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.SystemClock;
 import android.util.Log;
 
-import com.android.predict.AppTypeInfo;
 import com.android.predict.behavior.UserBehaviorHelper;
-import com.android.predict.dao.AppDaoHelper;
-import com.android.predict.dao.AppType;
 import com.android.predict.database.Database;
 import com.android.predict.domain.excutor.PostExecutionThread;
 
 import org.reactivestreams.Subscriber;
 
-import java.util.List;
 import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
