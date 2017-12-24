@@ -54,6 +54,15 @@ public class GreenDaoInstance implements Database {
     }
 
     @Override
+    public List<User> getAllUserBehavior(long startTime) {
+        if (startTime > 0) {
+            return getUserDao().queryBuilder().where(UserDao.Properties.Date.ge(startTime)).build().list();
+        } else {
+            return getUserDao().loadAll();
+        }
+    }
+
+    @Override
     public void insertAppType(AppType appType) {
         getAppTypeDao().insertOrReplace(appType);
     }

@@ -8,6 +8,9 @@
 #include <cstring>
 #include <exception>
 #include <stdexcept>
+#include <android/log.h>
+
+#define LOGW(...)  __android_log_print(ANDROID_LOG_WARN,"lightGBM",__VA_ARGS__)
 
 namespace LightGBM {
 
@@ -90,6 +93,7 @@ private:
       // write to STDOUT
       printf("[LightGBM] [%s] ", level_str);
       vprintf(format, val);
+      LOGW("[LightGBM] [%s] ", format);
       printf("\n");
       fflush(stdout);
     }

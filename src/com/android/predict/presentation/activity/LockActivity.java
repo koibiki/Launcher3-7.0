@@ -23,7 +23,6 @@ public class LockActivity extends DaggerActivity {
     }
 
     public void lockScreen() {
-
         DevicePolicyManager dpm = (DevicePolicyManager)
                 getSystemService(Context.DEVICE_POLICY_SERVICE);
         ComponentName componentName = new ComponentName(getApplicationContext(),
@@ -34,7 +33,6 @@ public class LockActivity extends DaggerActivity {
             activeManager(componentName);
         }
         finish();
-
     }
 
     private void activeManager(ComponentName componentName) {

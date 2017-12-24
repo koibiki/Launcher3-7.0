@@ -111,8 +111,6 @@ import com.android.launcher3.logging.FileLog;
 import com.android.launcher3.logging.UserEventDispatcher;
 import com.android.launcher3.model.WidgetsModel;
 import com.android.launcher3.pageindicators.PageIndicator;
-import com.android.predict.LauncherApplication;
-import com.android.predict.behavior.UserBehaviorHelper;
 import com.android.launcher3.shortcuts.DeepShortcutManager;
 import com.android.launcher3.shortcuts.DeepShortcutsContainer;
 import com.android.launcher3.shortcuts.ShortcutKey;
@@ -129,6 +127,7 @@ import com.android.launcher3.util.ViewOnDrawExecutor;
 import com.android.launcher3.widget.PendingAddWidgetInfo;
 import com.android.launcher3.widget.WidgetHostViewLoader;
 import com.android.launcher3.widget.WidgetsContainerView;
+import com.android.predict.LauncherApplication;
 import com.android.predict.domain.interactor.usecase.SaveUserBehavior;
 import com.android.predict.presentation.internal.component.ApplicationComponent;
 import com.android.predict.presentation.internal.component.DaggerLauncherComponent;
@@ -2633,7 +2632,9 @@ public class Launcher extends Activity
         if (intent == null) {
             throw new IllegalArgumentException("Input must have a valid intent");
         }
-        mSaveUserBehavior.execute(intent);
+        if (intent.getComponent()!=null && !getPackageName().equals(intent.getComponent().getPackageName())) {
+            mSaveUserBehavior.execute(intent);
+        }
         boolean success = startActivitySafely(v, intent, item);
         getUserEventDispatcher().logAppLaunch(v, intent);
 

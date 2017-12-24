@@ -14,6 +14,8 @@ public interface Database {
 
     void insertUserBehavior(User user);
 
+    List<User> getAllUserBehavior(long startTime);
+
     void insertAppType(AppType appType);
 
     void updateAppType(AppType appType);

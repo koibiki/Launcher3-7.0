@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.android.predict.LauncherApplication;
+import com.android.predict.TestJni;
 import com.android.predict.presentation.internal.component.ApplicationComponent;
 import com.android.predict.presentation.internal.component.DaggerLightGbmComponent;
 
@@ -25,7 +26,7 @@ public class LightGbmService extends IntentService {
     protected void onHandleIntent(@Nullable Intent intent) {
         DaggerLightGbmComponent.builder().applicationComponent(getApplicationComponent()).build().inject(this);
         long l = SystemClock.currentThreadTimeMillis();
-        //TestJni.trainModel();
+        TestJni.trainModel();
 
         Handler mainHandler = ((LauncherApplication) getApplication()).getMainHandler();
 

@@ -47,9 +47,9 @@ public class AppTypeInfo implements Comparable<AppTypeInfo> {
 
     private boolean isTravel;
 
-    private int currentPosition;
-
     private boolean isO2o;
+
+    private int currentPosition;
 
     public Long getId() {
         return id;
