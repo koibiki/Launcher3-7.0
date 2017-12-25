@@ -6,7 +6,8 @@ import android.util.Log;
 
 import com.android.predict.behavior.UserBehaviorHelper;
 import com.android.predict.database.Database;
-import com.android.predict.domain.excutor.PostExecutionThread;
+import com.android.predict.domain.excutor.DaoExecutor;
+import com.android.predict.domain.excutor.PostExecutor;
 
 import org.reactivestreams.Subscriber;
 
@@ -24,12 +25,15 @@ import io.reactivex.subscribers.DisposableSubscriber;
 public class SaveUserBehavior extends UseCase<Intent, Object> {
 
     private final String TAG = this.getClass().getName();
+    private final DaoExecutor mDaoExecutor;
     private final Database mDatabase;
     private final Context mContext;
 
     @Inject
-    protected SaveUserBehavior(Context context, Executor threadExecutor, PostExecutionThread postExecutionThread, Database database) {
-        super(threadExecutor, postExecutionThread);
+    protected SaveUserBehavior(Context context, Executor threadExecutor, PostExecutor postExecutor,
+                               DaoExecutor daoExecutor, Database database) {
+        super(threadExecutor, postExecutor);
+        mDaoExecutor = daoExecutor;
         mDatabase = database;
         mContext = context;
     }
@@ -42,7 +46,7 @@ public class SaveUserBehavior extends UseCase<Intent, Object> {
                 saveUserBehavior(intent);
                 subscriber.onComplete();
             }
-        };
+        }.subscribeOn(mDaoExecutor.getScheduler());
     }
 
     private void saveUserBehavior(Intent intent) {

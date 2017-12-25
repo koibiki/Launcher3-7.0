@@ -2,7 +2,9 @@ package com.android.predict.presentation.internal.component;
 
 import android.content.Context;
 
-import com.android.predict.domain.excutor.PostExecutionThread;
+import com.android.predict.domain.excutor.DaoExecutor;
+import com.android.predict.domain.excutor.GreenDaoThread;
+import com.android.predict.domain.excutor.PostExecutor;
 import com.android.predict.database.Database;
 import com.android.predict.presentation.activity.DaggerActivity;
 import com.android.predict.presentation.internal.module.ApplicationModule;
@@ -22,8 +24,9 @@ public interface ApplicationComponent {
 
     Executor threadExecutor();
 
-    PostExecutionThread postExecutionThread();
+    PostExecutor postExecutionThread();
 
     Database provideDataBase();
 
+    DaoExecutor provideGreenDaoExecutor();
 }

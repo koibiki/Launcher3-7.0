@@ -18,22 +18,14 @@ import javax.inject.Inject;
 
 public class AppDaoHelper {
 
-    private Context mContext;
-    private Database mDatabase;
-    private Map<String, AppTypeInfo> mAppTypeInfos;
+    private static Map<String, AppTypeInfo> mAppTypeInfos;
 
-    @Inject
-    public AppDaoHelper(Context context, Database database) {
-        mContext = context;
-        mDatabase = database;
-    }
-
-    public synchronized Map<String, AppTypeInfo> getAppTypeInfos() {
+    public static synchronized Map<String, AppTypeInfo> getAppTypeInfos(Context context, Database database) {
         if (mAppTypeInfos == null) {
             mAppTypeInfos = new HashMap<>();
-            List<AppType> appTypes = mDatabase.getAllAppType();
+            List<AppType> appTypes = database.getAllAppType();
             for (AppType appType : appTypes) {
-                if (!mContext.getPackageName().equals(appType.getPackageName())) {
+                if (!context.getPackageName().equals(appType.getPackageName())) {
                     mAppTypeInfos.put(appType.getPackageName(), transferAppTypeInfo(appType));
                 }
             }
@@ -41,8 +33,8 @@ public class AppDaoHelper {
         return mAppTypeInfos;
     }
 
-    public synchronized void deleteAppType(AppTypeInfo appTypeInfo) {
-        mDatabase.deleteAppType(transferApptype(appTypeInfo));
+    public static synchronized void deleteAppType(Database database, AppTypeInfo appTypeInfo) {
+        database.deleteAppType(transferApptype(appTypeInfo));
     }
 
     private static AppTypeInfo transferAppTypeInfo(AppType appType) {

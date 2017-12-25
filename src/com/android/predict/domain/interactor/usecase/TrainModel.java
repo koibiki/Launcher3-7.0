@@ -1,13 +1,11 @@
 package com.android.predict.domain.interactor.usecase;
 
-import android.os.SystemClock;
 import android.util.Log;
 
 import com.android.predict.dao.AppType;
 import com.android.predict.dao.User;
-import com.android.predict.database.AppDaoHelper;
 import com.android.predict.database.Database;
-import com.android.predict.domain.excutor.PostExecutionThread;
+import com.android.predict.domain.excutor.PostExecutor;
 import com.android.predict.model.AppTypeInfo;
 
 import org.reactivestreams.Subscriber;
@@ -29,8 +27,8 @@ public class TrainModel extends UseCase<List<AppTypeInfo>, Object> {
     private final Database mDatabase;
 
     @Inject
-    protected TrainModel(Executor threadExecutor, PostExecutionThread postExecutionThread, Database database) {
-        super(threadExecutor, postExecutionThread);
+    protected TrainModel(Executor threadExecutor, PostExecutor postExecutor, Database database) {
+        super(threadExecutor, postExecutor);
         mDatabase = database;
     }
 

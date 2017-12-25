@@ -3,11 +3,13 @@ package com.android.predict.domain.interactor.usecase;
 import android.os.SystemClock;
 import android.util.Log;
 
+import com.android.predict.domain.excutor.DaoExecutor;
+import com.android.predict.domain.excutor.PostExecutor;
 import com.android.predict.model.AppTypeInfo;
 import com.android.predict.database.AppDaoHelper;
 import com.android.predict.dao.AppType;
 import com.android.predict.database.Database;
-import com.android.predict.domain.excutor.PostExecutionThread;
+import com.android.predict.utils.MillsRecordUtils;
 
 import org.reactivestreams.Subscriber;
 
@@ -25,11 +27,14 @@ import io.reactivex.subscribers.DisposableSubscriber;
 
 public class SaveAppTypeData extends UseCase<List<AppTypeInfo>, Object> {
     private final String TAG = this.getClass().getName();
+    private final DaoExecutor mDaoExecutor;
     private final Database mDatabase;
 
     @Inject
-    protected SaveAppTypeData(Executor threadExecutor, PostExecutionThread postExecutionThread, Database database) {
-        super(threadExecutor, postExecutionThread);
+    protected SaveAppTypeData(Executor threadExecutor, PostExecutor postExecutor,
+                              DaoExecutor daoExecutor, Database database) {
+        super(threadExecutor, postExecutor);
+        mDaoExecutor = daoExecutor;
         mDatabase = database;
     }
 
@@ -38,10 +43,12 @@ public class SaveAppTypeData extends UseCase<List<AppTypeInfo>, Object> {
         return new Flowable<Object>() {
             @Override
             protected void subscribeActual(Subscriber<? super Object> subscriber) {
+                MillsRecordUtils.startRecord(Thread.currentThread().getName());
                 saveAppTypeData(appTypeInfos);
+                MillsRecordUtils.print(Thread.currentThread().getName(), TAG, "saveAppTypeData spent:");
                 subscriber.onComplete();
             }
-        };
+        }.subscribeOn(mDaoExecutor.getScheduler());
     }
 
     private void saveAppTypeData(List<AppTypeInfo> appTypeInfos) {
@@ -50,7 +57,6 @@ public class SaveAppTypeData extends UseCase<List<AppTypeInfo>, Object> {
             AppType appType = AppDaoHelper.transferApptype(appTypeInfo);
             mDatabase.updateAppType(appType);
         }
-        Log.w(TAG, "saveAppTypeData spent:" + (SystemClock.currentThreadTimeMillis() - l) + "     " + Thread.currentThread().getName());
     }
 
     @Override

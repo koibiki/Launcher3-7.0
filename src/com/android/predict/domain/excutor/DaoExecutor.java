@@ -2,6 +2,10 @@ package com.android.predict.domain.excutor;
 
 import io.reactivex.Scheduler;
 
-public interface PostExecutionThread {
+/**
+ * Created by orien on 2017/12/25.
+ */
+
+public interface DaoExecutor {
     Scheduler getScheduler();
 }

@@ -2,13 +2,12 @@ package com.android.predict.domain.interactor.usecase;
 
 import android.support.annotation.Nullable;
 
-import com.android.predict.domain.excutor.PostExecutionThread;
+import com.android.predict.domain.excutor.PostExecutor;
 
 import java.util.concurrent.Executor;
 
 
 import io.reactivex.Flowable;
-import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subscribers.DisposableSubscriber;
 
 /**
@@ -17,14 +16,12 @@ import io.reactivex.subscribers.DisposableSubscriber;
 
 public abstract class UseCase<IN, OUT> {
 
-    private final Executor threadExecutor;
-    private final PostExecutionThread postExecutionThread;
+    private final PostExecutor postExecutor;
 
     private DisposableSubscriber<? super OUT> mSubscribe;
 
-    protected UseCase(Executor threadExecutor, PostExecutionThread postExecutionThread) {
-        this.threadExecutor = threadExecutor;
-        this.postExecutionThread = postExecutionThread;
+    protected UseCase( Executor threadExecutor,PostExecutor postExecutor) {
+        this.postExecutor = postExecutor;
     }
 
     protected abstract Flowable<OUT> buildUseCaseFlowable(IN in);
@@ -34,8 +31,7 @@ public abstract class UseCase<IN, OUT> {
     public synchronized void execute(@Nullable IN in) {
         mSubscribe = this.buildSubscriber();
         this.buildUseCaseFlowable(in)
-                .subscribeOn(Schedulers.from(threadExecutor))
-                .observeOn(postExecutionThread.getScheduler())
+                .observeOn(postExecutor.getScheduler())
                 .subscribe(mSubscribe);
     }
 
