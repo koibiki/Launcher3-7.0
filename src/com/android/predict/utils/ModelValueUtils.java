@@ -3,9 +3,7 @@ package com.android.predict.utils;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by orien on 2017/12/25.
@@ -16,7 +14,7 @@ public class ModelValueUtils {
     public static class ClassInfo {
         String type;
         String name;
-        Object value;
+        String value;
 
         public String getType() {
             return type;
@@ -34,11 +32,11 @@ public class ModelValueUtils {
             this.name = name;
         }
 
-        public Object getValue() {
+        public String getValue() {
             return value;
         }
 
-        public void setValue(Object value) {
+        public void setValue(String value) {
             this.value = value;
         }
     }
@@ -50,7 +48,24 @@ public class ModelValueUtils {
             ClassInfo info = new ClassInfo();
             info.type = field.getType().toString();
             info.name = field.getName();
-            info.value = getFieldValueByName(field.getName(), o);
+            Object value = null;
+            String fieldName = field.getName();
+            try {
+                String getter;
+
+                if (fieldName.startsWith("is")) {
+                    String firstLetter = fieldName.substring(2, 3);
+                    getter = "is" + firstLetter.toUpperCase() + fieldName.substring(3);
+                } else {
+                    String firstLetter = fieldName.substring(0, 1);
+                    getter = "get" + firstLetter.toUpperCase() + fieldName.substring(1);
+                }
+                Method method = o.getClass().getMethod(getter);
+                value = method.invoke(o);
+            } catch (Exception e) {
+
+            }
+            info.value = getValueString(value);
             list.add(info);
         }
         return list;
@@ -58,8 +73,15 @@ public class ModelValueUtils {
 
     public static Object getFieldValueByName(String fieldName, Object o) {
         try {
-            String firstLetter = fieldName.substring(0, 1);
-            String getter = "get" + firstLetter + fieldName.substring(1);
+            String getter;
+
+            if (fieldName.startsWith("is")) {
+                String firstLetter = fieldName.substring(2, 3);
+                getter = "get" + firstLetter.toUpperCase() + fieldName.substring(1);
+            } else {
+                String firstLetter = fieldName.substring(0, 1);
+                getter = "get" + firstLetter.toUpperCase() + fieldName.substring(3);
+            }
             Method method = o.getClass().getMethod(getter);
             return method.invoke(o);
         } catch (Exception e) {
@@ -76,4 +98,13 @@ public class ModelValueUtils {
         }
         return fieldNames;
     }
+
+    public static String getValueString(Object value) {
+        if (value instanceof Boolean) {
+            return ((Boolean) value) ? "1" : "0";
+        } else {
+            return value == null ? "0" : value.toString();
+        }
+    }
+
 }

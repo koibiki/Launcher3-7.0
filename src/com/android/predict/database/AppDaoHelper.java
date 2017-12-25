@@ -18,19 +18,16 @@ import javax.inject.Inject;
 
 public class AppDaoHelper {
 
-    private static Map<String, AppTypeInfo> mAppTypeInfos;
 
     public static synchronized Map<String, AppTypeInfo> getAppTypeInfos(Context context, Database database) {
-        if (mAppTypeInfos == null) {
-            mAppTypeInfos = new HashMap<>();
-            List<AppType> appTypes = database.getAllAppType();
-            for (AppType appType : appTypes) {
-                if (!context.getPackageName().equals(appType.getPackageName())) {
-                    mAppTypeInfos.put(appType.getPackageName(), transferAppTypeInfo(appType));
-                }
+        Map<String, AppTypeInfo> appTypeInfos = new HashMap<>();
+        List<AppType> appTypes = database.getAllAppType();
+        for (AppType appType : appTypes) {
+            if (!context.getPackageName().equals(appType.getPackageName())) {
+                appTypeInfos.put(appType.getPackageName(), transferAppTypeInfo(appType));
             }
         }
-        return mAppTypeInfos;
+        return appTypeInfos;
     }
 
     public static synchronized void deleteAppType(Database database, AppTypeInfo appTypeInfo) {
@@ -59,7 +56,9 @@ public class AppDaoHelper {
 
     public static AppType transferApptype(AppTypeInfo appTypeInfo) {
         AppType appType = new AppType();
-        appType.setId(appTypeInfo.getId());
+        if (appTypeInfo.getId() != -1) {
+            appType.setId(appTypeInfo.getId());
+        }
         appType.setPackageName(appTypeInfo.getPackageName());
         appType.setIsBrowser(appTypeInfo.isBrowser());
         appType.setIsEfficiency(appTypeInfo.isEfficiency());

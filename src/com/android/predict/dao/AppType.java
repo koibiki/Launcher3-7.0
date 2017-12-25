@@ -11,7 +11,7 @@ import org.greenrobot.greendao.annotation.Generated;
 @Entity
 public class AppType {
 
-    @Id
+    @Id(autoincrement = true)
     private Long id;
     @Property(nameInDb = "PACKAGENAME")
     private String packageName;

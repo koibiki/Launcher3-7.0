@@ -13,6 +13,7 @@ import com.android.predict.database.AppDaoHelper;
 import com.android.predict.domain.excutor.PostExecutor;
 import com.android.predict.presentation.presenter.AppTypeContact;
 import com.android.predict.utils.MillsRecordUtils;
+import com.android.predict.utils.Predictor;
 
 import org.reactivestreams.Subscriber;
 
@@ -68,6 +69,7 @@ public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
                     @Override
                     protected void subscribeActual(Subscriber<? super Map<String, AppTypeInfo>> subscriber) {
                         MillsRecordUtils.startRecord(Thread.currentThread().getName());
+                        Predictor.createTrainData(mContext, mDatabase);
 
                         Map<String, AppTypeInfo> typeInfoMap = AppDaoHelper.getAppTypeInfos(mContext, mDatabase);
 
@@ -110,7 +112,6 @@ public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
                     while (iterator.hasNext()) {
                         String next = iterator.next();
                         if (!packageList.contains(next)) {
-                            AppDaoHelper.deleteAppType(mDatabase, typeInfoMap.get(next));
                             iterator.remove();
                         }
                     }

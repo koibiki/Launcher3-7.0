@@ -42,9 +42,9 @@ public class TrainDataItem {
 
     private boolean isO2o;
 
-    private boolean wifiConnect;
+    private boolean isWifiConnect;
 
-    private boolean mobileConnect;
+    private boolean isMobileConnect;
 
     private double latitude;
 
@@ -267,19 +267,19 @@ public class TrainDataItem {
     }
 
     public boolean isWifiConnect() {
-        return wifiConnect;
+        return isWifiConnect;
     }
 
     public void setWifiConnect(boolean wifiConnect) {
-        this.wifiConnect = wifiConnect;
+        this.isWifiConnect = wifiConnect;
     }
 
     public boolean isMobileConnect() {
-        return mobileConnect;
+        return isMobileConnect;
     }
 
     public void setMobileConnect(boolean mobileConnect) {
-        this.mobileConnect = mobileConnect;
+        this.isMobileConnect = mobileConnect;
     }
 
     public double getLatitude() {
@@ -750,9 +750,9 @@ public class TrainDataItem {
 
         this.isO2o = appType.getIsO2o();
 
-        this.wifiConnect = userBehavior.getWifiConnect();
+        this.isWifiConnect = userBehavior.getWifiConnect();
 
-        this.mobileConnect = userBehavior.getMobileConnect();
+        this.isMobileConnect = userBehavior.getMobileConnect();
 
         this.latitude = userBehavior.getLatitude();
 
@@ -866,17 +866,17 @@ public class TrainDataItem {
 
     private String separator = ",";
 
-//    @Override
-//    public String toString() {
-//        List<ModelValueUtils.ClassInfo> filedsInfo = ModelValueUtils.getFiledsInfo(this);
-//        StringBuilder sb = new StringBuilder(id.toString() + separator);
-//        for (ModelValueUtils.ClassInfo field : filedsInfo) {
-//            if (!field.getName().equals("id")) {
-//                sb.append(field.getValue().toString() + separator);
-//            }
-//        }
-//        return sb.substring(0, sb.length() - 1);
-//    }
-
+    @Override
+    public String toString() {
+        TrainDataItem item = this;
+        List<ModelValueUtils.ClassInfo> filedsInfo = ModelValueUtils.getFiledsInfo(item);
+        StringBuilder sb = new StringBuilder(id.toString() + separator);
+        for (ModelValueUtils.ClassInfo field : filedsInfo) {
+            if (!field.getName().equals("id") && !field.getName().equals("separator")) {
+                sb.append(field.getValue() + separator);
+            }
+        }
+        return sb.substring(0, sb.length() - 1);
+    }
 
 }

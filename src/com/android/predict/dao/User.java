@@ -7,7 +7,7 @@ import org.greenrobot.greendao.annotation.Property;
 
 @Entity
 public class User {
-    @Id
+    @Id(autoincrement = true)
     private Long id;
     @Property(nameInDb = "PACKAGENAME")
     private String packageName;

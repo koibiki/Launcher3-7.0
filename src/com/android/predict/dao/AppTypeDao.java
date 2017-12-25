@@ -53,7 +53,7 @@ public class AppTypeDao extends AbstractDao<AppType, Long> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"APP_TYPE\" (" + //
-                "\"_id\" INTEGER PRIMARY KEY ," + // 0: id
+                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "\"PACKAGENAME\" TEXT," + // 1: packageName
                 "\"APPTYPE\" INTEGER NOT NULL ," + // 2: appType
                 "\"ISBROWSER\" INTEGER NOT NULL ," + // 3: isBrowser

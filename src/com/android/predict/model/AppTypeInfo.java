@@ -13,7 +13,7 @@ import com.github.stuxuhai.jpinyin.PinyinHelper;
 
 public class AppTypeInfo implements Comparable<AppTypeInfo> {
 
-    private Long id;
+    private Long id = -1L;
 
     private String appName;
 
