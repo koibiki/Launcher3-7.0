@@ -5,15 +5,14 @@ import android.content.Intent;
 
 import com.android.launcher3.AppInfo;
 import com.android.launcher3.LauncherAppState;
-import com.android.predict.database.Database;
-import com.android.predict.domain.excutor.DaoExecutor;
-import com.android.predict.model.AppTypeInfo;
 import com.android.predict.Constants;
 import com.android.predict.database.AppDaoHelper;
+import com.android.predict.database.Database;
+import com.android.predict.domain.excutor.DaoExecutor;
 import com.android.predict.domain.excutor.PostExecutor;
+import com.android.predict.model.AppTypeInfo;
 import com.android.predict.presentation.presenter.AppTypeContact;
 import com.android.predict.utils.MillsRecordUtils;
-import com.android.predict.utils.Predictor;
 
 import org.reactivestreams.Subscriber;
 
@@ -24,7 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Executor;
-
 
 import javax.inject.Inject;
 
@@ -69,7 +67,6 @@ public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
                     @Override
                     protected void subscribeActual(Subscriber<? super Map<String, AppTypeInfo>> subscriber) {
                         MillsRecordUtils.startRecord(Thread.currentThread().getName());
-                        Predictor.createTrainData(mContext, mDatabase);
 
                         Map<String, AppTypeInfo> typeInfoMap = AppDaoHelper.getAppTypeInfos(mContext, mDatabase);
 

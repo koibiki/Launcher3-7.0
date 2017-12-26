@@ -8,7 +8,7 @@ import android.os.Looper;
 import com.android.predict.presentation.internal.component.ApplicationComponent;
 import com.android.predict.presentation.internal.component.DaggerApplicationComponent;
 import com.android.predict.presentation.internal.module.ApplicationModule;
-import com.android.predict.presentation.service.LightGbmService;
+import com.android.predict.presentation.service.TrainService;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
@@ -24,7 +24,7 @@ public class LauncherApplication extends Application {
         super.onCreate();
         initLeakcanary();
         initializeInjector();
-        startService(new Intent(this, LightGbmService.class));
+        startService(new Intent(this, TrainService.class));
     }
 
     private void initLeakcanary() {

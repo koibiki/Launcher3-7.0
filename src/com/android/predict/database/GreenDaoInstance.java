@@ -3,6 +3,7 @@ package com.android.predict.database;
 import android.content.Context;
 import android.util.Log;
 
+import com.android.predict.GreenDapWarpper;
 import com.android.predict.dao.AppType;
 import com.android.predict.dao.AppTypeDao;
 import com.android.predict.dao.DaoMaster;
@@ -32,7 +33,7 @@ public class GreenDaoInstance implements Database {
     @Inject
     public GreenDaoInstance(Context context) {
         Log.w(TAG, "init the green dao");
-        DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(context, "user.db", null);
+        DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(new GreenDapWarpper(context), "user.db", null);
         DaoMaster daoMaster = new DaoMaster(devOpenHelper.getWritableDb());
         mDaoSession = daoMaster.newSession();
     }

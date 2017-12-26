@@ -22,6 +22,6 @@ public class Constants {
 
     public final static String TYPE_POSITION = "type_position";
 
-    public final static String[] TYPES = {"BROWSER", "EFFICIENCY", "GAME", "MEDIA", "PAY", "READ", "SHOP", "SPORT", "STOCK", "STUDY", "TRAVEL", "O2O"};
+    public final static String[] TYPES = {"BROWSER", "EFFICIENCY", "GAME", "IM", "MEDIA", "PAY", "READ", "SHOP", "SPORT", "STOCK", "STUDY", "TRAVEL", "O2O"};
 
 }

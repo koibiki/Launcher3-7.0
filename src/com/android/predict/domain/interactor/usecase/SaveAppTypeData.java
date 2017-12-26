@@ -52,7 +52,6 @@ public class SaveAppTypeData extends UseCase<List<AppTypeInfo>, Object> {
     }
 
     private void saveAppTypeData(List<AppTypeInfo> appTypeInfos) {
-        long l = SystemClock.currentThreadTimeMillis();
         for (AppTypeInfo appTypeInfo : appTypeInfos) {
             AppType appType = AppDaoHelper.transferApptype(appTypeInfo);
             mDatabase.updateAppType(appType);
