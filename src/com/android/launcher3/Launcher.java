@@ -1462,6 +1462,8 @@ public class Launcher extends Activity
         } else {
             settingsButton.setVisibility(View.GONE);
         }
+        View trainingButton = findViewById(R.id.train_button);
+        trainingButton.setOnClickListener(this::onClickTrainButton);
 
         mOverviewPanel.setAlpha(0f);
     }
@@ -2708,6 +2710,14 @@ public class Launcher extends Activity
     public void onClickSettingsButton(View v) {
         if (LOGD) Log.d(TAG, "onClickSettingsButton");
         Intent intent = new Intent(Intent.ACTION_APPLICATION_PREFERENCES)
+                .setPackage(getPackageName());
+        intent.setSourceBounds(getViewBounds(v));
+        startActivity(intent, getActivityLaunchOptions(v));
+    }
+
+    public void onClickTrainButton(View v) {
+        if (LOGD) Log.d(TAG, "onClickTrainButton");
+        Intent intent = new Intent("android.intent.action.TRAINING_MODEL")
                 .setPackage(getPackageName());
         intent.setSourceBounds(getViewBounds(v));
         startActivity(intent, getActivityLaunchOptions(v));

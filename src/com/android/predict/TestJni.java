@@ -16,36 +16,38 @@ public class TestJni {
 
     private static final String TAG = TestJni.class.getName();
     private static final String root = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Launcher/model";
+
     static {
         System.loadLibrary("native-lib");
     }
 
-    public static void trainModel() {
+    public static void trainModel(int classNum) {
         long begin = SystemClock.currentThreadTimeMillis();
         String stringFromJNI = stringFromJNI();
         Log.w(TAG, "TESTJNI :" + stringFromJNI + "   " + Thread.currentThread().getName());
-        String path = root + "/train1.conf";
+        String path = root + "/train.conf";
         File file = new File(path);
         Log.w(TAG, "train File :" + file.exists());
         String trainConfig = "config=" + path;
+        String classNumConfig = "num_class=" + classNum;
         String outputModelPath = "output_model=" + root + "/output_model.txt";
-        trainModelJni(path, trainConfig, outputModelPath);
-        String spentTime ="spent time  " + (SystemClock.currentThreadTimeMillis() - begin) / 1000;
+        trainModelJni(path, trainConfig,classNumConfig, outputModelPath);
+        String spentTime = "spent time  " + (SystemClock.currentThreadTimeMillis() - begin) / 1000;
         Log.w(TAG, spentTime);
     }
 
-    public static void predict() {
+    public static void predict(int classNum) {
         long begin = SystemClock.currentThreadTimeMillis();
         String path = root + "/predictJni.conf";
         String config = "config=" + path;
         predictJni(config);
-        String spentTime ="spent time  " + (SystemClock.currentThreadTimeMillis() - begin) / 1000;
+        String spentTime = "spent time  " + (SystemClock.currentThreadTimeMillis() - begin) / 1000;
         Log.w(TAG, spentTime);
     }
 
     public static native String stringFromJNI();
 
-    public static native void trainModelJni(String path, String config, String outputModelPath);
+    public static native void trainModelJni(String path, String config,String classNum,  String outputModelPath);
 
     public static native void predictJni(String config);
 }

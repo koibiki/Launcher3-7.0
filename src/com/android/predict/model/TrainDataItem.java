@@ -864,7 +864,7 @@ public class TrainDataItem {
         this.isWeekend = userBehavior.getIsWeekend();
     }
 
-    private String separator = ",";
+    private String separator = " ";
 
     @Override
     public String toString() {

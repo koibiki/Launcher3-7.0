@@ -105,6 +105,16 @@
         </activity>
 
         <activity
+            android:name="com.android.predict.presentation.activity.TrainActivity"
+            android:autoRemoveFromRecents="true"
+            android:label="@string/train_button_text">
+            <intent-filter>
+                <action android:name="android.intent.action.TRAINING_MODEL" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name="com.android.predict.presentation.activity.AppTypeActivity" />
 
         <receiver

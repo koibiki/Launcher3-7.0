@@ -1,5 +1,9 @@
 package com.android.predict;
 
+import android.os.Environment;
+
+import java.io.File;
+
 /**
  * Created by orien on 2017/12/14.
  */
@@ -23,5 +27,8 @@ public class Constants {
     public final static String TYPE_POSITION = "type_position";
 
     public final static String[] TYPES = {"BROWSER", "EFFICIENCY", "GAME", "IM", "MEDIA", "PAY", "READ", "SHOP", "SPORT", "STOCK", "STUDY", "TRAVEL", "O2O"};
+
+    public final static String TRAIN_ROOT = Environment.getExternalStorageDirectory().getAbsolutePath()
+            + File.separator + "Launcher" + File.separator + "model";
 
 }

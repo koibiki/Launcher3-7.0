@@ -1,7 +1,6 @@
 package com.android.predict;
 
 import android.app.Application;
-import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -24,7 +23,6 @@ public class LauncherApplication extends Application {
         super.onCreate();
         initLeakcanary();
         initializeInjector();
-        startService(new Intent(this, TrainService.class));
     }
 
     private void initLeakcanary() {

@@ -11,6 +11,8 @@ import com.android.predict.dao.User;
 import com.android.predict.database.Database;
 import com.android.predict.domain.excutor.PostExecutor;
 import com.android.predict.model.TrainDataItem;
+import com.android.predict.utils.AssetsCopyTOSDcard;
+import com.android.predict.utils.MillsRecordUtils;
 
 import java.io.BufferedWriter;
 import java.io.Closeable;
@@ -23,6 +25,8 @@ import java.util.List;
 import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
+
+import static com.android.predict.Constants.TRAIN_ROOT;
 
 /**
  * Created by orien on 2017/12/25.
@@ -37,14 +41,15 @@ public class Predictor {
     private PostExecutor mUiThread;
     private Database mDatabase;
 
-    private String mTrainFilePath = Environment.getExternalStorageDirectory().getAbsolutePath()
-            + File.separator
-            + "Launcher" + File.separator + "model"
-            + File.separator + "multiclass.train";
+    private String mTrainFilePath = TRAIN_ROOT + File.separator + "multiclass.train";
 
-    private String mValidFilePath = Environment.getExternalStorageDirectory().getAbsolutePath()
-            + File.separator + "Launcher" + File.separator + "model"
-            + File.separator + "multiclass.test";
+    private String mValidFilePath = TRAIN_ROOT + File.separator + "multiclass.test";
+
+    private String mTrainConfigAssetPath = "train.conf";
+
+    private String mTrainConfigFilePath = TRAIN_ROOT + File.separator + mTrainConfigAssetPath;
+
+    private int mClassNum;
 
     @Inject
     public Predictor(Context context, Executor threadExecutor, PostExecutor uiThread, Database database) {
@@ -56,18 +61,27 @@ public class Predictor {
 
 
     public void trainPredictModel() {
-        boolean success = createTrainFile();
-        if (success) {
-            TestJni.predict();
+        MillsRecordUtils.startRecord(Thread.currentThread().getName());
+       // boolean success = createTrainFile();
+        MillsRecordUtils.print(Thread.currentThread().getName(), TAG, "create train file : ");
+
+        createTrainConfig();
+
+        if (true) {
+            TestJni.trainModel(5);
             mUiThread.getScheduler().scheduleDirect(() -> {
                 Toast.makeText(mContext, "train finish.", Toast.LENGTH_SHORT).show();
             });
         }
     }
 
+    private void createTrainConfig() {
+        AssetsCopyTOSDcard.copyAssets(mContext, mTrainConfigAssetPath, mTrainConfigFilePath);
+    }
+
     private List<TrainDataItem> createTrainData() {
         List<AppType> allAppType = mDatabase.getAllAppType();
-
+        mClassNum = allAppType.size();
         HashMap<String, AppType> appTypeMap = new HashMap<>();
 
         for (AppType appType : allAppType) {
@@ -114,7 +128,6 @@ public class Predictor {
                     validBufferedWriter.newLine();
                     validBufferedWriter.flush();
                 }
-                validBufferedWriter.close();
             }
             return true;
         } catch (IOException e) {

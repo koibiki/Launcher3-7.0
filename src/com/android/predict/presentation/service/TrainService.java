@@ -9,9 +9,12 @@ import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.android.predict.LauncherApplication;
+import com.android.predict.domain.interactor.action.Predictor;
 import com.android.predict.presentation.internal.component.ApplicationComponent;
 import com.android.predict.presentation.internal.component.DaggerTrainComponent;
 import com.android.predict.utils.PredictorSp;
+
+import javax.inject.Inject;
 
 /**
  * Created by orien on 2017/12/13.
@@ -23,27 +26,30 @@ public class TrainService extends IntentService {
         super("TrainService");
     }
 
+    @Inject
+    Predictor mPredictor;
+
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         DaggerTrainComponent.builder().applicationComponent(getApplicationComponent()).build().inject(this);
-        long l = SystemClock.currentThreadTimeMillis();
 
-        Handler mainHandler = ((LauncherApplication) getApplication()).getMainHandler();
+        mPredictor.trainPredictModel();
 
-        mainHandler.post(() -> Toast.makeText(getApplication(), "spent:" + ((SystemClock.currentThreadTimeMillis() - l) / 1000), Toast.LENGTH_SHORT).show());
+    }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        PredictorSp.getInstance(this).finishTraining();
     }
 
     private ApplicationComponent getApplicationComponent() {
         return ((LauncherApplication) getApplication()).getApplicationComponent();
     }
 
-    public static void startLightGbmService(Context context) {
-        if (!PredictorSp.getInstance(context).isTrainning()) {
-            PredictorSp.getInstance(context).startTrain();
-            Intent intent = new Intent(context, TrainService.class);
-            context.startService(intent);
-        }
+    public static void startTrainService(Context context) {
+        Intent intent = new Intent(context, TrainService.class);
+        context.startService(intent);
     }
 
 }

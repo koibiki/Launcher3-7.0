@@ -12,22 +12,27 @@ Java_com_android_predict_TestJni_stringFromJNI(JNIEnv *env, jclass type) {
 }extern "C"
 JNIEXPORT void JNICALL
 Java_com_android_predict_TestJni_trainModelJni(JNIEnv *env, jclass type, jstring path_,
-                                               jstring config_, jstring output_model_) {
+                                               jstring config_, jstring calss_num_,
+                                               jstring output_model_) {
     const char *path = env->GetStringUTFChars(path_, 0);
     const char *config = env->GetStringUTFChars(config_, 0);
+    const char *class_num = env->GetStringUTFChars(calss_num_, 0);
     const char *output_model = env->GetStringUTFChars(output_model_, 0);
     char train[] = "train";
-    char *configs[3];
+    int para_size = 4;
+    char *configs[para_size];
     configs[0] = train;
     configs[1] = const_cast<char *> (config);
-    configs[2] = const_cast<char *> (output_model);
+    configs[2] = const_cast<char *> (class_num);
+    configs[3] = const_cast<char *> (output_model);
     LOGW(" start %s", configs[0]);
     LOGW(" transfer in %s", configs[1]);
-    LightGBM::Application app(3, configs);
+    LightGBM::Application app(para_size, configs);
     app.Run();
     LOGW("finish train");
     env->ReleaseStringUTFChars(path_, path);
     env->ReleaseStringUTFChars(config_, config);
+    env->ReleaseStringUTFChars(calss_num_, class_num);
     env->ReleaseStringUTFChars(output_model_, output_model);
 }extern "C"
 JNIEXPORT void JNICALL

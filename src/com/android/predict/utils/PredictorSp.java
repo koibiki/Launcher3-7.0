@@ -34,8 +34,12 @@ public class PredictorSp {
     }
 
 
-    public synchronized boolean isTrainning() {
+    public synchronized boolean isTraining() {
         return mSp.getBoolean(KEY_START_TRAIN, false);
+    }
+
+    public synchronized void finishTraining() {
+        mSp.edit().putBoolean(KEY_START_TRAIN, false).apply();
     }
 
 }
