@@ -2,6 +2,7 @@ package com.android.predict.utils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,6 +46,9 @@ public class ModelValueUtils {
         Field[] fields = o.getClass().getDeclaredFields();
         List<ClassInfo> list = new ArrayList<>();
         for (Field field : fields) {
+            if (Modifier.isStatic(field.getModifiers())) {
+                continue;
+            }
             ClassInfo info = new ClassInfo();
             info.type = field.getType().toString();
             info.name = field.getName();
@@ -52,7 +56,6 @@ public class ModelValueUtils {
             String fieldName = field.getName();
             try {
                 String getter;
-
                 if (fieldName.startsWith("is")) {
                     String firstLetter = fieldName.substring(2, 3);
                     getter = "is" + firstLetter.toUpperCase() + fieldName.substring(3);
@@ -89,15 +92,18 @@ public class ModelValueUtils {
         }
     }
 
-    public static String[] getFiledNames(Object o) {
+    public static List<String> getFiledNames(Object o) {
         Field[] fields = o.getClass().getDeclaredFields();
-        String[] fieldNames = new String[fields.length];
-        for (int i = 0; i < fields.length; i++) {
-            System.out.println(fields[i].getType());
-            fieldNames[i] = fields[i].getName();
+        List<String> fieldNames = new ArrayList<>();
+        for (Field field : fields) {
+            if (Modifier.isStatic(field.getModifiers())) {
+                continue;
+            }
+            fieldNames.add(field.getName());
         }
         return fieldNames;
     }
+
 
     public static String getValueString(Object value) {
         if (value instanceof Boolean) {

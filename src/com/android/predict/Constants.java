@@ -31,4 +31,10 @@ public class Constants {
     public final static String TRAIN_ROOT = Environment.getExternalStorageDirectory().getAbsolutePath()
             + File.separator + "Launcher" + File.separator + "model";
 
+    public final static String ACTION_SERVICE = "action_service";
+
+    public final static String ACTION_TRAIN = "intent.action.TRAINING_SERVICE";
+
+    public final static String ACTION_PREDICT = "intent.action.PREDICTING_SERVICE";
+
 }

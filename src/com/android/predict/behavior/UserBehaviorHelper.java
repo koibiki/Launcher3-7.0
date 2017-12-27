@@ -25,16 +25,22 @@ public class UserBehaviorHelper {
     public static void saveUserClickData(Context context, Intent intent, Database database) {
         ComponentName component = intent.getComponent();
         if (component != null) {
-            User user = new User();
-            setDate(user);
-            user.setWifiConnect(UserBehaviorHelper.isWifi(context));
-            user.setMobileConnect(UserBehaviorHelper.isMobile(context));
+            User user = createUserAction(context);
             user.setPackageName(component.getPackageName());
-            Location location = UserBehaviorHelper.getLocation(context);
-            user.setLatitude(location == null ? -1 : location.getLatitude());
-            user.setLongtitude(location == null ? -1 : location.getLongitude());
+
             database.insertUserBehavior(user);
         }
+    }
+
+    private static User createUserAction(Context context) {
+        User user = new User();
+        setDate(user);
+        user.setWifiConnect(UserBehaviorHelper.isWifi(context));
+        user.setMobileConnect(UserBehaviorHelper.isMobile(context));
+        Location location = UserBehaviorHelper.getLocation(context);
+        user.setLatitude(location == null ? -1 : location.getLatitude());
+        user.setLongtitude(location == null ? -1 : location.getLongitude());
+        return user;
     }
 
     private static void setDate(User user) {

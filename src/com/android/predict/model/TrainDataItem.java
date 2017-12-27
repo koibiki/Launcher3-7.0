@@ -724,6 +724,7 @@ public class TrainDataItem {
 
     public TrainDataItem(@NotNull AppType appType, @NotNull User userBehavior) {
         this.id = appType.getId();
+
         this.isBrowser = appType.getIsBrowser();
 
         this.isEfficiency = appType.getIsEfficiency();
@@ -781,7 +782,6 @@ public class TrainDataItem {
         this.isApril = userBehavior.getIsApril();
 
         this.isMay = userBehavior.getIsMay();
-
 
         this.isJune = userBehavior.getIsJune();
 
@@ -864,16 +864,26 @@ public class TrainDataItem {
         this.isWeekend = userBehavior.getIsWeekend();
     }
 
-    private String separator = " ";
+    private String separator = "\t";
 
     @Override
     public String toString() {
-        TrainDataItem item = this;
-        List<ModelValueUtils.ClassInfo> filedsInfo = ModelValueUtils.getFiledsInfo(item);
+        List<ModelValueUtils.ClassInfo> filedsInfo = ModelValueUtils.getFiledsInfo(this);
         StringBuilder sb = new StringBuilder(id.toString() + separator);
         for (ModelValueUtils.ClassInfo field : filedsInfo) {
             if (!field.getName().equals("id") && !field.getName().equals("separator")) {
                 sb.append(field.getValue() + separator);
+            }
+        }
+        return sb.substring(0, sb.length() - 1);
+    }
+
+    public String getTypeFileds() {
+        List<String> filedNames = ModelValueUtils.getFiledNames(this);
+        StringBuilder sb = new StringBuilder("id" + separator);
+        for (String field : filedNames) {
+            if (!field.equals("id") && !field.equals("separator")) {
+                sb.append(field + separator);
             }
         }
         return sb.substring(0, sb.length() - 1);

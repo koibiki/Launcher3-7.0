@@ -7,7 +7,6 @@ import android.os.Looper;
 import com.android.predict.presentation.internal.component.ApplicationComponent;
 import com.android.predict.presentation.internal.component.DaggerApplicationComponent;
 import com.android.predict.presentation.internal.module.ApplicationModule;
-import com.android.predict.presentation.service.TrainService;
 import com.squareup.leakcanary.LeakCanary;
 
 /**

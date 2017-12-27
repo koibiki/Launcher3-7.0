@@ -45,9 +45,15 @@ public class Predictor {
 
     private String mValidFilePath = TRAIN_ROOT + File.separator + "multiclass.test";
 
+    private String mPredictFilePath = TRAIN_ROOT + File.separator + "multiclass.predict";
+
     private String mTrainConfigAssetPath = "train.conf";
 
     private String mTrainConfigFilePath = TRAIN_ROOT + File.separator + mTrainConfigAssetPath;
+
+    private String mPredictConfigAssetPath = "train.conf";
+
+    private String mPredictConfigFilePath = TRAIN_ROOT + File.separator + mTrainConfigAssetPath;
 
     private int mClassNum;
 
@@ -60,15 +66,30 @@ public class Predictor {
     }
 
 
-    public void trainPredictModel() {
+    public void trainModel() {
         MillsRecordUtils.startRecord(Thread.currentThread().getName());
-       // boolean success = createTrainFile();
+        boolean success = createTrainFile();
         MillsRecordUtils.print(Thread.currentThread().getName(), TAG, "create train file : ");
 
         createTrainConfig();
 
         if (true) {
-            TestJni.trainModel(5);
+            //TestJni.trainModel(5);
+            mUiThread.getScheduler().scheduleDirect(() -> {
+                Toast.makeText(mContext, "train finish.", Toast.LENGTH_SHORT).show();
+            });
+        }
+    }
+
+    public void predict() {
+        MillsRecordUtils.startRecord(Thread.currentThread().getName());
+        boolean success = createPredictFile();
+        MillsRecordUtils.print(Thread.currentThread().getName(), TAG, "create train file : ");
+
+        createTrainConfig();
+
+        if (true) {
+            //TestJni.trainModel(5);
             mUiThread.getScheduler().scheduleDirect(() -> {
                 Toast.makeText(mContext, "train finish.", Toast.LENGTH_SHORT).show();
             });
@@ -77,6 +98,10 @@ public class Predictor {
 
     private void createTrainConfig() {
         AssetsCopyTOSDcard.copyAssets(mContext, mTrainConfigAssetPath, mTrainConfigFilePath);
+    }
+
+    private void createPredictConfig() {
+        AssetsCopyTOSDcard.copyAssets(mContext, mPredictConfigAssetPath, mPredictConfigFilePath);
     }
 
     private List<TrainDataItem> createTrainData() {
@@ -96,10 +121,18 @@ public class Predictor {
                 AppType appType = appTypeMap.get(packageName);
                 TrainDataItem trainDataItem = new TrainDataItem(appType, userBehavior);
                 trainDataItems.add(trainDataItem);
-                Log.w(TAG, packageName + " " + trainDataItem.toString());
+                Log.w(TAG, packageName + "\t" + trainDataItem.toString());
             }
         }
         return trainDataItems;
+    }
+
+    private boolean createPredictFile() {
+        List<AppType> allAppType = mDatabase.getAllAppType();
+
+
+
+        return false;
     }
 
     private boolean createTrainFile() {
@@ -114,18 +147,20 @@ public class Predictor {
         try {
             trainWriter = new FileWriter(train);
             trainBufferedWriter = new BufferedWriter(trainWriter);
+            trainBufferedWriter.write(trainData.get(0).getTypeFileds());
             validWriter = new FileWriter(valid);
             validBufferedWriter = new BufferedWriter(validWriter);
+            validBufferedWriter.write(trainData.get(0).getTypeFileds());
             int size = trainData.size();
             int validIndex = size * 2 / 3;
             for (int i = 0; i < size; i++) {
-                TrainDataItem trainDataItem = trainData.get(i);
-                trainBufferedWriter.write(trainDataItem.toString());
+                String trainDataItem = trainData.get(i).toString();
                 trainBufferedWriter.newLine();
+                trainBufferedWriter.write(trainDataItem);
                 trainBufferedWriter.flush();
                 if (i >= validIndex) {
-                    validBufferedWriter.write(trainDataItem.toString());
                     validBufferedWriter.newLine();
+                    validBufferedWriter.write(trainDataItem);
                     validBufferedWriter.flush();
                 }
             }
