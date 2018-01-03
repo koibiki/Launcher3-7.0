@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.android.predict.behavior.UserBehaviorHelper;
+import com.android.predict.behavior.UserActionHelper;
 import com.android.predict.database.Database;
 import com.android.predict.domain.excutor.DaoExecutor;
 import com.android.predict.domain.excutor.PostExecutor;
@@ -50,7 +50,7 @@ public class SaveUserBehavior extends UseCase<Intent, Object> {
     }
 
     private void saveUserBehavior(Intent intent) {
-        UserBehaviorHelper.saveUserClickData(mContext, intent, mDatabase);
+        UserActionHelper.saveUserClickData(mContext, intent.getComponent().getPackageName(), mDatabase);
     }
 
     @Override

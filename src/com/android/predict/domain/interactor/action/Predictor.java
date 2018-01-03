@@ -1,16 +1,16 @@
 package com.android.predict.domain.interactor.action;
 
 import android.content.Context;
-import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.android.predict.TestJni;
+import com.android.predict.behavior.UserActionHelper;
 import com.android.predict.dao.AppType;
 import com.android.predict.dao.User;
 import com.android.predict.database.Database;
 import com.android.predict.domain.excutor.PostExecutor;
-import com.android.predict.model.TrainDataItem;
+import com.android.predict.model.LightGbmItem;
 import com.android.predict.utils.AssetsCopyTOSDcard;
 import com.android.predict.utils.MillsRecordUtils;
 
@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.concurrent.Executor;
 
 import javax.inject.Inject;
+
+import io.reactivex.Flowable;
 
 import static com.android.predict.Constants.TRAIN_ROOT;
 
@@ -51,7 +53,7 @@ public class Predictor {
 
     private String mTrainConfigFilePath = TRAIN_ROOT + File.separator + mTrainConfigAssetPath;
 
-    private String mPredictConfigAssetPath = "train.conf";
+    private String mPredictConfigAssetPath = "predict.conf";
 
     private String mPredictConfigFilePath = TRAIN_ROOT + File.separator + mTrainConfigAssetPath;
 
@@ -73,11 +75,9 @@ public class Predictor {
 
         createTrainConfig();
 
-        if (true) {
-            //TestJni.trainModel(5);
-            mUiThread.getScheduler().scheduleDirect(() -> {
-                Toast.makeText(mContext, "train finish.", Toast.LENGTH_SHORT).show();
-            });
+        if (success) {
+            TestJni.trainModel(mClassNum);
+            mUiThread.getScheduler().scheduleDirect(() -> Toast.makeText(mContext, "train finish.", Toast.LENGTH_SHORT).show());
         }
     }
 
@@ -86,13 +86,11 @@ public class Predictor {
         boolean success = createPredictFile();
         MillsRecordUtils.print(Thread.currentThread().getName(), TAG, "create train file : ");
 
-        createTrainConfig();
+        createPredictConfig();
 
-        if (true) {
-            //TestJni.trainModel(5);
-            mUiThread.getScheduler().scheduleDirect(() -> {
-                Toast.makeText(mContext, "train finish.", Toast.LENGTH_SHORT).show();
-            });
+        if (success) {
+            TestJni.predict();
+            mUiThread.getScheduler().scheduleDirect(() -> Toast.makeText(mContext, "train finish.", Toast.LENGTH_SHORT).show());
         }
     }
 
@@ -104,39 +102,65 @@ public class Predictor {
         AssetsCopyTOSDcard.copyAssets(mContext, mPredictConfigAssetPath, mPredictConfigFilePath);
     }
 
-    private List<TrainDataItem> createTrainData() {
+    private List<LightGbmItem> createTrainData() {
         List<AppType> allAppType = mDatabase.getAllAppType();
         mClassNum = allAppType.size();
         HashMap<String, AppType> appTypeMap = new HashMap<>();
 
-        for (AppType appType : allAppType) {
-            appTypeMap.put(appType.getPackageName(), appType);
-        }
+        Flowable.fromIterable(allAppType)
+                .subscribe(appType -> appTypeMap.put(appType.getPackageName(), appType));
 
-        List<TrainDataItem> trainDataItems = new ArrayList<>();
-        List<User> allUserBehavior = mDatabase.getAllUserBehavior(0);
-        for (User userBehavior : allUserBehavior) {
-            String packageName = userBehavior.getPackageName();
-            if (!mContext.getPackageName().equals(packageName)) {
-                AppType appType = appTypeMap.get(packageName);
-                TrainDataItem trainDataItem = new TrainDataItem(appType, userBehavior);
-                trainDataItems.add(trainDataItem);
-                Log.w(TAG, packageName + "\t" + trainDataItem.toString());
-            }
-        }
-        return trainDataItems;
+        List<LightGbmItem> lightGbmItems = new ArrayList<>();
+
+        Flowable.fromIterable(mDatabase.getAllUserBehavior(0))
+                .filter(user -> !mContext.getPackageName().equals(user.getPackageName()))
+                .filter(user -> appTypeMap.get(user.getPackageName()) != null)
+                .subscribe(user -> {
+                    LightGbmItem lightGbmItem = new LightGbmItem(appTypeMap.get(user.getPackageName()), user);
+                    lightGbmItems.add(lightGbmItem);
+                    Log.w(TAG, user.getPackageName() + "\t" + lightGbmItem.toString());
+                });
+        return lightGbmItems;
     }
 
     private boolean createPredictFile() {
-        List<AppType> allAppType = mDatabase.getAllAppType();
+        List<LightGbmItem> predictData = createPredictData();
+        File predict = new File(mPredictFilePath);
+        FileWriter predictWriter = null;
+        BufferedWriter predictBufferedWriter = null;
+        try {
+            predictWriter = new FileWriter(predict);
+            predictBufferedWriter = new BufferedWriter(predictWriter);
+            int size = predictData.size();
+            for (int i = 0; i < size; i++) {
+                String trainDataItem = predictData.get(i).toString();
+                predictBufferedWriter.write(trainDataItem);
+                predictBufferedWriter.newLine();
+                predictBufferedWriter.flush();
+            }
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            close(predictBufferedWriter);
+            close(predictWriter);
+        }
+    }
 
-
-
-        return false;
+    private List<LightGbmItem> createPredictData() {
+        List<LightGbmItem> list = new ArrayList<>();
+        Flowable.fromIterable(mDatabase.getAllAppType())
+                .subscribe(appType -> {
+                    User userAction = UserActionHelper.createUserAction(mContext, null);
+                    LightGbmItem item = new LightGbmItem(appType, userAction);
+                    list.add(item);
+                });
+        return list;
     }
 
     private boolean createTrainFile() {
-        List<TrainDataItem> trainData = createTrainData();
+        List<LightGbmItem> trainData = createTrainData();
 
         File train = new File(mTrainFilePath);
         File valid = new File(mValidFilePath);
@@ -147,20 +171,18 @@ public class Predictor {
         try {
             trainWriter = new FileWriter(train);
             trainBufferedWriter = new BufferedWriter(trainWriter);
-            trainBufferedWriter.write(trainData.get(0).getTypeFileds());
             validWriter = new FileWriter(valid);
             validBufferedWriter = new BufferedWriter(validWriter);
-            validBufferedWriter.write(trainData.get(0).getTypeFileds());
             int size = trainData.size();
             int validIndex = size * 2 / 3;
             for (int i = 0; i < size; i++) {
                 String trainDataItem = trainData.get(i).toString();
-                trainBufferedWriter.newLine();
                 trainBufferedWriter.write(trainDataItem);
+                trainBufferedWriter.newLine();
                 trainBufferedWriter.flush();
                 if (i >= validIndex) {
-                    validBufferedWriter.newLine();
                     validBufferedWriter.write(trainDataItem);
+                    validBufferedWriter.newLine();
                     validBufferedWriter.flush();
                 }
             }

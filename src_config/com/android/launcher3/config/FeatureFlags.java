@@ -25,14 +25,14 @@ public final class FeatureFlags {
     // Custom flags go below this
     public static boolean LAUNCHER3_DISABLE_ICON_NORMALIZATION = false;
     // As opposed to the new spring-loaded workspace.
-    public static boolean LAUNCHER3_LEGACY_WORKSPACE_DND = false;
+    public static boolean LAUNCHER3_LEGACY_WORKSPACE_DND = true;
     public static boolean LAUNCHER3_LEGACY_FOLDER_ICON = false;
     public static boolean LAUNCHER3_USE_SYSTEM_DRAG_DRIVER = true;
     public static boolean LAUNCHER3_DISABLE_PINCH_TO_OVERVIEW = false;
     public static boolean LAUNCHER3_ALL_APPS_PULL_UP = true;
 
     // Feature flag to enable moving the QSB on the 0th screen of the workspace.
-    public static final boolean QSB_ON_FIRST_SCREEN = true;
+    public static final boolean QSB_ON_FIRST_SCREEN = false;
     // When enabled the all-apps icon is not added to the hotseat.
     public static final boolean NO_ALL_APPS_ICON = true;
     // When enabled fling down gesture on the first workspace triggers search.

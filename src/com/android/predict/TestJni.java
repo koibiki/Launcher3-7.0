@@ -6,6 +6,8 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.android.predict.utils.MillsRecordUtils;
+
 import java.io.File;
 
 /**
@@ -22,32 +24,27 @@ public class TestJni {
     }
 
     public static void trainModel(int classNum) {
-        long begin = SystemClock.currentThreadTimeMillis();
-        String stringFromJNI = stringFromJNI();
-        Log.w(TAG, "TESTJNI :" + stringFromJNI + "   " + Thread.currentThread().getName());
+        MillsRecordUtils.startRecord(Thread.currentThread().getName());
         String path = root + "/train.conf";
         File file = new File(path);
         Log.w(TAG, "train File :" + file.exists());
         String trainConfig = "config=" + path;
         String classNumConfig = "num_class=" + classNum;
-        String outputModelPath = "output_model=" + root + "/output_model.txt";
-        trainModelJni(path, trainConfig,classNumConfig, outputModelPath);
-        String spentTime = "spent time  " + (SystemClock.currentThreadTimeMillis() - begin) / 1000;
-        Log.w(TAG, spentTime);
+        trainModelJni(path, trainConfig,classNumConfig);
+        MillsRecordUtils.print(Thread.currentThread().getName(),TAG,"train model");
     }
 
-    public static void predict(int classNum) {
-        long begin = SystemClock.currentThreadTimeMillis();
-        String path = root + "/predictJni.conf";
+    public static void predict() {
+        MillsRecordUtils.startRecord(Thread.currentThread().getName());
+        String path = root + "/predict.conf";
         String config = "config=" + path;
         predictJni(config);
-        String spentTime = "spent time  " + (SystemClock.currentThreadTimeMillis() - begin) / 1000;
-        Log.w(TAG, spentTime);
+        MillsRecordUtils.print(Thread.currentThread().getName(),TAG,"train model");
     }
 
     public static native String stringFromJNI();
 
-    public static native void trainModelJni(String path, String config,String classNum,  String outputModelPath);
+    public static native void trainModelJni(String path, String config,String classNum);
 
     public static native void predictJni(String config);
 }

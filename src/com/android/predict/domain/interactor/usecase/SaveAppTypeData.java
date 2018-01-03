@@ -19,6 +19,8 @@ import java.util.concurrent.Executor;
 import javax.inject.Inject;
 
 import io.reactivex.Flowable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.subscribers.DisposableSubscriber;
 
 /**
@@ -52,10 +54,9 @@ public class SaveAppTypeData extends UseCase<List<AppTypeInfo>, Object> {
     }
 
     private void saveAppTypeData(List<AppTypeInfo> appTypeInfos) {
-        for (AppTypeInfo appTypeInfo : appTypeInfos) {
-            AppType appType = AppDaoHelper.transferApptype(appTypeInfo);
-            mDatabase.updateAppType(appType);
-        }
+        Flowable.fromIterable(appTypeInfos)
+                .map(AppDaoHelper::transferApptype)
+                .subscribe(mDatabase::updateAppType);
     }
 
     @Override
