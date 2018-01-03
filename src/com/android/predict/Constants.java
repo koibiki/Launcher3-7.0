@@ -23,10 +23,11 @@ public class Constants {
     public final static int TYPE_STUDY = 10;
     public final static int TYPE_TRAVEL = 11;
     public final static int TYPE_O2O = 12;
+    public final static int TYPE_USELESS = 13;
 
     public final static String TYPE_POSITION = "type_position";
 
-    public final static String[] TYPES = {"BROWSER", "EFFICIENCY", "GAME", "IM", "MEDIA", "PAY", "READ", "SHOP", "SPORT", "STOCK", "STUDY", "TRAVEL", "O2O"};
+    public final static String[] TYPES = {"BROWSER", "EFFICIENCY", "GAME", "IM", "MEDIA", "PAY", "READ", "SHOP", "SPORT", "STOCK", "STUDY", "TRAVEL", "O2O", "USELESS"};
 
     public final static String TRAIN_ROOT = Environment.getExternalStorageDirectory().getAbsolutePath()
             + File.separator + "Launcher" + File.separator + "model";

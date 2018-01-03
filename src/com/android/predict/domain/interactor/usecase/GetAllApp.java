@@ -49,7 +49,7 @@ public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
                      DaoExecutor greenDaoExecutor,
                      AppTypeContact.View view,
                      Intent intent, Database database) {
-        super(threadExecutor,postExecutor);
+        super(threadExecutor, postExecutor);
         mContext = context;
         mGreenDaoExecutor = greenDaoExecutor;
         mThreadExecutor = threadExecutor;
@@ -104,6 +104,18 @@ public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
                         packageList.add(packageName);
                     }
 
+                    if (Constants.TYPE_USELESS != typePosition) {
+                        Set<String> strings = typeInfoMap.keySet();
+                        Iterator<String> iterator = strings.iterator();
+                        while (iterator.hasNext()) {
+                            String next = iterator.next();
+                            AppTypeInfo appTypeInfo = typeInfoMap.get(next);
+                            if (appTypeInfo.isUseless()) {
+                                iterator.remove();
+                            }
+                        }
+                    }
+
                     Set<String> strings = typeInfoMap.keySet();
                     Iterator<String> iterator = strings.iterator();
                     while (iterator.hasNext()) {
@@ -112,6 +124,7 @@ public class GetAllApp extends UseCase<Object, List<AppTypeInfo>> {
                             iterator.remove();
                         }
                     }
+
                     List<AppTypeInfo> appTypeInfos = new ArrayList<>(typeInfoMap.values());
                     Collections.sort(appTypeInfos);
 

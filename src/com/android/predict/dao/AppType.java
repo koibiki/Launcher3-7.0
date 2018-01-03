@@ -41,11 +41,14 @@ public class AppType {
     private boolean isTravel;
     @Property(nameInDb = "ISO2O")
     private boolean isO2o;
-    @Generated(hash = 676283195)
+    @Property(nameInDb = "ISUSELESS")
+    private boolean isUseless;
+    @Generated(hash = 564540843)
     public AppType(Long id, String packageName, boolean isBrowser,
             boolean isEfficiency, boolean isGame, boolean isIm, boolean isMedia,
             boolean isPay, boolean isRead, boolean isShop, boolean isSport,
-            boolean isStock, boolean isStudy, boolean isTravel, boolean isO2o) {
+            boolean isStock, boolean isStudy, boolean isTravel, boolean isO2o,
+            boolean isUseless) {
         this.id = id;
         this.packageName = packageName;
         this.isBrowser = isBrowser;
@@ -61,6 +64,7 @@ public class AppType {
         this.isStudy = isStudy;
         this.isTravel = isTravel;
         this.isO2o = isO2o;
+        this.isUseless = isUseless;
     }
     @Generated(hash = 1464568658)
     public AppType() {
@@ -155,6 +159,10 @@ public class AppType {
     public void setIsO2o(boolean isO2o) {
         this.isO2o = isO2o;
     }
-    
-
+    public boolean getIsUseless() {
+        return this.isUseless;
+    }
+    public void setIsUseless(boolean isUseless) {
+        this.isUseless = isUseless;
+    }
 }

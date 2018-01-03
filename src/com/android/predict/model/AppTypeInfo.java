@@ -49,6 +49,16 @@ public class AppTypeInfo implements Comparable<AppTypeInfo> {
 
     private boolean isO2o;
 
+    private boolean isUseless;
+
+    public boolean isUseless() {
+        return isUseless;
+    }
+
+    public void setUseless(boolean useless) {
+        isUseless = useless;
+    }
+
     private int currentPosition;
 
     public Long getId() {
@@ -241,6 +251,9 @@ public class AppTypeInfo implements Comparable<AppTypeInfo> {
             case Constants.TYPE_O2O:
                 isO2o = status;
                 break;
+            case Constants.TYPE_USELESS:
+                isUseless = status;
+                break;
         }
     }
 
@@ -272,6 +285,8 @@ public class AppTypeInfo implements Comparable<AppTypeInfo> {
                 return isTravel;
             case Constants.TYPE_O2O:
                 return isO2o;
+            case Constants.TYPE_USELESS:
+                return isUseless;
             default:
                 return false;
         }

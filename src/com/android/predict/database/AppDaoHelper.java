@@ -51,6 +51,7 @@ public class AppDaoHelper {
         appTypeInfo.setStudy(appType.getIsStudy());
         appTypeInfo.setTravel(appType.getIsTravel());
         appTypeInfo.setO2o(appType.getIsO2o());
+        appTypeInfo.setUseless(appType.getIsUseless());
         return appTypeInfo;
     }
 
@@ -73,6 +74,7 @@ public class AppDaoHelper {
         appType.setIsStudy(appTypeInfo.isStudy());
         appType.setIsTravel(appTypeInfo.isTravel());
         appType.setIsO2o(appTypeInfo.isO2o());
+        appType.setIsUseless(appTypeInfo.isUseless());
         return appType;
     }
 
